@@ -273,4 +273,17 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <Style x:Key="AddImageright" TargetType="{x:Type Image}">
+        <Setter Property="Source" Value="/Library/Image/addfile.png"/>
+        <Setter Property="Tag" Value="0"/>
+        <Style.Triggers>
+            <Trigger Property="Tag" Value="1">
+                <Setter Property="Source" Value="/Library/Image/tiff.png"/>
+            </Trigger>
+            <Trigger Property="Tag" Value="2">
+                <Setter Property="Source" Value="/Library/Image/png.png"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>
