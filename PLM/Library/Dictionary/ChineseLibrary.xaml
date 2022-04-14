@@ -10,4 +10,13 @@
     <system:String x:Key="Downloading">正在下载</system:String>
     <system:String x:Key="PageLists">版面样式</system:String>
     <system:String x:Key="PageDoesNotExist">页面不存在。</system:String>
+    <system:String x:Key="Layoutinformation">版面信息</system:String>
+    <system:String x:Key="Remarks">备注信息</system:String>
+    <system:String x:Key="Layoutinformationinput">请输入</system:String>
+    <system:String x:Key="ConfirmUpload">确认上传</system:String>
+    <system:String x:Key="Clickordragtoaddsourcefile">点击或拖拽添加源文件</system:String>
+    <system:String x:Key="Thesupportedformatsare.tiff、.psd">支持格式为.tiff、.psd</system:String>
+    <system:String x:Key="Thesupportedformatsare.jpg、.png">支持格式为.jpg、.png</system:String>
+
 </ResourceDictionary>
+    

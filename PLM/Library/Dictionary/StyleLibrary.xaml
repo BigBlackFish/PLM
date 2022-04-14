@@ -150,4 +150,127 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+
+    <Style x:Key="LayoutinformationTextBox" TargetType="{x:Type TextBox}">
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Width" Value="341"/>
+        <Setter Property="FontSize" Value="17"/>
+        <Setter Property="Foreground" Value="#606266"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border x:Name="brdTextBox" Padding="15,0,15,0" BorderBrush="#FFC8C8CC" BorderThickness="1" Background="#FFFFFF" CornerRadius="5">
+                        <Grid>
+                            <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Center" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                            <StackPanel Orientation="Horizontal" IsHitTestVisible="False">
+                                <TextBlock x:Name="txbHint" VerticalAlignment="Center" Margin="8,0,0,0" Foreground="#969699" Text="{DynamicResource Layoutinformationinput}" Visibility="Collapsed"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Text" Value="">
+                            <Setter TargetName="txbHint" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="RemarksTextBox" TargetType="{x:Type TextBox}">
+        <Setter Property="Height" Value="100"/>
+        <Setter Property="Width" Value="341"/>
+        <Setter Property="FontSize" Value="17"/>
+        <Setter Property="Foreground" Value="#606266"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border x:Name="brdTextBox" Padding="15,0,15,0" BorderBrush="#FFC8C8CC" BorderThickness="1" Background="#FFFFFF" CornerRadius="5">
+                        <Grid>
+                            <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Center"  Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                            <StackPanel Orientation="Horizontal" IsHitTestVisible="False">
+                                <TextBlock x:Name="txbHint" VerticalAlignment="Center" Margin="8,0,0,60" Foreground="#969699" Text="{DynamicResource Layoutinformationinput}" Visibility="Collapsed"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Text" Value="">
+                            <Setter TargetName="txbHint" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ConfirmUploadButton" TargetType="{x:Type Button}">
+        <Setter Property="Height" Value="64"/>
+        <Setter Property="Width" Value="180"/>
+        <Setter Property="Background" Value="#FF0D78D8"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Foreground" Value="#FFFFFF"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Padding" Value="20,0,20,0"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="8" Padding="{TemplateBinding Padding}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="Background.(SolidColorBrush.Color)" To="#FF8A33" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="Background.(SolidColorBrush.Color)" To="#FF6D00" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="#E66200"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <DrawingBrush x:Key="UploadLeftborderBrush" Viewport="0,0,8,8" ViewportUnits="Absolute" TileMode="Tile">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <GeometryDrawing Brush="#FFC8C8CC">
+                    <GeometryDrawing.Geometry>
+                        <GeometryGroup>
+                            <RectangleGeometry Rect="0,0,5,5" />
+                            <RectangleGeometry Rect="5,5,5,5" />
+                        </GeometryGroup>
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <Style x:Key="AddImage" TargetType="{x:Type Image}">
+        <Setter Property="Source" Value="/Library/Image/addfile.png"/>
+        <Setter Property="Tag" Value="0"/>
+        <Style.Triggers>
+            <Trigger Property="Tag" Value="1">
+                <Setter Property="Source" Value="/Library/Image/tiff.png"/>
+            </Trigger>
+            <Trigger Property="Tag" Value="2">
+                <Setter Property="Source" Value="/Library/Image/png.png"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>

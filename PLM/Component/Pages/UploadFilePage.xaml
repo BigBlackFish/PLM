@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:controls="clr-namespace:PLM.Library.Controls"
       mc:Ignorable="d" 
       d:DesignHeight="548" d:DesignWidth="962"
       x:Name="UploadFileMain">
@@ -16,9 +17,43 @@
         </EventTrigger>
     </Page.Triggers>
     <Grid>
-        <StackPanel>
+        <!--<StackPanel>
             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#0D78D8" FontSize="40" Text="{DynamicResource UploadFile}"/>
             <Button Style="{StaticResource ButtonPrimary}" HorizontalAlignment="Center" Content="消息通知" Click="Button_Click" Cursor="Hand"/>
+        </StackPanel>-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF323233" FontSize="24" Text="{DynamicResource UploadFile}"/>
+        
+        <StackPanel Grid.Row="1" Margin="20,0,0,0" Orientation="Horizontal">
+            <Border BorderThickness="1" Height=" 280" Width="420" BorderBrush="{StaticResource UploadLeftborderBrush}"  CornerRadius="8,0,0,8">
+                <controls:Fileadd/>
+            </Border>
+
+            <Border BorderThickness="0,1,1,1" Height=" 280" Width="420" BorderBrush="{StaticResource UploadLeftborderBrush}"  CornerRadius="0,8,8,0">
+                <controls:FileaddRight/>
+            </Border>
+
+            <!--<Rectangle Stroke="#FFC8C8CC" Height="280" Width="900" HorizontalAlignment="Center" VerticalAlignment="Center" StrokeThickness="1" StrokeDashArray="5 5" SnapsToDevicePixels="True" RadiusX="2" RadiusY="2"/>-->
+            
+        </StackPanel>
+
+        <StackPanel Grid.Row="2"  HorizontalAlignment="Left" Orientation="Vertical">
+            <StackPanel Height=" 60" Orientation="Horizontal">
+                <TextBlock Margin="20,0,0,0" Text="*" Foreground="#FFDF331D" VerticalAlignment="Center" FontSize="13"/>
+                <TextBlock Foreground="#FF323233" Text="{DynamicResource Layoutinformation}" VerticalAlignment="Center" FontSize="13"/>
+                <TextBox Margin="8,0,0,0" Style="{StaticResource LayoutinformationTextBox}"/>
+            </StackPanel>
+            <StackPanel Height="110" Orientation="Horizontal">
+                <TextBlock Margin="27,10,0,0" Foreground="#FF323233" VerticalAlignment="Top" Text="{DynamicResource Remarks}" FontSize="13"/>
+                <TextBox  Margin="10,0,0,0" Style="{StaticResource RemarksTextBox}" TextWrapping="Wrap"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="2"  HorizontalAlignment="Right" >
+            <Button Content="{DynamicResource ConfirmUpload}"  Margin="90,100,0,0"  Style="{StaticResource ConfirmUploadButton}" Cursor="Hand"/>
         </StackPanel>
     </Grid>
 </Page>

@@ -43,6 +43,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -107,6 +108,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Library\Controls\Fileadd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Library\Controls\FileaddRight.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Library\Controls\Loading.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -139,6 +148,12 @@
   <ItemGroup>
     <Compile Include="Component\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Library\Controls\Fileadd.xaml.cs">
+      <DependentUpon>Fileadd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Library\Controls\FileaddRight.xaml.cs">
+      <DependentUpon>FileaddRight.xaml</DependentUpon>
     </Compile>
     <Compile Include="Library\Controls\Loading.xaml.cs">
       <DependentUpon>Loading.xaml</DependentUpon>
@@ -208,6 +223,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Library\Image\marshalling 2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Library\Image\addfile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Library\Image\tiff.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Library\Image\png.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
