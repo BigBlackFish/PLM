@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>PLM</RootNamespace>
     <AssemblyName>PLM</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -170,6 +170,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <Resource Include="Library\Font\element-icons.ttf" />
+    <Resource Include="Library\Font\苹方黑体-中粗-简.ttf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -185,10 +186,10 @@
     <Folder Include="Service\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Library\Image\矩形%402x.png" />
+    <Resource Include="Library\Image\rectangular%402x.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Library\Image\编组 2%402x.png" />
+    <Resource Include="Library\Image\marshalling 2 %402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Library\Image\geren6%402x.png" />
@@ -206,7 +207,7 @@
     <Resource Include="Library\Image\8111649317873_.pic%402x.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Library\Image\编组 2.png" />
+    <Resource Include="Library\Image\marshalling 2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

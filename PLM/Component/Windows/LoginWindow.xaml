@@ -28,8 +28,8 @@
                 </RectangleGeometry.Rect>
             </RectangleGeometry>
         </Grid.Clip>
-        <Image VerticalAlignment="Top" Source="/Library/Image/矩形@2x.png" />
-        <Image HorizontalAlignment="Center" VerticalAlignment="Top" Margin="62,48,68,0" Source="/Library/Image/编组 2@2x.png" />
+        <Image VerticalAlignment="Top" Source="/Library/Image/rectangular@2x.png" />
+        <Image HorizontalAlignment="Center" VerticalAlignment="Top" Margin="62,48,68,0" Source="/Library/Image/marshalling 2 @2x.png" />
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,153,0,0" WindowChrome.IsHitTestVisibleInChrome="True">
             <TextBox Style="{StaticResource AccountCodeTextBox}" Text="{Binding UserName}"/>
             <controls:PasswordInputBox Margin="0,24,0,0" Password="{Binding Password,Mode=TwoWay}"/>

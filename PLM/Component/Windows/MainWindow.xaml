@@ -20,7 +20,7 @@
                     <GradientStop Offset="1.0" Color="#E6EDFF"/>
                 </LinearGradientBrush>
             </Grid.Background>
-            <Image Width="176" Source="/Library/Image/编组 2.png" />
+            <Image Width="176" Source="/Library/Image/marshalling 2.png" />
         </Grid>
         <Grid Grid.Row="1">
             <Grid>
