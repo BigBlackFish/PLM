@@ -226,9 +226,6 @@
     <Resource Include="Library\Image\show.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Library\Image\8111649317873_.pic%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Library\Image\marshalling 2.png" />
   </ItemGroup>
   <ItemGroup>
@@ -245,6 +242,23 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Library\Image\Jpg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Library\Image\Pitera%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Library\Image\8111649317873_.pic%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Library\Image\shandian.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Library\Image\shandian%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Library\Image\stop%402x.png" />
+    <Resource Include="Library\Image\delete%402x.png" />
+    <Resource Include="Library\Image\cancel%402x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -44,7 +44,7 @@
             <DataGrid.Columns>
 
 
-                <DataGridTextColumn x:Name="Name" Header="{DynamicResource id}"  Binding="{Binding deviceNum}"  Width="*" >
+                <DataGridTextColumn x:Name="Name1" Header="{DynamicResource id}"  Binding="{Binding deviceNum}"  Width="*" >
                 </DataGridTextColumn>
 
                 <DataGridTextColumn Header="{DynamicResource file}"  Width="*" />
