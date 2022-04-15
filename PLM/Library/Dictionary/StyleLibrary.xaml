@@ -313,4 +313,166 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="PageListsPageDataGrid" TargetType="{x:Type DataGrid}">
+        <Setter Property="Background" Value="/Library/Image/addfile.png"/>
+        <Setter Property="Tag" Value="0"/>
+        <Style.Triggers>
+            <Trigger Property="Tag" Value="1">
+                <Setter Property="Background" Value="/Library/Image/png.png"/>
+            </Trigger>
+            <Trigger Property="Tag" Value="2">
+                <Setter Property="Background" Value="/Library/Image/Jpg.png"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="PageListsPageDataGridColumnHeader" TargetType="DataGridColumnHeader">
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Height" Value="40"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Background" Value="#FFF5F5FA" />
+        <Setter Property="Foreground" Value="#FF323233" />
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="BorderThickness" Value="0" />
+    </Style>
+
+    <Style x:Key="starttoendtimeTextBox" TargetType="{x:Type TextBox}">
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Width" Value="230"/>
+        <Setter Property="Margin" Value="20,0,0,0"/>
+        <Setter Property="FontSize" Value="17"/>
+        <Setter Property="Foreground" Value="#606266"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border x:Name="brdTextBox" Padding="15,0,15,0" BorderBrush="#FFC8C8CC" BorderThickness="1" Background="#FFFFFF" CornerRadius="5">
+                        <Grid>
+                            <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Center" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                            <StackPanel Orientation="Horizontal" IsHitTestVisible="False">
+                                <TextBlock x:Name="txbHint" VerticalAlignment="Center" Margin="8,0,0,0" Foreground="#969699" Text="{DynamicResource starttimeandentime}" Visibility="Collapsed"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Text" Value="">
+                            <Setter TargetName="txbHint" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="uploaderTextBox" TargetType="{x:Type TextBox}">
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Width" Value="130"/>
+        <Setter Property="FontSize" Value="17"/>
+        <Setter Property="Margin" Value="15,0,0,0"/>
+        <Setter Property="Foreground" Value="#606266"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border x:Name="brdTextBox" Padding="15,0,15,0" BorderBrush="#FFC8C8CC" BorderThickness="1" Background="#FFFFFF" CornerRadius="5">
+                        <Grid>
+                            <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Center" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                            <StackPanel Orientation="Horizontal" IsHitTestVisible="False">
+                                <TextBlock x:Name="txbHint" VerticalAlignment="Center" Margin="8,0,0,0" Foreground="#969699" Text="{DynamicResource Uploader}" Visibility="Collapsed"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Text" Value="">
+                            <Setter TargetName="txbHint" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="fileNameTextBox" TargetType="{x:Type TextBox}">
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Width" Value="230"/>
+        <Setter Property="Margin" Value="15,0,0,0"/>
+        <Setter Property="FontSize" Value="17"/>
+        <Setter Property="Foreground" Value="#606266"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border x:Name="brdTextBox" Padding="15,0,15,0" BorderBrush="#FFC8C8CC" BorderThickness="1" Background="#FFFFFF" CornerRadius="5">
+                        <Grid>
+                            <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Center" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                            <StackPanel Orientation="Horizontal" IsHitTestVisible="False">
+                                <TextBlock x:Name="txbHint" VerticalAlignment="Center" Margin="8,0,0,0" Foreground="#969699" Text="{DynamicResource fileName}" Visibility="Collapsed"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Text" Value="">
+                            <Setter TargetName="txbHint" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="butselect" TargetType="{x:Type Button}">
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Width" Value="70"/>
+        <Setter Property="Margin" Value="15,0,0,0"/>
+        <Setter Property="Background" Value="#FF0D78D8"/>
+        <Setter Property="Foreground" Value="#FFFFFFFF"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}" BorderThickness="1" BorderBrush="#C8C8CC"  CornerRadius="8" Padding="{TemplateBinding Padding}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="butreset" TargetType="{x:Type Button}">
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Width" Value="70"/>
+        <Setter Property="Margin" Value="15,0,0,0"/>
+        <Setter Property="Background" Value="#FFFFFFFF"/>
+        <Setter Property="Foreground" Value="#FF323233"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}" BorderThickness="1" BorderBrush="#C8C8CC"  CornerRadius="8" Padding="{TemplateBinding Padding}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="butuploadingall" TargetType="{x:Type Button}">
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Width" Value="100"/>
+        <Setter Property="Margin" Value="20,0,0,0"/>
+        <Setter Property="Background" Value="#FFF5F5FA"/>
+        <Setter Property="Foreground" Value="#FF323233"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}" BorderThickness="1" BorderBrush="#C8C8CC"  CornerRadius="8" Padding="{TemplateBinding Padding}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

@@ -16,6 +16,63 @@
         </EventTrigger>
     </Page.Triggers>
     <Grid>
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#0D78D8" FontSize="40" Text="{DynamicResource PageLists}"/>
+        <!--<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#0D78D8" FontSize="40" Text="{DynamicResource PageLists}"/>-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height=" 1*"/>
+            <RowDefinition Height=" 8.5*"/>
+            <RowDefinition Height=" 2*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="#FFF5F5FA">
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="tebstarttoendtime" Style="{StaticResource starttoendtimeTextBox}"/>
+                <TextBox x:Name="tebuploader" Style="{StaticResource uploaderTextBox}"/>
+                <TextBox x:Name="tebfileName" Style="{StaticResource fileNameTextBox}"/>
+                <Button x:Name="butselect" Style="{StaticResource butselect}" Content="{StaticResource select}"/>
+                <Button x:Name="butReset" Style="{StaticResource butreset}" Content="{StaticResource reset}" Cursor="Hand"/>
+            </StackPanel>
+        </Border>
+        <DataGrid Grid.Row="1"  ColumnHeaderStyle="{StaticResource PageListsPageDataGridColumnHeader}"  Background="Transparent"  IsReadOnly="True" Margin="20,10,20,10">
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Foreground" Value="Gray" />
+                    <Setter Property="FontFamily" Value="{StaticResource ElementIcon}"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.Columns>
+
+
+                <DataGridTextColumn x:Name="Name" Header="{DynamicResource id}"  Binding="{Binding deviceNum}"  Width="*" >
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="{DynamicResource file}"  Width="*" />
+
+                <DataGridTextColumn Header="{DynamicResource Layoutinformation}"   Width="*" />
+
+                <DataGridTemplateColumn Header="{DynamicResource remarksinfomation}" Width="*" >
+
+                </DataGridTemplateColumn>
+
+                <DataGridTextColumn Header="{DynamicResource uploaddate}" Width="*">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="{DynamicResource Uploader}" Width="*">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="{DynamicResource operation}" Width="*">
+
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!--<StackPanel Grid.Row="2" Orientation="Horizontal">
+            <TextBlock Text="{StaticResource jumpto}"/>
+            <ComboBox/>
+            <TextBlock Text="{StaticResource page}"/>
+        </StackPanel>-->
     </Grid>
 </Page>

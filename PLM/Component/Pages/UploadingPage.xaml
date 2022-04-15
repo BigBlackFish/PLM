@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:controls="clr-namespace:PLM.Library.Controls"
       mc:Ignorable="d" 
       d:DesignHeight="548" d:DesignWidth="962"
       x:Name="UploadingMain">
@@ -16,6 +17,24 @@
         </EventTrigger>
     </Page.Triggers>
     <Grid>
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#0D78D8" FontSize="40" Text="{DynamicResource Uploading}"/>
+        <!--<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#0D78D8" FontSize="40" Text="{DynamicResource Uploading}"/>-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.7*"/>
+            <RowDefinition Height="1.2*"/>
+            <RowDefinition Height="9*"/>
+        </Grid.RowDefinitions>
+        <Border Background="#FFF5F5FA">
+            <StackPanel Orientation="Horizontal">
+                <Button Content="{DynamicResource allsuspend}" Style="{StaticResource butuploadingall}"/>
+                <Button Content="{DynamicResource allstart}" Style="{StaticResource butuploadingall}"/>
+                <Button Content="{DynamicResource allcancel}" Style="{StaticResource butuploadingall}"/>
+                <Button Content="{DynamicResource alldelete}" Style="{StaticResource butuploadingall}"/>
+            </StackPanel>
+        </Border>
+
+        <TextBlock Grid.Row="1" FontSize="15" Margin="20,0,0,0" VerticalAlignment="Center" Text="{StaticResource Uploading}"/>
+
+        <controls:UploadingDatagrid Grid.Row="2"/>
+
     </Grid>
 </Page>

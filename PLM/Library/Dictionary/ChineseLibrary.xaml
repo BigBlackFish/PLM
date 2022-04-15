@@ -18,7 +18,23 @@
     <system:String x:Key="Thesupportedformatsare.tiff、.psd">支持格式为.tiff、.psd</system:String>
     <system:String x:Key="Thesupportedformatsare.jpg、.png">支持格式为.jpg、.png</system:String>
     <system:String x:Key="delete">删除</system:String>
-
-
+    <system:String x:Key="id">id</system:String>
+    <system:String x:Key="file">文件</system:String>
+    <system:String x:Key="remarksinfomation">备注信息</system:String>
+    <system:String x:Key="uploaddate">上传日期</system:String>
+    <system:String x:Key="operation">操作</system:String>
+    <system:String x:Key="Uploader">上传者</system:String>
+    <system:String x:Key="starttimeandentime">开始时间~结束时间</system:String>
+    <system:String x:Key="fileName">文件名称</system:String>
+    <system:String x:Key="select">查询</system:String>
+    <system:String x:Key="reset">重置</system:String>
+    <system:String x:Key="jumpto">跳至</system:String>
+    <system:String x:Key="page">页</system:String>
+    <system:String x:Key="size">大小</system:String>
+    <system:String x:Key="status">状态</system:String>
+    <system:String x:Key="allstart">全部开始</system:String>
+    <system:String x:Key="allsuspend">全部暂停</system:String>
+    <system:String x:Key="allcancel">全部取消</system:String>
+    <system:String x:Key="alldelete">全部删除</system:String>
 </ResourceDictionary>
     
