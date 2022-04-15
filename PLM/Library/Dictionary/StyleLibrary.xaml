@@ -269,7 +269,7 @@
                 <Setter Property="Source" Value="/Library/Image/tiff.png"/>
             </Trigger>
             <Trigger Property="Tag" Value="2">
-                <Setter Property="Source" Value="/Library/Image/png.png"/>
+                <Setter Property="Source" Value="/Library/Image/Psd.png"/>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -279,11 +279,38 @@
         <Setter Property="Tag" Value="0"/>
         <Style.Triggers>
             <Trigger Property="Tag" Value="1">
-                <Setter Property="Source" Value="/Library/Image/tiff.png"/>
-            </Trigger>
-            <Trigger Property="Tag" Value="2">
                 <Setter Property="Source" Value="/Library/Image/png.png"/>
             </Trigger>
+            <Trigger Property="Tag" Value="2">
+                <Setter Property="Source" Value="/Library/Image/Jpg.png"/>
+            </Trigger>
         </Style.Triggers>
+    </Style>
+
+    <Style x:Key="DeleteUploadButton" TargetType="{x:Type Button}">
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Tag" Value="0"/>
+        <Setter Property="Width" Value="70"/>
+        <Setter Property="Background" Value="#FFFFFF"/>
+        <Setter Property="Foreground" Value="#969699 "/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}" BorderThickness="1" BorderBrush="#C8C8CC"  CornerRadius="15" Padding="{TemplateBinding Padding}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Tag" Value="1">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="Tag" Value="0">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 </ResourceDictionary>

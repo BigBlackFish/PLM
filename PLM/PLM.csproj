@@ -233,5 +233,11 @@
   <ItemGroup>
     <Resource Include="Library\Image\png.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Library\Image\Psd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Library\Image\Jpg.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
