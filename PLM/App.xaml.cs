@@ -39,6 +39,8 @@ namespace PLM
             TextBlock.FontFamilyProperty.OverrideMetadata(typeof(TextBlock), new FrameworkPropertyMetadata(fontFamily));
             FrameworkElement.FocusVisualStyleProperty.OverrideMetadata(typeof(Control), new FrameworkPropertyMetadata(defaultValue: null));
 
+            ClassHelper.Dispatcher = Dispatcher;
+
             base.OnStartup(e);
         }
 

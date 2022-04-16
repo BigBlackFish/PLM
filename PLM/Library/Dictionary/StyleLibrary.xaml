@@ -785,4 +785,131 @@
         </Setter>
     </Style>
 
+    <!--ToggleButton自定义内容-->
+    <Style x:Key="ToggleButtonTemplate" TargetType="{x:Type ToggleButton}">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <ContentControl Content="{TemplateBinding Content}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--文字渐变(危险)-->
+    <Style x:Key="TextBlockIconDanger" TargetType="{x:Type TextBlock}">
+        <Setter Property="Foreground" Value="#606266"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Trigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetProperty="Foreground.(SolidColorBrush.Color)" To="#F78989" Duration="0:0:0.2"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetProperty="Foreground.(SolidColorBrush.Color)" To="#606266" Duration="0:0:0.2"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.ExitActions>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--默认按钮(等待)-->
+    <Style x:Key="ButtonElementWait" TargetType="{x:Type Button}">
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="MinWidth" Value="70"/>
+        <Setter Property="Background" Value="#FFFFFF"/>
+        <Setter Property="BorderBrush" Value="#DCDFE6"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="#606266"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="4" Padding="20,0,20,0">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <ContentPresenter VerticalAlignment="Center"/>
+                            <TextBlock x:Name="txbWait" VerticalAlignment="Center" Margin="5,0,0,0" FontFamily="{StaticResource ElementIcon}" FontSize="15" Text="&#xe6cf;" Visibility="Collapsed">
+                                <TextBlock.RenderTransform>
+                                    <RotateTransform x:Name="rtfWait"/>
+                                </TextBlock.RenderTransform>
+                                <TextBlock.RenderTransformOrigin>
+                                    <Point X="0.5" Y="0.5"/>
+                                </TextBlock.RenderTransformOrigin>
+                                <TextBlock.Triggers>
+                                    <EventTrigger RoutedEvent="Loaded">
+                                        <BeginStoryboard>
+                                            <Storyboard RepeatBehavior="Forever">
+                                                <DoubleAnimation Storyboard.TargetName="rtfWait" Storyboard.TargetProperty="Angle" From="0" To="360" Duration="0:0:1.5"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </TextBlock.Triggers>
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="txbWait" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--主要按钮(等待)-->
+    <Style x:Key="ButtonPrimaryWait" TargetType="{x:Type Button}">
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="MinWidth" Value="70"/>
+        <Setter Property="Background" Value="#0D78D8"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Foreground" Value="#FFFFFF"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Padding" Value="20,0,20,0"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="4" Padding="{TemplateBinding Padding}">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <ContentPresenter VerticalAlignment="Center"/>
+                            <TextBlock x:Name="txbWait" VerticalAlignment="Center" Margin="5,0,0,0" FontFamily="{StaticResource ElementIcon}" FontSize="15" Text="&#xe6cf;" Visibility="Collapsed">
+                                <TextBlock.RenderTransform>
+                                    <RotateTransform x:Name="rtfWait"/>
+                                </TextBlock.RenderTransform>
+                                <TextBlock.RenderTransformOrigin>
+                                    <Point X="0.5" Y="0.5"/>
+                                </TextBlock.RenderTransformOrigin>
+                                <TextBlock.Triggers>
+                                    <EventTrigger RoutedEvent="Loaded">
+                                        <BeginStoryboard>
+                                            <Storyboard RepeatBehavior="Forever">
+                                                <DoubleAnimation Storyboard.TargetName="rtfWait" Storyboard.TargetProperty="Angle" From="0" To="360" Duration="0:0:1.5"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </TextBlock.Triggers>
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="txbWait" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

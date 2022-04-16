@@ -1,0 +1,49 @@
+﻿<Window x:Class="PLM.Component.Windows.ClientMessageBox"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:common="clr-namespace:PLM.Common"
+        x:Name="ClientMessageBoxMain" Height="273" Width="386" WindowStyle="None" ResizeMode="NoResize" ShowInTaskbar="False" WindowStartupLocation="CenterOwner" Background="Transparent" Loaded="ClientMessageBoxMain_Loaded">
+    <Window.Effect>
+        <DropShadowEffect Color="#888888" ShadowDepth="0" Opacity="0.4" />
+    </Window.Effect>
+    <WindowChrome.WindowChrome>
+        <WindowChrome UseAeroCaptionButtons="False" GlassFrameThickness="-1" CaptionHeight="196"/>
+    </WindowChrome.WindowChrome>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.3"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+    <Grid Height="263" Width="376" Background="#FFFFFF">
+        <Grid.Clip>
+            <RectangleGeometry RadiusX="12" RadiusY="12">
+                <RectangleGeometry.Rect>
+                    <Rect Height="263" Width="376" />
+                </RectangleGeometry.Rect>
+            </RectangleGeometry>
+        </Grid.Clip>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="223"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Padding="15,0,15,0">
+            <Grid>
+                <TextBlock x:Name="TxbHint" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Foreground="#303133"/>
+                <TextBlock x:Name="txbClose" HorizontalAlignment="Right" VerticalAlignment="Center" Style="{StaticResource TextBlockIconDanger}" FontFamily="{StaticResource ElementIcon}" Foreground="#909399" FontSize="16" Text="&#xe6db;" Cursor="Hand" WindowChrome.IsHitTestVisibleInChrome="True" common:PointerEventHelper.PointerUp="TxbClose_PointerUp"/>
+            </Grid>
+        </Border>
+        <Border Grid.Row="1" Padding="15,10,15,10">
+            <DockPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Bottom" WindowChrome.IsHitTestVisibleInChrome="True">
+                    <Button x:Name="btnLeft" Style="{StaticResource ButtonElementWait}" Height="30" MinWidth="0" Padding="15,0,15,0" FontSize="12" Tag="1" Click="BtnValid_Click"/>
+                    <Button x:Name="btnRight" Style="{StaticResource ButtonPrimaryWait}" Height="30" MinWidth="0" Margin="10,0,0,0" Padding="15,0,15,0" FontSize="12" Tag="2" Click="BtnValid_Click"/>
+                </StackPanel>
+                <TextBlock x:Name="txbMessage" TextWrapping="Wrap" FontSize="14" LineHeight="24" LineStackingStrategy="BlockLineHeight" Foreground="#606266" DockPanel.Dock="Bottom"/>
+            </DockPanel>
+        </Border>
+        <Grid x:Name="grdMask" Grid.RowSpan="2" Background="Transparent" Visibility="Collapsed"/>
+    </Grid>
+</Window>

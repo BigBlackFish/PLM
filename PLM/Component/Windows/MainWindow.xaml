@@ -21,6 +21,72 @@
                 </LinearGradientBrush>
             </Grid.Background>
             <Image Width="176" Source="/Library/Image/marshalling 2.png" />
+            <Grid HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,28,0" WindowChrome.IsHitTestVisibleInChrome="True">
+                <ToggleButton x:Name="tolHeadImage" Style="{StaticResource ToggleButtonTemplate}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image x:Name="imgHead" Height="34" Width="34" Source="/Library/Image/boy.png">
+                            <Image.Clip>
+                                <EllipseGeometry Center="17,17" RadiusX="17" RadiusY="17"/>
+                            </Image.Clip>
+                        </Image>
+                        <TextBlock VerticalAlignment="Center" Margin="11,0,0,0" FontSize="16" Foreground="#323233" Text="Carrity"/>
+                        <Image Height="18" Margin="7,0,0,0" Source="/Library/Image/rectangle@2x.png" >
+                            <Image.RenderTransform>
+                                <RotateTransform Angle="{Binding ElementName=tolHeadImage,Path=IsChecked,Converter={StaticResource HeadTransformConvert}}"/>
+                            </Image.RenderTransform>
+                            <Image.RenderTransformOrigin>
+                                <Point X="0.5" Y="0.5"/>
+                            </Image.RenderTransformOrigin>
+                        </Image>
+                    </StackPanel>
+                </ToggleButton>
+                <Grid Background="Transparent" Visibility="{Binding ElementName=popInformation,Path=IsOpen,Converter={StaticResource PopupMaskConvert}}"/>
+                <Popup x:Name="popInformation" PlacementTarget="{Binding ElementName=imgHead}" Placement="Bottom" PopupAnimation="Fade" AllowsTransparency="True" HorizontalOffset="-98" VerticalOffset="-5" StaysOpen="False" IsOpen="{Binding ElementName=tolHeadImage,Path=IsChecked}">
+                    <Border Padding="10">
+                        <Grid Height="260" Width="210">
+                            <Path Fill="#FFFFFF" Data="M 105,0 Q 107,9 115,10 L 205,10 A 5,5 0 0 1 210,15 L 210,255 A 5,5 0 0 1 205,260 L 5,260 A 5,5 0 0 1 0,255 L 0,15 A 5,5 0 0 1 5,10 L 90,10 Q 100,9 105,0">
+                                <Path.Effect>
+                                    <DropShadowEffect ShadowDepth="0" BlurRadius="10" Color="#000000" Opacity="0.4"/>
+                                </Path.Effect>
+                            </Path>
+                            <DockPanel Margin="9,19,9,9">
+                                <Grid Height="63" VerticalAlignment="Top" DockPanel.Dock="Top">
+                                    <Border CornerRadius="4" Opacity="0.08">
+                                        <Border.Background>
+                                            <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
+                                                <GradientStop Offset="0.0" Color="#0D78D8"/>
+                                                <GradientStop Offset="1.0" Color="#442FEC"/>
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                    </Border>
+                                    <StackPanel Orientation="Horizontal" Margin="9,11">
+                                        <Image Height="40" Width="40" Source="/Library/Image/boy.png">
+                                            <Image.Clip>
+                                                <EllipseGeometry Center="20,20" RadiusX="20" RadiusY="20"/>
+                                            </Image.Clip>
+                                        </Image>
+                                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="7,0,0,0">
+                                            <TextBlock Foreground="#323233" FontSize="16" Text="Carrity"/>
+                                            <TextBlock Margin="0,2,0,0" FontSize="10" Foreground="#969699" Text="2022-02-13 13:12:34登录"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Margin="8,24,8,0" DockPanel.Dock="Top">
+                                    <TextBlock HorizontalAlignment="Left" Foreground="#969699" FontSize="15" Text="{DynamicResource Role}"/>
+                                    <TextBlock HorizontalAlignment="Right" Foreground="#323233" FontSize="15" Text="图案设计师"/>
+                                </Grid>
+                                <Grid Margin="8,22,8,0" DockPanel.Dock="Top">
+                                    <TextBlock HorizontalAlignment="Left" Foreground="#969699" FontSize="15" Text="{DynamicResource Contact}"/>
+                                    <TextBlock HorizontalAlignment="Right" Foreground="#323233" FontSize="15" Text="18619258845"/>
+                                </Grid>
+                                <Border Height="32" VerticalAlignment="Bottom" Margin="8,0,8,10" BorderThickness="1" BorderBrush="#0D78D8" Background="Transparent" CornerRadius="4" DockPanel.Dock="Top">
+                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Foreground="#0D78D8" Text="{DynamicResource LogOut}"/>
+                                </Border>
+                            </DockPanel>
+                        </Grid>
+                    </Border>
+                </Popup>
+            </Grid>
         </Grid>
         <Grid Grid.Row="1">
             <Grid>

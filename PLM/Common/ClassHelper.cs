@@ -1,5 +1,6 @@
 ﻿using PLM.Component.Pages;
 using PLM.Component.Windows;
+using PLM.Models;
 using System;
 using System.Linq;
 using System.Windows;
@@ -15,6 +16,8 @@ namespace PLM.Common
         #region 常量
         // 服务器地址
         public const string servicePath = "";
+        public const uint wpSystemMenu = 0x02;
+        public const uint wmSystemMenu = 0xa4;
         #endregion
 
         #region 变量
@@ -38,6 +41,19 @@ namespace PLM.Common
             Downloading,
             // 版面列表
             PageLists
+        }
+        // MessageBox模式
+        public enum MessageBoxType
+        {
+            Inform,
+            Select
+        }
+        // MessageBox关闭方式
+        public enum MessageBoxCloseType
+        {
+            Close,
+            Left,
+            Right
         }
         #endregion
 
@@ -119,5 +135,53 @@ namespace PLM.Common
         {
             RoutedChanged?.Invoke(pageName);
         }
+
+        /// <summary>
+        /// 消息盒子
+        /// </summary>
+        /// <param name="window">父窗体</param>
+        /// <param name="messageBoxType">消息类型</param>
+        /// <param name="hint">提示信息</param>
+        /// <param name="message">消息</param>
+        /// <param name="leftButton">左侧按钮(可空)</param>
+        /// <param name="rightButton">右侧按钮(可空)</param>
+        /// <returns></returns>
+        public static MessageBoxCloseType AlertMessageBox(Window window, MessageBoxType messageBoxType, string hint, string message, MessageBoxButtonModel leftButton = null, MessageBoxButtonModel rightButton = null)
+        {
+            if (leftButton == null)
+            {
+                leftButton = new MessageBoxButtonModel()
+                {
+                    Hint = FindResource<string>("Cancel")
+                };
+            }
+            else if (string.IsNullOrEmpty(leftButton.Hint))
+            {
+                leftButton.Hint = FindResource<string>("Cancel");
+            }
+            if (rightButton == null)
+            {
+                rightButton = new MessageBoxButtonModel()
+                {
+                    Hint = FindResource<string>("Confirm")
+                };
+            }
+            else if (string.IsNullOrEmpty(rightButton.Hint))
+            {
+                rightButton.Hint = FindResource<string>("Confirm");
+            }
+            MessageBoxCloseType messageBoxCloseType = MessageBoxCloseType.Close;
+            Dispatcher.Invoke(delegate
+            {
+                ClientMessageBox messageBox = new ClientMessageBox(messageBoxType, hint, message, leftButton, rightButton)
+                {
+                    Owner = window.IsActive ? window : null
+                };
+                messageBox.ShowDialog();
+                messageBoxCloseType = messageBox.CloseType;
+            });
+            return messageBoxCloseType;
+        }
+
     }
 }

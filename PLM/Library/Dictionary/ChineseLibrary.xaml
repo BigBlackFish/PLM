@@ -37,8 +37,14 @@
     <system:String x:Key="allcancel">全部取消</system:String>
     <system:String x:Key="alldelete">全部删除</system:String>
     <system:String x:Key="NoUpload">暂无上传任务</system:String>
+    <system:String x:Key="NoDownload">暂无下载任务</system:String>
     <system:String x:Key="Total">总计</system:String>
     <system:String x:Key="Group">组</system:String>
     <system:String x:Key="Files">个文件</system:String>
+    <system:String x:Key="Role">角色</system:String>
+    <system:String x:Key="Contact">联系方式</system:String>
+    <system:String x:Key="LogOut">退出登录</system:String>
+    <system:String x:Key="Confirm">确定</system:String>
+    <system:String x:Key="Cancel">取消</system:String>
 </ResourceDictionary>
     

@@ -78,6 +78,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Component\Windows\ClientMessageBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Component\Windows\LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -101,10 +105,17 @@
     <Compile Include="Component\Pages\UploadingPage.xaml.cs">
       <DependentUpon>UploadingPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Component\Windows\ClientMessageBox.xaml.cs">
+      <DependentUpon>ClientMessageBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Component\Windows\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Component\Windows\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Library\Controls\DownloadItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -128,7 +139,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Library\Controls\UploadingDatagrid.xaml">
+    <Page Include="Library\Controls\UploadItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -153,6 +164,9 @@
     <Compile Include="Component\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Library\Controls\DownloadItem.xaml.cs">
+      <DependentUpon>DownloadItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Library\Controls\Fileadd.xaml.cs">
       <DependentUpon>Fileadd.xaml</DependentUpon>
     </Compile>
@@ -168,12 +182,20 @@
     <Compile Include="Library\Controls\ToastMessage.xaml.cs">
       <DependentUpon>ToastMessage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Library\Controls\UploadingDatagrid.xaml.cs">
-      <DependentUpon>UploadingDatagrid.xaml</DependentUpon>
+    <Compile Include="Library\Controls\UploadItem.xaml.cs">
+      <DependentUpon>UploadItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Library\Converters\BoolVisibilityConvert.cs" />
+    <Compile Include="Library\Converters\HeadTransformConvert.cs" />
+    <Compile Include="Library\Converters\PopupMaskConvert.cs" />
+    <Compile Include="Models\MessageBoxButtonModel.cs" />
     <Compile Include="Models\PointerEventModel.cs" />
+    <Compile Include="Models\ViewModels\DownloadingPageViewModel.cs" />
+    <Compile Include="Models\ViewModels\FileGroupViewModel.cs" />
+    <Compile Include="Models\ViewModels\FileViewModel.cs" />
     <Compile Include="Models\ViewModels\LoginWindowViewModel.cs" />
     <Compile Include="Models\ViewModels\ModelBase.cs" />
+    <Compile Include="Models\ViewModels\UploadingPageViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -203,7 +225,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Library\Converters\" />
     <Folder Include="Library\CustomControls\" />
     <Folder Include="Service\" />
   </ItemGroup>
@@ -259,6 +280,12 @@
     <Resource Include="Library\Image\stop%402x.png" />
     <Resource Include="Library\Image\delete%402x.png" />
     <Resource Include="Library\Image\cancel%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Library\Image\boy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Library\Image\rectangle%402x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
