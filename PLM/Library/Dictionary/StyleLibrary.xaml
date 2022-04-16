@@ -269,7 +269,7 @@
                 <Setter Property="Source" Value="/Library/Image/tiff.png"/>
             </Trigger>
             <Trigger Property="Tag" Value="2">
-                <Setter Property="Source" Value="/Library/Image/Psd.png"/>
+                <Setter Property="Source" Value="/Library/Image/psd.png"/>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -282,7 +282,7 @@
                 <Setter Property="Source" Value="/Library/Image/png.png"/>
             </Trigger>
             <Trigger Property="Tag" Value="2">
-                <Setter Property="Source" Value="/Library/Image/Jpg.png"/>
+                <Setter Property="Source" Value="/Library/Image/jpg.png"/>
             </Trigger>
         </Style.Triggers>
     </Style>

@@ -3,4 +3,5 @@
     <converters:BoolVisibilityConvert x:Key="BoolVisibilityConvert"/>
     <converters:HeadTransformConvert x:Key="HeadTransformConvert"/>
     <converters:PopupMaskConvert x:Key="PopupMaskConvert"/>
+    <converters:FileTypeImageConvert x:Key="FileTypeImageConvert"/>
 </ResourceDictionary>

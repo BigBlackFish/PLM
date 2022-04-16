@@ -21,7 +21,7 @@ namespace PLM.Component.Pages
             viewModel.Files.Add(new PageFileListViewModel
             {
                 Id = 154323,
-                Image = "/Library/Image/Jpg.png",
+                Image = "/Library/Image/jpg.png",
                 ImageInfomation = "版面一缩略图",
                 AssociationId = 1234556,
                 PageInfomation = "抛光油版面一面",

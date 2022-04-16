@@ -1,8 +1,13 @@
-﻿namespace PLM.Models.ViewModels
+﻿using FluentFTP;
+using PLM.Common;
+using System;
+
+namespace PLM.Models.ViewModels
 {
     public class FileViewModel : ModelBase
     {
-        private int progress;
+        private FtpClient ftpClient = new FtpClient(ClassHelper.ftpPath, ClassHelper.ftpUsername, ClassHelper.ftppassword);
+        private double progress;
 
         /// <summary>
         /// 文件名
@@ -32,7 +37,7 @@
         /// <summary>
         /// 上传或下载进度（0～100）
         /// </summary>
-        public int Progress
+        public double Progress
         {
             get => progress;
             set => progress = value;
@@ -45,6 +50,24 @@
             Message = string.Empty;
             Size = 0;
             progress = 0;
+        }
+
+        public async void FileUpload()
+        {
+            // define the progress tracking callback
+            Progress<FtpProgress> progress = new Progress<FtpProgress>(p => {
+                if (p.Progress == 1)
+                {
+                    // all done!
+                }
+                else
+                {
+                    Progress = p.Progress * 100;
+                     // p.TransferSpeed 上传速度
+                }
+            });
+            await ftpClient.ConnectAsync();
+            await ftpClient.UploadFileAsync(Path, "服务器路径", FtpRemoteExists.Overwrite, false, FtpVerify.None, progress);
         }
     }
 }

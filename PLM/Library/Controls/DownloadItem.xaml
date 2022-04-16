@@ -24,12 +24,15 @@
                             <ColumnDefinition Width="1.5*"/>
                             <ColumnDefinition Width="3*"/>
                         </Grid.ColumnDefinitions>
-                        <StackPanel Orientation="Horizontal" Grid.Row="0" VerticalAlignment="Top">
+                        <DockPanel Grid.Row="0" VerticalAlignment="Top" Margin="0,0,10,0">
                             <Image Width="18" Source="/Library/Image/tiff.png" />
-                            <TextBlock Margin="7,0,0,0" FontSize="16" Foreground="#323233" Text="{Binding Name}"/>
-                        </StackPanel>
-                        <TextBlock Grid.Column="1" VerticalAlignment="Top" FontSize="16" Foreground="#323233" Text="{Binding Message}"/>
-                        <TextBlock Grid.Column="2" VerticalAlignment="Top" FontSize="16" Foreground="#323233" Text="{Binding Size}"/>
+                            <TextBlock Margin="7,0,0,0" FontSize="16" Foreground="#323233" TextTrimming="CharacterEllipsis" Text="{Binding Name}"/>
+                        </DockPanel>
+                        <TextBlock Grid.Column="1" VerticalAlignment="Top" Margin="0,0,10,0" FontSize="16" Foreground="#323233" TextTrimming="CharacterEllipsis" Text="{Binding Message}"/>
+                        <TextBlock Grid.Column="2" VerticalAlignment="Top" Margin="0,0,10,0" FontSize="16" Foreground="#323233" TextTrimming="CharacterEllipsis">
+                            <Run Text="{Binding Size}"/>
+                            <Run Text="MB"/>
+                        </TextBlock>
                         <StackPanel Orientation="Vertical" Grid.Column="3">
                             <Grid>
                                 <Grid.ColumnDefinitions>

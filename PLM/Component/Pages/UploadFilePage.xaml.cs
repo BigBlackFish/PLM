@@ -44,18 +44,21 @@ namespace PLM.Component.Pages
                                     Hint = ClassHelper.FindResource<string>("AgreeReplace"),
                                     Action = delegate
                                     {
-                                        item.FileViews.Remove(file);
-                                        string path = file.Path == viewModel.FileLeft ? viewModel.FileLeft : viewModel.FileRight;
-                                        FileInfo fileInfo = new FileInfo(viewModel.FileLeft);
-                                        FileViewModel fileView = new FileViewModel
+                                        Dispatcher.Invoke(delegate
                                         {
-                                            Name = fileInfo.Name,
-                                            Path = path,
-                                            FileType = fileInfo.Extension.ToLower(),
-                                            Message = viewModel.Message,
-                                            Size = fileInfo.Length / 1024 / 1024,
-                                        };
-                                        item.FileViews.Add(fileView);
+                                            item.FileViews.Remove(file);
+                                            string path = file.Path == viewModel.FileLeft ? viewModel.FileLeft : viewModel.FileRight;
+                                            FileInfo fileInfo = new FileInfo(viewModel.FileLeft);
+                                            FileViewModel fileView = new FileViewModel
+                                            {
+                                                Name = fileInfo.Name,
+                                                Path = path,
+                                                FileType = fileInfo.Extension.ToLower(),
+                                                Message = viewModel.Message,
+                                                Size = fileInfo.Length / 1024 / 1024,
+                                            };
+                                            item.FileViews.Add(fileView);
+                                        });
                                     }
                                 };
                                 ClassHelper.AlertMessageBox(ClassHelper.MainWindow, ClassHelper.MessageBoxType.Select, hint, message, rightButton: messageBox);
