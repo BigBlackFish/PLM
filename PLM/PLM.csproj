@@ -97,6 +97,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Common\Singleton.cs" />
+    <Compile Include="Models\ViewModels\PageFileListViewModel.cs" />
+    <Compile Include="Models\ViewModels\PageListsPageViewModel.cs" />
     <Compile Include="Service\LoginWindowService.cs" />
     <Page Include="Component\Pages\DownloadingPage.xaml">
       <SubType>Designer</SubType>

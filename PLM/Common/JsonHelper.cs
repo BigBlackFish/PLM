@@ -35,13 +35,10 @@ namespace PLM.Common
                 StringReader sr = new StringReader(json);
                 return serializer.Deserialize<T>(new JsonTextReader(sr));
             }
-            catch (Exception ex)
+            catch
             {
                 return default(T);
             }
-            //object o = serializer.Deserialize(new JsonTextReader(sr), typeof(T));
-            //T t = (T)o;
-            //return t;
         }
 
         /// <summary>
