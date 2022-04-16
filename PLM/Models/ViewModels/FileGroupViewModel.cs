@@ -12,10 +12,7 @@ namespace PLM.Models.ViewModels
         public bool IsSelect
         {
             get => isSelect;
-            set
-            {
-                isSelect = value;
-            }
+            set => isSelect = value;
         }
 
         public ObservableCollection<FileViewModel> FileViews { get; set; }

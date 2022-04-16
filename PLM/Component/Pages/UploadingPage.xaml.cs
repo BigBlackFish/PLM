@@ -45,7 +45,7 @@ namespace PLM.Component.Pages
             MessageBoxButtonModel messageBoxButton = new MessageBoxButtonModel
             {
                 Hint = "自定义确定按钮",
-                Action = delegate 
+                Action = delegate
                 {
                     Thread.Sleep(1000);
                     ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 0, "在线程中执行了一个事件");

@@ -19,9 +19,11 @@ namespace PLM.Library.Controls
 
         private void ImgAdd_PointerDown(object sender, EventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Multiselect = false;
-            dialog.Filter = "tiff,psd(*.tiff,*.psd)|*.tiff;*.psd";
+            OpenFileDialog dialog = new OpenFileDialog
+            {
+                Multiselect = false,
+                Filter = "tiff,psd(*.tiff,*.psd)|*.tiff;*.psd"
+            };
             dialog.ShowDialog();
             Suffixjudgment(dialog.FileName);
         }

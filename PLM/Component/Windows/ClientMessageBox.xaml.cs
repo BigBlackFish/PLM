@@ -21,7 +21,7 @@ namespace PLM.Component.Windows
         private readonly MessageBoxButtonModel _rightButton;
         private bool closeState;
 
-        public ClientMessageBox(ClassHelper.MessageBoxType messageBoxType,string hint, string message, MessageBoxButtonModel leftButton, MessageBoxButtonModel rightButton)
+        public ClientMessageBox(ClassHelper.MessageBoxType messageBoxType, string hint, string message, MessageBoxButtonModel leftButton, MessageBoxButtonModel rightButton)
         {
             InitializeComponent();
 

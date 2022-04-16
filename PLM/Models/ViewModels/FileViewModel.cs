@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PLM.Models.ViewModels
+﻿namespace PLM.Models.ViewModels
 {
     public class FileViewModel : ModelBase
     {
@@ -36,10 +30,7 @@ namespace PLM.Models.ViewModels
         public int Progress
         {
             get => progress;
-            set
-            {
-                progress = value;
-            }
+            set => progress = value;
         }
 
         public override void InitializeVariable()
