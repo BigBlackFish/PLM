@@ -12,7 +12,7 @@ namespace PLM.Component.Pages
         public PageListsPage()
         {
             InitializeComponent();
-            viewModel=DataContext as PageListsPageViewModel;
+            viewModel = DataContext as PageListsPageViewModel;
         }
 
         private void PageListsMain_Loaded(object sender, System.Windows.RoutedEventArgs e)

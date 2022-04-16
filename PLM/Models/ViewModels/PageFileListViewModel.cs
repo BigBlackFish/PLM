@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PLM.Models.ViewModels
+﻿namespace PLM.Models.ViewModels
 {
-    public class PageFileListViewModel:ModelBase
+    public class PageFileListViewModel : ModelBase
     {
 
         public int Id { get; set; }
@@ -41,9 +35,9 @@ namespace PLM.Models.ViewModels
         /// </summary>
         public string UploadDate { get; set; }
 
-       /// <summary>
-       /// 上传者
-       /// </summary>
+        /// <summary>
+        /// 上传者
+        /// </summary>
         public string Uploader { get; set; }
 
 
@@ -52,9 +46,9 @@ namespace PLM.Models.ViewModels
             Id = 0;
             Image = string.Empty;
             ImageInfomation = string.Empty;
-            AssociationId= 0;
+            AssociationId = 0;
             PageInfomation = string.Empty;
-            remarksinfomation= string.Empty;
+            remarksinfomation = string.Empty;
             UploadDate = string.Empty;
             Uploader = string.Empty;
         }

@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 
 namespace PLM.Models.ViewModels
 {
-    public class PageListsPageViewModel:ModelBase
+    public class PageListsPageViewModel : ModelBase
     {
 
         private bool emptyState;
@@ -25,7 +25,7 @@ namespace PLM.Models.ViewModels
         public override void InitializeVariable()
         {
             EmptyState = true;
-            Files=new ObservableCollection<PageFileListViewModel>();
+            Files = new ObservableCollection<PageFileListViewModel>();
         }
     }
 }

@@ -46,5 +46,11 @@
     <system:String x:Key="LogOut">退出登录</system:String>
     <system:String x:Key="Confirm">确定</system:String>
     <system:String x:Key="Cancel">取消</system:String>
+    <system:String x:Key="Inform">通知</system:String>
+    <system:String x:Key="LackOfNecessaryInformation">缺少必要信息</system:String>
+    <system:String x:Key="ReplaceHint">替换提示</system:String>
+    <system:String x:Key="ReplaceMessage1">上传列表中已存在版面的源文件</system:String>
+    <system:String x:Key="ReplaceMessage2">文件名称，确认是否需要替换之前的文件？</system:String>
+    <system:String x:Key="AgreeReplace">确认替换</system:String>
 </ResourceDictionary>
     

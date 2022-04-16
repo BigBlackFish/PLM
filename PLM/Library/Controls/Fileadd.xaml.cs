@@ -11,6 +11,15 @@ namespace PLM.Library.Controls
     /// </summary>
     public partial class Fileadd : UserControl
     {
+        public string FilePath
+        {
+            get => (string)GetValue(FilePathProperty);
+            set => SetValue(FilePathProperty, value);
+        }
+
+        // Using a DependencyProperty as the backing store for FilePath.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty FilePathProperty =
+            DependencyProperty.Register("FilePath", typeof(string), typeof(Fileadd), new PropertyMetadata(string.Empty));
 
         public Fileadd()
         {
@@ -57,6 +66,7 @@ namespace PLM.Library.Controls
                 imgAdd.Tag = "0";
                 return;
             }
+            FilePath = fileName;
             imgAdd.Tag = extension == ".tiff" ? "1" : "2";
             btndelete.Tag = "1";
         }
@@ -65,6 +75,7 @@ namespace PLM.Library.Controls
         {
             btndelete.Tag = "0";
             imgAdd.Tag = "0";
+            FilePath = string.Empty;
         }
     }
 }

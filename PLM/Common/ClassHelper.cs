@@ -15,7 +15,7 @@ namespace PLM.Common
     {
         #region 常量
         // 服务器地址
-        public const string servicePath = "";
+        public const string servicePath = "https://gd-casicloud.com/apiv2";
         public const uint wpSystemMenu = 0x02;
         public const uint wmSystemMenu = 0xa4;
         #endregion
@@ -27,6 +27,8 @@ namespace PLM.Common
         public static LoginWindow LoginWindow { get; set; }
         // 主窗体
         public static MainWindow MainWindow { get; set; }
+        // 令牌
+        public static string Token { get; set; }
         #endregion
 
         #region 枚举
@@ -182,6 +184,5 @@ namespace PLM.Common
             });
             return messageBoxCloseType;
         }
-
     }
 }

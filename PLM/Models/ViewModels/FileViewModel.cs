@@ -10,6 +10,11 @@
         public string Name { get; set; }
 
         /// <summary>
+        /// 文件路径
+        /// </summary>
+        public string Path { get; set; }
+
+        /// <summary>
         /// 文件类型
         /// </summary>
         public string FileType { get; set; }
