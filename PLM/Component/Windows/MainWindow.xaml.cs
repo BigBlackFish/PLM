@@ -22,6 +22,8 @@ namespace PLM.Component.Windows
             ClassHelper.RoutedChanged += ClassHelper_RoutedChanged;
         }
 
+
+
         private void AppMain_Loaded(object sender, RoutedEventArgs e)
         {
             ThreadPool.QueueUserWorkItem(Load);
