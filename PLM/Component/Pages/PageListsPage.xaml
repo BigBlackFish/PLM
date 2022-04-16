@@ -16,7 +16,6 @@
         </EventTrigger>
     </Page.Triggers>
     <Grid>
-        <!--<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#0D78D8" FontSize="40" Text="{DynamicResource PageLists}"/>-->
         <Grid.RowDefinitions>
             <RowDefinition Height=" 1*"/>
             <RowDefinition Height=" 8.5*"/>
@@ -32,47 +31,45 @@
                 <Button x:Name="butReset" Style="{StaticResource butreset}" Content="{StaticResource reset}" Cursor="Hand"/>
             </StackPanel>
         </Border>
-        <DataGrid Grid.Row="1"  ColumnHeaderStyle="{StaticResource PageListsPageDataGridColumnHeader}"  Background="Transparent"  IsReadOnly="True" Margin="20,10,20,10">
-            <DataGrid.RowStyle>
-                <Style TargetType="DataGridRow">
-                    <Setter Property="Background" Value="Transparent"/>
-                    <Setter Property="Foreground" Value="Gray" />
-                    <Setter Property="FontFamily" Value="{StaticResource ElementIcon}"/>
-                    <Setter Property="FontWeight" Value="Bold"/>
-                </Style>
-            </DataGrid.RowStyle>
-            <DataGrid.Columns>
+        <DockPanel Grid.Row="1"  Margin="20,16,20,0" DockPanel.Dock="Top">
+            <Border Height="40" VerticalAlignment="Top" Background="#F5F5FA" BorderThickness="1,1,1,0" BorderBrush="#E1E1E6" CornerRadius="8,8,0,0" DockPanel.Dock="Top">
+                <Grid Margin="16,0,16,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="1.5*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="1.2*"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#323233" FontSize="16" Text="{DynamicResource id}"/>
+                    <TextBlock Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#323233" FontSize="16" Text="{DynamicResource file}"/>
+                    <TextBlock Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#323233" FontSize="16" Text="{DynamicResource Layoutinformation}"/>
+                    <TextBlock Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#323233" FontSize="16" Text="{DynamicResource remarksinfomation}"/>
+                    <TextBlock Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#323233" FontSize="16" Text="{DynamicResource uploaddate}"/>
+                    <TextBlock Grid.Column="6" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#323233" FontSize="16" Text="{DynamicResource Uploader}"/>
+                    <TextBlock Grid.Column="7" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#323233" FontSize="16" Text="{DynamicResource operation}"/>
+                   
+                </Grid>
+            </Border>
+            <Border BorderBrush="#E1E1E6" BorderThickness="1" DockPanel.Dock="Top">
+                <Grid>
+                    <ItemsControl Style="{StaticResource ItemsControlScroll}" ItemsSource="{Binding Files}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <!--<controls:UploadItem DataContext="{Binding}"/>-->
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <StackPanel Orientation="Vertical" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding EmptyState,Converter={StaticResource BoolVisibilityConvert}}">
+                        <Image Source="/Library/Image/nulldata.png" />
+                        <TextBlock HorizontalAlignment="Center" Margin="0,15,0,0" FontSize="18" Foreground="#969699" Text="{DynamicResource NoUpload}"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </DockPanel>
 
-
-                <DataGridTextColumn x:Name="Name1" Header="{DynamicResource id}"  Binding="{Binding deviceNum}"  Width="*" >
-                </DataGridTextColumn>
-
-                <DataGridTextColumn Header="{DynamicResource file}"  Width="*" />
-
-                <DataGridTextColumn Header="{DynamicResource Layoutinformation}"   Width="*" />
-
-                <DataGridTemplateColumn Header="{DynamicResource remarksinfomation}" Width="*" >
-
-                </DataGridTemplateColumn>
-
-                <DataGridTextColumn Header="{DynamicResource uploaddate}" Width="*">
-
-                </DataGridTextColumn>
-
-                <DataGridTextColumn Header="{DynamicResource Uploader}" Width="*">
-
-                </DataGridTextColumn>
-
-                <DataGridTextColumn Header="{DynamicResource operation}" Width="*">
-
-                </DataGridTextColumn>
-            </DataGrid.Columns>
-        </DataGrid>
-
-        <!--<StackPanel Grid.Row="2" Orientation="Horizontal">
-            <TextBlock Text="{StaticResource jumpto}"/>
-            <ComboBox/>
-            <TextBlock Text="{StaticResource page}"/>
-        </StackPanel>-->
     </Grid>
 </Page>

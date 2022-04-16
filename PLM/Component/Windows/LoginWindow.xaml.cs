@@ -39,7 +39,7 @@ namespace PLM.Component.Windows
 
         private void BrdLogin_PointerUp(object sender, EventArgs e)
         {
-            var result = Singleton<LoginWindowService>.Instance.Longin(viewModel.UserName, viewModel.UserName);
+            //var result = Singleton<LoginWindowService>.Instance.Longin(viewModel.UserName, viewModel.UserName);
             Console.WriteLine(viewModel);
 
             MainWindow mainWindow = new MainWindow();

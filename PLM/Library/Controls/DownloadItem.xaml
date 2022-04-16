@@ -61,7 +61,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Image Height="22" Source="/Library/Image/delete@2x.png" />
-                <TextBlock VerticalAlignment="Center" Margin="4,0,0,0" Foreground="#0D78D8" FontSize="15" Text="暂停"/>
+                <TextBlock VerticalAlignment="Center" Margin="4,0,0,0" Foreground="#0D78D8" FontSize="15" Text="删除"/>
             </StackPanel>
         </StackPanel>
     </Grid>

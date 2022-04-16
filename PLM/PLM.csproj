@@ -325,5 +325,8 @@
   <ItemGroup>
     <Resource Include="Library\Image\rectangle%402x.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Library\Image\nulldata.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
