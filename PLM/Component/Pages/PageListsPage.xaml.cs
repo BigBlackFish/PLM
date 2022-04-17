@@ -22,11 +22,13 @@ namespace PLM.Component.Pages
             PageListsPageViewModel a = new PageListsPageViewModel();
             if ((await AdminService.GetLayoutFileList(1, 6, "", "") is APIResult<Records> LayoutFileListInfo))
             {
-                if (LayoutFileListInfo.Data.records.Count > 0)
+                if (LayoutFileListInfo.Data == null)
+                    return;
+                if (LayoutFileListInfo.Data.list.Count > 0)
                 {
                     viewModel.EmptyState = false;
                 }
-                foreach (var item in LayoutFileListInfo.Data.records)
+                foreach (var item in LayoutFileListInfo.Data.list)
                 {
                     viewModel.Files.Add(new PageFileListViewModel
                     {
@@ -40,30 +42,6 @@ namespace PLM.Component.Pages
                     });
                 }
             }
-
-            //if ((await AdminService.GetUserinfomation()) is APIResult<UserInfomation> userinfo)
-            //{
-
-            //}
-            //viewModel.Files.Add(new PageFileListViewModel
-            //{
-            //    Id = 154323,
-            //    Image = "/Library/Image/jpg.png",
-            //    ImageInfomation = "版面一缩略图",
-            //    AssociationId = 1234556,
-            //    PageInfomation = "抛光油版面一面",
-            //    remarksinfomation = "用于新花色创建新的项目中？？？？？，用于新花色",
-            //    UploadDate = "2022-04-17 03:28:00",
-            //    Uploader = "BigBlackFish"
-            //});
-            //if (viewModel.Files.Count > 0)
-            //{
-            //    viewModel.EmptyState = false;
-            //}
-            //else
-            //{
-            //    viewModel.EmptyState = true;
-            //}
         }
 
         private void PageListsMain_DataContextChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)

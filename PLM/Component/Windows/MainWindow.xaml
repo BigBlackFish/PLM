@@ -2,12 +2,15 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="clr-namespace:PLM.Library.Controls" xmlns:common="clr-namespace:PLM.Common"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="clr-namespace:PLM.Library.Controls" xmlns:common="clr-namespace:PLM.Common" xmlns:viewmodels="clr-namespace:PLM.Models.ViewModels"
         mc:Ignorable="d" d:DesignHeight="630" d:DesignWidth="1060"
         x:Name="AppMain" MinHeight="576" MinWidth="1024" Height="630" Width="1060" WindowStartupLocation="CenterScreen" Loaded="AppMain_Loaded" Unloaded="AppMain_Unloaded" StateChanged="AppMain_StateChanged">
     <WindowChrome.WindowChrome>
         <WindowChrome UseAeroCaptionButtons="False" NonClientFrameEdges="None" CaptionHeight="48" />
     </WindowChrome.WindowChrome>
+    <Window.DataContext>
+        <viewmodels:MainWimdowViewModel/>
+    </Window.DataContext>
     <Grid x:Name="grdMain">
         <Grid.RowDefinitions>
             <RowDefinition Height="48"/>
@@ -29,7 +32,7 @@
                                 <EllipseGeometry Center="17,17" RadiusX="17" RadiusY="17"/>
                             </Image.Clip>
                         </Image>
-                        <TextBlock VerticalAlignment="Center" Margin="11,0,0,0" FontSize="16" Foreground="#323233" Text="Carrity"/>
+                        <TextBlock VerticalAlignment="Center" Margin="11,0,0,0" FontSize="16" Foreground="#323233" Text="{Binding UserName}"/>
                         <Image Height="18" Margin="7,0,0,0" Source="/Library/Image/rectangle@2x.png" >
                             <Image.RenderTransform>
                                 <RotateTransform Angle="{Binding ElementName=tolHeadImage,Path=IsChecked,Converter={StaticResource HeadTransformConvert}}"/>
@@ -66,18 +69,18 @@
                                             </Image.Clip>
                                         </Image>
                                         <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="7,0,0,0">
-                                            <TextBlock Foreground="#323233" FontSize="16" Text="Carrity"/>
-                                            <TextBlock Margin="0,2,0,0" FontSize="10" Foreground="#969699" Text="2022-02-13 13:12:34登录"/>
+                                            <TextBlock Foreground="#323233" FontSize="16" Text="{Binding UserName}"/>
+                                            <TextBlock Margin="0,2,0,0" FontSize="10" Foreground="#969699" Text="{Binding LoginTime}"/>
                                         </StackPanel>
                                     </StackPanel>
                                 </Grid>
                                 <Grid Margin="8,24,8,0" DockPanel.Dock="Top">
                                     <TextBlock HorizontalAlignment="Left" Foreground="#969699" FontSize="15" Text="{DynamicResource Role}"/>
-                                    <TextBlock HorizontalAlignment="Right" Foreground="#323233" FontSize="15" Text="图案设计师"/>
+                                    <TextBlock HorizontalAlignment="Right" Foreground="#323233" FontSize="15" Text="{Binding Identity}"/>
                                 </Grid>
                                 <Grid Margin="8,22,8,0" DockPanel.Dock="Top">
                                     <TextBlock HorizontalAlignment="Left" Foreground="#969699" FontSize="15" Text="{DynamicResource Contact}"/>
-                                    <TextBlock HorizontalAlignment="Right" Foreground="#323233" FontSize="15" Text="18619258845"/>
+                                    <TextBlock HorizontalAlignment="Right" Foreground="#323233" FontSize="15" Text="{Binding Phone}"/>
                                 </Grid>
                                 <Border Height="32" VerticalAlignment="Bottom" Margin="8,0,8,10" BorderThickness="1" BorderBrush="#0D78D8" Background="Transparent" CornerRadius="4" DockPanel.Dock="Top">
                                     <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Foreground="#0D78D8" Text="{DynamicResource LogOut}"/>

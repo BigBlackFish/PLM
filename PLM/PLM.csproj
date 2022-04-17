@@ -97,6 +97,7 @@
     <Compile Include="Models\LoginResultModel.cs" />
     <Compile Include="Models\PageListResultModel.cs" />
     <Compile Include="Models\UserInfomation.cs" />
+    <Compile Include="Models\ViewModels\MainWimdowViewModel.cs" />
     <Compile Include="Models\ViewModels\PageFileListViewModel.cs" />
     <Compile Include="Models\ViewModels\PageListsPageViewModel.cs" />
     <Compile Include="Models\ViewModels\UploadFilePageViewModel.cs" />

@@ -1,5 +1,8 @@
 ﻿using PLM.Common;
 using PLM.Library.Controls;
+using PLM.Models;
+using PLM.Models.ViewModels;
+using PLM.Service;
 using System;
 using System.Threading;
 using System.Windows;
@@ -13,6 +16,8 @@ namespace PLM.Component.Windows
     /// </summary>
     public partial class MainWindow : Window
     {
+
+         MainWimdowViewModel viewModel=new MainWimdowViewModel();
         public MainWindow()
         {
             InitializeComponent();
@@ -20,6 +25,22 @@ namespace PLM.Component.Windows
             ClassHelper.MainWindow = this;
             ClassHelper.MessageHint += ClassHelper_MessageHint;
             ClassHelper.RoutedChanged += ClassHelper_RoutedChanged;
+            DataContext = viewModel;    
+            GetUserInfo();
+        }
+
+
+        private async void GetUserInfo()
+        {
+               
+            if ((await AdminService.GetUserinfomation() is APIResult<UserInfomation> userinfo))
+            {
+                viewModel.UserName = userinfo.Data.NickName;
+                viewModel.Identity = userinfo.Data.Tag;
+                viewModel.Phone = userinfo.Data.Mobile;
+                viewModel.LoginTime = DateTime.Now.ToString()+"登录";
+                viewModel.ImgUrl = "/Library/Image/boy.png";
+            }
         }
 
 
@@ -126,10 +147,9 @@ namespace PLM.Component.Windows
         #endregion
 
         //获取用户信息
-
-        private void TolHeadImage_Click(object sender, RoutedEventArgs e)
+        private async void TolHeadImage_Click(object sender, RoutedEventArgs e)
         {
-
+          
         }
     }
 }

@@ -10,9 +10,9 @@ namespace PLM.Models
     {
         public string createTime { get; set; }
         public string updateTime { get; set; }
-        public Nullable<int>  createUserId { get; set; }
+        public string createUserId { get; set; }
         public string createUserName { get; set; }
-        public Nullable<int> updateUserId { get; set; }
+        public string updateUserId { get; set; }
         public string updateUserName { get; set; }
         public string id { get; set; }
         public string layoutInfo { get; set; }
@@ -38,6 +38,10 @@ namespace PLM.Models
 
     public class Records
     {
-        public List<PageListResultModel> records { get; set; }
+        public string current { get; set; }
+        public List<PageListResultModel> list { get; set; }
+        public string size { get; set; }
+        public string total { get; set; }
+        public string totalPage { get; set; }
     }
 }
