@@ -60,7 +60,6 @@ namespace PLM.Common
                 if (authentication)
                 {
                     httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ClassHelper.Token);
-                    httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 }
                 return await (await httpClient.GetAsync(url)).Content.ReadAsStringAsync();
             }

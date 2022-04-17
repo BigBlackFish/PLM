@@ -38,7 +38,7 @@ namespace PLM.Component.Windows
             {
                 if (result.Code == 0)
                 {
-                    ClassHelper.Token = result.Data.TokenType;
+                    ClassHelper.Token = result.Data.Access_token;
                     MainWindow mainWindow = new MainWindow();
                     mainWindow.Show();
                     Close();

@@ -1,4 +1,5 @@
-﻿using PLM.Models.ViewModels;
+﻿using PLM.Models;
+using PLM.Models.ViewModels;
 using PLM.Service;
 using System.Windows.Controls;
 
@@ -24,7 +25,7 @@ namespace PLM.Component.Pages
             
             //}
 
-            if ((await AdminService.GetUserinfomation() is string))
+            if ((await AdminService.GetUserinfomation()) is APIResult<UserInfomation> userinfo)
             {
 
             }
