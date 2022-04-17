@@ -14,7 +14,7 @@ namespace PLM.Models
         public string createUserName { get; set; }
         public Nullable<int> updateUserId { get; set; }
         public string updateUserName { get; set; }
-        public Nullable<int> id { get; set; }
+        public string id { get; set; }
         public string layoutInfo { get; set; }
         public string remark { get; set; }
         public string summaryFileSize { get; set; }

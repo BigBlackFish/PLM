@@ -20,15 +20,31 @@ namespace PLM.Component.Pages
         private async void PageListsMain_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             PageListsPageViewModel a = new PageListsPageViewModel();
-            //if ((await AdminService.GetLayoutFileList(5, 5, "", "") is string) )
-            //{ 
-            
-            //}
-
-            if ((await AdminService.GetUserinfomation()) is APIResult<UserInfomation> userinfo)
+            if ((await AdminService.GetLayoutFileList(1, 6, "", "") is APIResult<Records> LayoutFileListInfo))
             {
-
+                if (LayoutFileListInfo.Data.records.Count > 0)
+                {
+                    viewModel.EmptyState = false;
+                }
+                foreach (var item in LayoutFileListInfo.Data.records)
+                {
+                    viewModel.Files.Add(new PageFileListViewModel
+                    {
+                        Id= long.Parse(item.id),
+                        ImageInfomation=item.summaryFileName,
+                        AssociationId= long.Parse(item.terminalSummaryFileId),
+                        PageInfomation=item.layoutInfo,
+                        remarksinfomation=item.remark,
+                        UploadDate=item.updateTime,
+                        Uploader=item.updateUserName
+                    });
+                }
             }
+
+            //if ((await AdminService.GetUserinfomation()) is APIResult<UserInfomation> userinfo)
+            //{
+
+            //}
             //viewModel.Files.Add(new PageFileListViewModel
             //{
             //    Id = 154323,

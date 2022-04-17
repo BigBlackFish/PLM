@@ -3,7 +3,7 @@
     public class PageFileListViewModel : ModelBase
     {
 
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         /// <summary>
         /// 图片
@@ -18,7 +18,7 @@
         /// <summary>
         /// 图片关联id
         /// </summary>
-        public int AssociationId { get; set; }
+        public long AssociationId { get; set; }
 
         /// <summary>
         /// 版面信息

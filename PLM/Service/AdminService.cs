@@ -26,7 +26,7 @@ namespace PLM.Service
         public static async Task<APIResult<Records>> GetLayoutFileList(int current, int size, string sourceFileName, string summaryFileName)
         {
             APIResult<Records> result = null;
-            if ((await HttpHelper.SendGet($"{ClassHelper.servicePath}/plm/terminalLayoutFile/list{current},{size}")) is string str)
+            if ((await HttpHelper.SendGet($"{ClassHelper.servicePath}/plm/terminalLayoutFile/list?{current},{size}",true)) is string str)
             {
                 result = JsonConvert.DeserializeObject<APIResult<Records>>(str);
             }
