@@ -13,7 +13,11 @@ namespace PLM.Models.ViewModels
         public bool IsSelect
         {
             get => isSelect;
-            set => isSelect = value;
+            set
+            {
+                isSelect = value;
+                OnPropertyChanged(nameof(IsSelect));
+            }
         }
 
         public ObservableCollection<FileViewModel> FileViews { get; set; }

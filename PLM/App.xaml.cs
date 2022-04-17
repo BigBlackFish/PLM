@@ -46,7 +46,10 @@ namespace PLM
 
         private void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
-            ClassHelper.RecordException(typeof(App), e.Exception);
+            if (e.Exception.HResult != -2146233029)
+            {
+                ClassHelper.RecordException(typeof(App), e.Exception);
+            }
             e.Handled = true;
         }
 

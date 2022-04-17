@@ -18,9 +18,9 @@ namespace PLM.Common
         public const string servicePath = "https://gd-casicloud.com/apiv2";
         public const uint wpSystemMenu = 0x02;
         public const uint wmSystemMenu = 0xa4;
-        public const string ftpPath = "";
-        public const string ftpUsername = "";
-        public const string ftppassword = "";
+        public const string ftpPath = "47.96.133.119";
+        public const string ftpUsername = "ftpuser";
+        public const string ftppassword = "Wangxi55";
         #endregion
 
         #region 变量

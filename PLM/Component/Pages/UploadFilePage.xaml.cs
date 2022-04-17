@@ -35,7 +35,7 @@ namespace PLM.Component.Pages
                     {
                         foreach (FileViewModel file in item.FileViews)
                         {
-                            if (file.Message == viewModel.Message && file.Path == viewModel.FileLeft || file.Path == viewModel.FileRight)
+                            if (file.Message == viewModel.Message && (file.Path == viewModel.FileLeft || file.Path == viewModel.FileRight))
                             {
                                 string hint = ClassHelper.FindResource<string>("ReplaceHint");
                                 string message = $"{ClassHelper.FindResource<string>("ReplaceMessage1")}{file.Name}{ClassHelper.FindResource<string>("ReplaceMessage2")}";

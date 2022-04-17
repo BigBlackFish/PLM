@@ -39,5 +39,21 @@ namespace PLM.Component.Pages
             };
             ClassHelper.AlertMessageBox(ClassHelper.MainWindow, ClassHelper.MessageBoxType.Select, "测试提示", "消息测试消息测试消息测试消息测试消息测测试消息测试消息测试消息", rightButton: messageBoxButton);
         }
+
+        private void CheAll_Checked(object sender, RoutedEventArgs e)
+        {
+            foreach (FileGroupViewModel item in viewModel.Files)
+            {
+                item.IsSelect = true;
+            }
+        }
+
+        private void CheAll_Unchecked(object sender, RoutedEventArgs e)
+        {
+            foreach (FileGroupViewModel item in viewModel.Files)
+            {
+                item.IsSelect = false;
+            }
+        }
     }
 }

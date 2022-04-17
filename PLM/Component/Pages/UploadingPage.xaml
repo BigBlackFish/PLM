@@ -44,7 +44,7 @@
                             <ColumnDefinition Width="3*"/>
                             <ColumnDefinition Width="100"/>
                         </Grid.ColumnDefinitions>
-                        <CheckBox Grid.Column="0" Style="{StaticResource CheckBoxElement}"/>
+                        <CheckBox x:Name="cheAll" Grid.Column="0" Style="{StaticResource CheckBoxElement}" Checked="CheAll_Checked" Unchecked="CheAll_Unchecked"/>
                         <TextBlock Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#323233" FontSize="16" Text="{DynamicResource fileName}"/>
                         <TextBlock Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#323233" FontSize="16" Text="{DynamicResource Layoutinformation}"/>
                         <TextBlock Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#323233" FontSize="16" Text="{DynamicResource size}"/>
