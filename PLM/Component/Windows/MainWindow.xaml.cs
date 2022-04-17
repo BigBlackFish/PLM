@@ -124,5 +124,12 @@ namespace PLM.Component.Windows
             ClassHelper.SwitchRoute(ClassHelper.PageType.UploadFile);
         }
         #endregion
+
+        //获取用户信息
+
+        private void TolHeadImage_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

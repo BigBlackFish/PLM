@@ -22,5 +22,25 @@ namespace PLM.Service
             }
             return result;
         }
+
+        public static async Task<APIResult<Records>> GetLayoutFileList(int current, int size,string sourceFileName,string summaryFileName)
+        {
+            APIResult<Records> result = null;
+            if ((await HttpHelper.SendGet($"{ClassHelper.servicePath}/plm/terminalLayoutFile/list{current},{size}")) is string str)
+            {
+                result = JsonConvert.DeserializeObject<APIResult<Records>>(str);
+            }
+            return result;
+        }
+
+        public static async Task<APIResult<UserInfomation>> GetUserinfomation()
+        {
+            APIResult<UserInfomation> result = null;
+            if ((await HttpHelper.SendGet($"{ClassHelper.servicePath}/admin/current/user",true)) is string str)
+            {
+                result = JsonConvert.DeserializeObject<APIResult<UserInfomation>>(str);
+            }
+            return result;
+        }
     }
 }

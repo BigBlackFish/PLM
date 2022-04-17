@@ -22,7 +22,7 @@
             </Grid.Background>
             <Image Width="176" Source="/Library/Image/marshalling 2.png" />
             <Grid HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,28,0" WindowChrome.IsHitTestVisibleInChrome="True">
-                <ToggleButton x:Name="tolHeadImage" Style="{StaticResource ToggleButtonTemplate}">
+                <ToggleButton x:Name="tolHeadImage" Style="{StaticResource ToggleButtonTemplate}" Click="TolHeadImage_Click">
                     <StackPanel Orientation="Horizontal">
                         <Image x:Name="imgHead" Height="34" Width="34" Source="/Library/Image/boy.png">
                             <Image.Clip>
