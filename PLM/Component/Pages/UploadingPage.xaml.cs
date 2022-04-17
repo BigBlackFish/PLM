@@ -1,6 +1,7 @@
 ﻿using PLM.Common;
 using PLM.Models;
 using PLM.Models.ViewModels;
+using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,20 +27,6 @@ namespace PLM.Component.Pages
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBoxButtonModel messageBoxButton = new MessageBoxButtonModel
-            {
-                Hint = "自定义确定按钮",
-                Action = delegate
-                {
-                    Thread.Sleep(1000);
-                    ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 0, "在线程中执行了一个事件");
-                }
-            };
-            ClassHelper.AlertMessageBox(ClassHelper.MainWindow, ClassHelper.MessageBoxType.Select, "测试提示", "消息测试消息测试消息测试消息测试消息测测试消息测试消息测试消息", rightButton: messageBoxButton);
-        }
-
         private void CheAll_Checked(object sender, RoutedEventArgs e)
         {
             foreach (FileGroupViewModel item in viewModel.Files)
@@ -53,6 +40,70 @@ namespace PLM.Component.Pages
             foreach (FileGroupViewModel item in viewModel.Files)
             {
                 item.IsSelect = false;
+            }
+        }
+
+        private void BtnAllStop_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (FileGroupViewModel item in viewModel.Files)
+            {
+                if (item.IsSelect)
+                {
+                    foreach (FileViewModel file in item.FileViews)
+                    {
+                        file.SuspendTransmission();
+                    }
+                }
+            }
+        }
+
+        private void BtnAllStart_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (FileGroupViewModel item in viewModel.Files)
+            {
+                if (item.IsSelect)
+                {
+                    foreach (FileViewModel file in item.FileViews)
+                    {
+                        file.Upload_ContinueTransmission();
+                    }
+                }
+            }
+        }
+
+        private void BtnAllCancel_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (FileGroupViewModel item in viewModel.Files)
+            {
+                if (item.IsSelect)
+                {
+                    foreach (FileViewModel file in item.FileViews)
+                    {
+                        file.CancelTransmission();
+                    }
+                }
+            }
+        }
+
+        private void BtnAllDelete_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (FileGroupViewModel item in viewModel.Files)
+            {
+                if (item.IsSelect)
+                {
+                    foreach (FileViewModel file in item.FileViews)
+                    {
+                        file.CancelTransmission();
+                    }
+                }
+            }
+            for (int i = 0; i < viewModel.Files.Count; i++)
+            {
+                if (viewModel.Files[i].IsSelect)
+                {
+                    viewModel.Files.Remove(viewModel.Files[i]);
+                    i--;
+                }
             }
         }
     }
