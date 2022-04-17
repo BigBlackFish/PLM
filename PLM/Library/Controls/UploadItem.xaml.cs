@@ -1,4 +1,5 @@
-﻿using PLM.Models.ViewModels;
+﻿using PLM.Common;
+using PLM.Models.ViewModels;
 using System;
 using System.Threading.Tasks;
 using System.Windows;
@@ -75,6 +76,22 @@ namespace PLM.Library.Controls
                 cancel = true;
                 stpSuspend.Visibility = Visibility.Collapsed;
                 stpContinue.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void StpDelete_PointerUp(object sender, EventArgs e)
+        {
+            if (!cancel)
+            {
+                foreach (FileViewModel item in viewModel.FileViews)
+                {
+                    item.CancelTransmission();
+                }
+                cancel = true;
+            }
+            if (ClassHelper.uploadingPage.DataContext is UploadingPageViewModel uploading)
+            {
+                uploading.Files.Remove(viewModel);
             }
         }
     }

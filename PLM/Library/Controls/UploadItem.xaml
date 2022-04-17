@@ -70,14 +70,14 @@
                 <TextBlock VerticalAlignment="Center" Margin="4,0,0,0" Foreground="#0D78D8" FontSize="15" Text="{DynamicResource Pause}"/>
             </StackPanel>
             <StackPanel x:Name="stpContinue" Orientation="Horizontal" Background="Transparent" common:PointerEventHelper.PointerUp="StpContinue_PointerUp" Visibility="Collapsed">
-                <Image Height="22" Source="/Library/Image/stop@2x.png" />
+                <Image Height="22" Source="/Library/Image/编组 18@2x.png" />
                 <TextBlock VerticalAlignment="Center" Margin="4,0,0,0" Foreground="#0D78D8" FontSize="15" Text="{DynamicResource Begin}"/>
             </StackPanel>
             <StackPanel x:Name="stpCancel" Orientation="Horizontal" Margin="0,8,0,8" Background="Transparent" common:PointerEventHelper.PointerUp="StpCancel_PointerUp">
                 <Image Height="22" Source="/Library/Image/cancel@2x.png" />
                 <TextBlock VerticalAlignment="Center" Margin="4,0,0,0" Foreground="#0D78D8" FontSize="15" Text="{DynamicResource Cancel}"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
+            <StackPanel x:Name="stpDelete" Orientation="Horizontal" Background="Transparent" common:PointerEventHelper.PointerUp="StpDelete_PointerUp">
                 <Image Height="22" Source="/Library/Image/delete@2x.png" />
                 <TextBlock VerticalAlignment="Center" Margin="4,0,0,0" Foreground="#0D78D8" FontSize="15" Text="{DynamicResource Delete}"/>
             </StackPanel>

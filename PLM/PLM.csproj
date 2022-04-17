@@ -346,5 +346,8 @@
   <ItemGroup>
     <Resource Include="Library\Image\编组 7%402x.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Library\Image\编组 18%402x.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
