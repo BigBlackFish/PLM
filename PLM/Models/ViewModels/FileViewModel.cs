@@ -38,6 +38,26 @@ namespace PLM.Models.ViewModels
         public string Message { get; set; }
 
         /// <summary>
+        /// 备注
+        /// </summary>
+        public string Remark { get; set; }
+
+        /// <summary>
+        /// MD5值
+        /// </summary>
+        public string MD5 { get; set; }
+
+        /// <summary>
+        /// 保存路径
+        /// </summary>
+        public string SavePath { get; set; }
+
+        /// <summary>
+        /// 保存名称
+        /// </summary>
+        public string SaveName { get; set; }
+
+        /// <summary>
         /// 文件大小（MB）
         /// </summary>
         public double Size { get; set; }
@@ -76,8 +96,11 @@ namespace PLM.Models.ViewModels
             get => uploadCompleted;
             set
             {
-                uploadCompleted = value;
-                OnPropertyChanged(nameof(UploadCompleted));
+                if (uploadCompleted != value)
+                {
+                    uploadCompleted = value;
+                    OnPropertyChanged(nameof(UploadCompleted));
+                }
             }
         }
 
@@ -112,7 +135,13 @@ namespace PLM.Models.ViewModels
                 }
             });
             await ftpClient.ConnectAsync();
-            await ftpClient.UploadFileAsync(Path, $"{Message}/{Name}", FtpRemoteExists.Overwrite, true, FtpVerify.None, progress, token);
+            #region 基本信息
+            //FtpHash ftpHash = await ftpClient.GetChecksumAsync(Path, FtpHashAlgorithm.MD5);
+            //MD5 = ftpHash.Value;
+            SavePath = $"{Message}/{Name}";
+            SaveName = Name;
+            #endregion
+            await ftpClient.UploadFileAsync(Path, SavePath, FtpRemoteExists.Overwrite, true, FtpVerify.None, progress, token);
         }
 
         /// <summary>
@@ -155,7 +184,7 @@ namespace PLM.Models.ViewModels
                         }
                     });
                     await ftpClient.ConnectAsync();
-                    await ftpClient.UploadFileAsync(Path, $"{Message}/{Name}", FtpRemoteExists.Resume, true, FtpVerify.None, progress, token);
+                    await ftpClient.UploadFileAsync(Path, SavePath, FtpRemoteExists.Resume, true, FtpVerify.None, progress, token);
                 }
                 else
                 {

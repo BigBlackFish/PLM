@@ -1,4 +1,6 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 using PLM.Common;
 using PLM.Models;
 using System.Collections.Generic;
@@ -23,10 +25,10 @@ namespace PLM.Service
             return result;
         }
 
-        public static async Task<APIResult<Records>> GetLayoutFileList(int current, int size, string fileName, string createStartTime,string createEndTime,string createNickName)
+        public static async Task<APIResult<Records>> GetLayoutFileList(int current, int size, string fileName, string createStartTime, string createEndTime, string createNickName)
         {
             APIResult<Records> result = null;
-            if ((await HttpHelper.SendGet($"{ClassHelper.servicePath}/plm/terminalLayoutFile/search?{current},{size},{fileName},{createStartTime},{createEndTime},{createNickName}",true)) is string str)
+            if ((await HttpHelper.SendGet($"{ClassHelper.servicePath}/plm/terminalLayoutFile/search?{current},{size},{fileName},{createStartTime},{createEndTime},{createNickName}", true)) is string str)
             {
                 result = JsonConvert.DeserializeObject<APIResult<Records>>(str);
             }
@@ -40,7 +42,7 @@ namespace PLM.Service
             {
                 new KeyValuePair<string, string>("ids",ids),
             };
-            if ((await HttpHelper.SendFormPost($"{ClassHelper.servicePath}/plm/terminalLayoutFile/batch/remove", data,true)) is string str)
+            if ((await HttpHelper.SendFormPost($"{ClassHelper.servicePath}/plm/terminalLayoutFile/batch/remove", data, true)) is string str)
             {
                 result = JsonConvert.DeserializeObject<APIResult>(str);
             }
@@ -53,6 +55,16 @@ namespace PLM.Service
             if ((await HttpHelper.SendGet($"{ClassHelper.servicePath}/admin/current/user", true)) is string str)
             {
                 result = JsonConvert.DeserializeObject<APIResult<UserInfomation>>(str);
+            }
+            return result;
+        }
+
+        public static async Task<APIResult> TerminalLayoutFileAdd(AddTerminalLayoutFileModel data)
+        {
+            APIResult result = null;
+            if ((await HttpHelper.SendJsonPost($"{ClassHelper.servicePath}/plm/terminalLayoutFile/add", JObject.FromObject(data, new JsonSerializer() { ContractResolver = new CamelCasePropertyNamesContractResolver() }), true)) is string str)
+            {
+                result = JsonConvert.DeserializeObject<APIResult>(str);
             }
             return result;
         }

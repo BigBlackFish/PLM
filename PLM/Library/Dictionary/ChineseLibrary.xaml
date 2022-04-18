@@ -56,5 +56,6 @@
     <system:String x:Key="Pause">暂停</system:String>
     <system:String x:Key="Begin">开始</system:String>
     <system:String x:Key="Delete">删除</system:String>
+    <system:String x:Key="SuccessfullyAdded">添加成功</system:String>
 </ResourceDictionary>
     
