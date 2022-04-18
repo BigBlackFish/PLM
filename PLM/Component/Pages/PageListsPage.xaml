@@ -31,11 +31,11 @@
 
         <Border Grid.Row="0" Background="#FFF5F5FA">
             <StackPanel Orientation="Horizontal">
-                <TextBox x:Name="tebstarttoendtime" Style="{StaticResource starttoendtimeTextBox}"/>
-                <TextBox x:Name="tebuploader" Style="{StaticResource uploaderTextBox}"/>
-                <TextBox x:Name="tebfileName" Style="{StaticResource fileNameTextBox}"/>
-                <Button x:Name="butselect" Style="{StaticResource butselect}" Content="{StaticResource select}"/>
-                <Button x:Name="butReset" Style="{StaticResource butreset}" Content="{StaticResource reset}" Cursor="Hand"/>
+                <TextBox x:Name="tebstarttoendtime" Style="{StaticResource starttoendtimeTextBox}" Text="{Binding CreateStartTime}"/>
+                <TextBox x:Name="tebuploader" Style="{StaticResource uploaderTextBox}" Text="{Binding CreateNickName}"/>
+                <TextBox x:Name="tebfileName" Style="{StaticResource fileNameTextBox}" Text="{Binding FileName}"/>
+                <Button x:Name="butselect" Style="{StaticResource butselect}" Content="{StaticResource select}" Click="Butselect_Click"/>
+                <Button x:Name="butReset" Style="{StaticResource butreset}" Content="{StaticResource reset}" Cursor="Hand" Click="ButReset_Click"/>
             </StackPanel>
         </Border>
         <DockPanel Grid.Row="1"  Margin="20,16,20,0" DockPanel.Dock="Top">
@@ -58,7 +58,7 @@
                     <TextBlock Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#323233" FontSize="16" Text="{DynamicResource uploaddate}"/>
                     <TextBlock Grid.Column="6" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#323233" FontSize="16" Text="{DynamicResource Uploader}"/>
                     <TextBlock Grid.Column="7" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#323233" FontSize="16" Text="{DynamicResource operation}"/>
-                   
+
                 </Grid>
             </Border>
             <Border BorderBrush="#E1E1E6" BorderThickness="1" DockPanel.Dock="Top">
@@ -77,6 +77,6 @@
                 </Grid>
             </Border>
         </DockPanel>
-
+        
     </Grid>
 </Page>

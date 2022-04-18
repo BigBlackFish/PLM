@@ -44,7 +44,6 @@ namespace PLM.Component.Windows
         }
 
 
-
         private void AppMain_Loaded(object sender, RoutedEventArgs e)
         {
             ThreadPool.QueueUserWorkItem(Load);

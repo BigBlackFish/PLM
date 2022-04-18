@@ -93,6 +93,9 @@
     <Compile Include="Component\Windows\UploadErrorMessageBox.xaml.cs">
       <DependentUpon>UploadErrorMessageBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Library\Controls\JumpPageButton.xaml.cs">
+      <DependentUpon>JumpPageButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Library\Converters\FileTypeImageConvert.cs" />
     <Compile Include="Models\LoginResultModel.cs" />
     <Compile Include="Models\PageListResultModel.cs" />
@@ -169,6 +172,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Library\Controls\FileaddRight.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Library\Controls\JumpPageButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

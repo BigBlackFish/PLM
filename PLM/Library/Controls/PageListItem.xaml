@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:PLM.Library.Controls"
+             xmlns:local="clr-namespace:PLM.Library.Controls" xmlns:common="clr-namespace:PLM.Common"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" DataContextChanged="UserControl_DataContextChanged">
     <Grid Margin="20,16,20,0">
@@ -34,7 +34,7 @@
         <TextBlock Grid.Column="6" Text="{Binding Uploader}" FontSize="14" Foreground="#FF323233" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" HorizontalAlignment="Left"/>
         <StackPanel Grid.Column="7" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
             <Image Height="22" Source="/Library/Image/xiazai-2备份 2@2x.png" />
-            <Image Height="22" Source="/Library/Image/delete@2x.png" />
+            <Image x:Name="ImgDelete" Height="22" Source="/Library/Image/delete@2x.png" common:PointerEventHelper.PointerDown="ImgDelete_PointerDown"/>
         </StackPanel>
 
     </Grid>

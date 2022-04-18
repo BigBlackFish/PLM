@@ -19,8 +19,19 @@ namespace PLM.Component.Pages
 
         private async void PageListsMain_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
+            SelectInfo();
+        }
+
+        private void PageListsMain_DataContextChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
+        {
+
+        }
+
+        private async void SelectInfo()
+        {
+            viewModel.Files.Clear();
             PageListsPageViewModel a = new PageListsPageViewModel();
-            if ((await AdminService.GetLayoutFileList(1, 6, "", "") is APIResult<Records> LayoutFileListInfo))
+            if ((await AdminService.GetLayoutFileList(1, 6, viewModel.FileName, viewModel.CreateStartTime, viewModel.CreateEndTime, viewModel.CreateNickName) is APIResult<Records> LayoutFileListInfo))
             {
                 if (LayoutFileListInfo.Data == null)
                     return;
@@ -32,21 +43,29 @@ namespace PLM.Component.Pages
                 {
                     viewModel.Files.Add(new PageFileListViewModel
                     {
-                        Id= long.Parse(item.id),
-                        ImageInfomation=item.summaryFileName,
-                        AssociationId= long.Parse(item.terminalSummaryFileId),
-                        PageInfomation=item.layoutInfo,
-                        remarksinfomation=item.remark,
-                        UploadDate=item.updateTime,
-                        Uploader=item.updateUserName
+                        Id = long.Parse(item.id),
+                        ImageInfomation = item.summaryFileName,
+                        AssociationId = long.Parse(item.terminalSummaryFileId),
+                        PageInfomation = item.layoutInfo,
+                        remarksinfomation = item.remark,
+                        UploadDate = item.updateTime,
+                        Uploader = item.updateUserName
                     });
                 }
             }
         }
 
-        private void PageListsMain_DataContextChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
+        private async void Butselect_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            SelectInfo();
+        }
 
+        private void ButReset_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            viewModel.FileName = string.Empty;
+            viewModel.CreateStartTime = string.Empty;
+            viewModel.CreateEndTime = string.Empty;
+            viewModel.CreateNickName = string.Empty;
         }
     }
 }

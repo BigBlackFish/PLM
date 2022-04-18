@@ -23,12 +23,26 @@ namespace PLM.Service
             return result;
         }
 
-        public static async Task<APIResult<Records>> GetLayoutFileList(int current, int size, string sourceFileName, string summaryFileName)
+        public static async Task<APIResult<Records>> GetLayoutFileList(int current, int size, string fileName, string createStartTime,string createEndTime,string createNickName)
         {
             APIResult<Records> result = null;
-            if ((await HttpHelper.SendGet($"{ClassHelper.servicePath}/plm/terminalLayoutFile/search?{current},{size}",true)) is string str)
+            if ((await HttpHelper.SendGet($"{ClassHelper.servicePath}/plm/terminalLayoutFile/search?{current},{size},{fileName},{createStartTime},{createEndTime},{createNickName}",true)) is string str)
             {
                 result = JsonConvert.DeserializeObject<APIResult<Records>>(str);
+            }
+            return result;
+        }
+
+        public static async Task<APIResult> DeleteLayoutFileList(string ids)
+        {
+            APIResult result = null;
+            List<KeyValuePair<string, string>> data = new List<KeyValuePair<string, string>>()
+            {
+                new KeyValuePair<string, string>("ids",ids),
+            };
+            if ((await HttpHelper.SendFormPost($"{ClassHelper.servicePath}/plm/terminalLayoutFile/batch/remove", data,true)) is string str)
+            {
+                result = JsonConvert.DeserializeObject<APIResult>(str);
             }
             return result;
         }
