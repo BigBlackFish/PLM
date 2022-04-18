@@ -3,7 +3,7 @@
     public class PageFileListViewModel : ModelBase
     {
 
-        public long Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// 图片
@@ -18,7 +18,7 @@
         /// <summary>
         /// 图片关联id
         /// </summary>
-        public long AssociationId { get; set; }
+        public string AssociationId { get; set; }
 
         /// <summary>
         /// 版面信息
@@ -43,10 +43,10 @@
 
         public override void InitializeVariable()
         {
-            Id = 0;
+            Id = "0";
             Image = string.Empty;
             ImageInfomation = string.Empty;
-            AssociationId = 0;
+            AssociationId = "0";
             PageInfomation = string.Empty;
             remarksinfomation = string.Empty;
             UploadDate = string.Empty;

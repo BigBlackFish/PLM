@@ -145,10 +145,5 @@ namespace PLM.Component.Windows
         }
         #endregion
 
-        //获取用户信息
-        private async void TolHeadImage_Click(object sender, RoutedEventArgs e)
-        {
-          
-        }
     }
 }

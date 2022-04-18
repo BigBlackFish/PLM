@@ -423,7 +423,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-
+    
     <Style x:Key="butreset" TargetType="{x:Type Button}">
         <Setter Property="Height" Value="40"/>
         <Setter Property="Width" Value="70"/>
@@ -911,5 +911,50 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="JumpPageBut" TargetType="{x:Type Button}">
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Width" Value="30"/>
+        <Setter Property="Margin" Value="15,0,0,0"/>
+        <Setter Property="Background" Value="#FFFFFFFF"/>
+        <Setter Property="Foreground" Value="#FF80838F"/>
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}" BorderThickness="1" BorderBrush="#FFE1E1E6"  CornerRadius="3" Padding="{TemplateBinding Padding}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="#FF0D78D8"/>
+                            <Setter Property="Foreground" Value="#FFFFFFFF"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="JumpPageCombox" TargetType="{x:Type ComboBox}">
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Width" Value="60"/>
+        <Setter Property="Margin" Value="15,0,0,0"/>
+        <Setter Property="Background" Value="#FFFFFFFF"/>
+        <Setter Property="Foreground" Value="#FF80838F"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ComboBox}">
+                    <Border Background="{TemplateBinding Background}" BorderThickness="1" BorderBrush="#FFE1E1E6"  CornerRadius="3" Padding="{TemplateBinding Padding}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 
 </ResourceDictionary>

@@ -77,6 +77,6 @@
                 </Grid>
             </Border>
         </DockPanel>
-        
+        <controls:JumpPageButton Grid.Row="2" HorizontalAlignment="Right" Margin="0,0,20,0"/>
     </Grid>
 </Page>

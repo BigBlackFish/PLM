@@ -17,7 +17,7 @@ namespace PLM.Component.Pages
             viewModel = DataContext as PageListsPageViewModel;
         }
 
-        private async void PageListsMain_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        private void PageListsMain_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             SelectInfo();
         }
@@ -43,19 +43,19 @@ namespace PLM.Component.Pages
                 {
                     viewModel.Files.Add(new PageFileListViewModel
                     {
-                        Id = long.Parse(item.id),
+                        Id = item.id== null ? "" : item.id.ToString(),
                         ImageInfomation = item.summaryFileName,
-                        AssociationId = long.Parse(item.terminalSummaryFileId),
+                        AssociationId = item.terminalSummaryFileId== null?"": item.terminalSummaryFileId.ToString(),
                         PageInfomation = item.layoutInfo,
                         remarksinfomation = item.remark,
                         UploadDate = item.updateTime,
                         Uploader = item.updateUserName
-                    });
+                    }); ;
                 }
             }
         }
 
-        private async void Butselect_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void Butselect_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             SelectInfo();
         }

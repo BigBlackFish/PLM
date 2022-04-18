@@ -5,8 +5,26 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PLM.Library.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="30" d:DesignWidth="200" Width="200">
+             d:DesignHeight="100" d:DesignWidth="600">
     <Grid>
-            
+        <Border>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{StaticResource Mutual}" Foreground="#FF80838F" VerticalAlignment="Center" FontSize="14"/>
+                <TextBlock Text="20"  Foreground="#FF80838F" VerticalAlignment="Center" FontSize="14"/>
+                <TextBlock Text="{StaticResource strip}"  Foreground="#FF80838F" VerticalAlignment="Center" FontSize="14"/>
+                <Button Style="{StaticResource JumpPageBut}" Content="&lt;"/>
+                <Button Style="{StaticResource JumpPageBut}" Content="1"/>
+                <Button Style="{StaticResource JumpPageBut}" Content="2"/>
+                <Button Style="{StaticResource JumpPageBut}" Content="3"/>
+                <Button Style="{StaticResource JumpPageBut}" Content="4"/>
+                <Button Style="{StaticResource JumpPageBut}" Content="5"/>
+                <TextBlock Text="~~~" Foreground="#FF80838F" VerticalAlignment="Center" FontSize="14"/>
+                <Button Style="{StaticResource JumpPageBut}" Content="30"/>
+                <Button Style="{StaticResource JumpPageBut}" Content=">"/>
+                <TextBlock Text="跳至" Margin="20,0,0,0" Foreground="#FF80838F" VerticalAlignment="Center" FontSize="14" />
+                <ComboBox Style="{StaticResource JumpPageCombox}" SelectionChanged="ComboBox_SelectionChanged"/>
+                <TextBlock Text="页" Margin="10" Foreground="#FF80838F" VerticalAlignment="Center" FontSize="14" />
+            </StackPanel>
+        </Border>
     </Grid>
 </UserControl>
