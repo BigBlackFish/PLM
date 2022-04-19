@@ -27,7 +27,6 @@ namespace PLM.Library.Controls
         public JumpPageButton()
         {
             InitializeComponent();
-
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -35,16 +34,30 @@ namespace PLM.Library.Controls
 
         }
 
+        private void Buttonnumberless()
+        {
+            ButtonOne.Content = (int.Parse(ButtonOne.Content.ToString()) - 1);
+            ButtonTwo.Content = (int.Parse(ButtonTwo.Content.ToString()) - 1);
+            ButtonThree.Content = (int.Parse(ButtonThree.Content.ToString()) - 1);
+            ButtonFour.Content = (int.Parse(ButtonFour.Content.ToString()) - 1);
+            ButtonFive.Content = (int.Parse(ButtonFive.Content.ToString()) - 1);
+        }
+
+        private void Buttonnumberadd()
+        {
+            ButtonOne.Content = (int.Parse(ButtonOne.Content.ToString()) + 1);
+            ButtonTwo.Content = (int.Parse(ButtonTwo.Content.ToString()) + 1);
+            ButtonThree.Content = (int.Parse(ButtonThree.Content.ToString()) + 1);
+            ButtonFour.Content = (int.Parse(ButtonFour.Content.ToString()) + 1);
+            ButtonFive.Content = (int.Parse(ButtonFive.Content.ToString()) + 1);
+        }
+
         private void ButtonOne_Click(object sender, RoutedEventArgs e)
         {
             SelectPage = int.Parse(ButtonOne.Content.ToString());
             if (int.Parse(ButtonOne.Content.ToString()) > 1)
             {
-                ButtonOne.Content = (int.Parse(ButtonOne.Content.ToString()) - 1);
-                ButtonTwo.Content = (int.Parse(ButtonTwo.Content.ToString()) - 1);
-                ButtonThree.Content = (int.Parse(ButtonThree.Content.ToString()) - 1);
-                ButtonFour.Content = (int.Parse(ButtonFour.Content.ToString()) - 1);
-                ButtonFive.Content = (int.Parse(ButtonFive.Content.ToString()) - 1);
+                Buttonnumberless();
             }
         }
 
@@ -68,18 +81,47 @@ namespace PLM.Library.Controls
             SelectPage = int.Parse(ButtonFive.Content.ToString());
             if (int.Parse(ButtonFive.Content.ToString()) < TotalPages - 1)
             {
-                ButtonOne.Content = (int.Parse(ButtonOne.Content.ToString()) + 1);
-                ButtonTwo.Content = (int.Parse(ButtonTwo.Content.ToString()) + 1);
-                ButtonThree.Content = (int.Parse(ButtonThree.Content.ToString()) + 1);
-                ButtonFour.Content = (int.Parse(ButtonFour.Content.ToString()) + 1);
-                ButtonFive.Content = (int.Parse(ButtonFive.Content.ToString()) + 1);
-
+                Buttonnumberadd();
             }
         }
 
         private void ButtonLast_Click(object sender, RoutedEventArgs e)
         {
             SelectPage = TotalPages;
+            ButtonOne.Content = TotalPages - 5;
+            ButtonTwo.Content = TotalPages - 4;
+            ButtonThree.Content = TotalPages - 3;
+            ButtonFour.Content = TotalPages - 2;
+            ButtonFive.Content = TotalPages-1;
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            TotalPages = 30;
+            ButtonOne.Visibility=TotalPages>int.Parse(ButtonOne.Content.ToString()) ?Visibility.Visible : Visibility.Collapsed;
+            ButtonTwo.Visibility = TotalPages > int.Parse(ButtonTwo.Content.ToString()) ? Visibility.Visible : Visibility.Collapsed;
+            ButtonThree.Visibility = TotalPages > int.Parse(ButtonThree.Content.ToString()) ? Visibility.Visible : Visibility.Collapsed;
+            ButtonFour.Visibility = TotalPages > int.Parse(ButtonFour.Content.ToString()) ? Visibility.Visible : Visibility.Collapsed;
+            ButtonFive.Visibility = TotalPages > int.Parse(ButtonFive.Content.ToString()) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        private void LastOneButton_Click(object sender, RoutedEventArgs e)
+        {
+            SelectPage = SelectPage - 1;
+            if (SelectPage == int.Parse(ButtonOne.Content.ToString())-1&& SelectPage>1)
+            {
+                Buttonnumberless();
+            }
+        }
+
+        private void NextButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            SelectPage = SelectPage + 1;
+            if (SelectPage == int.Parse(ButtonFive.Content.ToString())+1&& SelectPage<TotalPages)
+            {
+                Buttonnumberadd();
+            }
         }
     }
 }

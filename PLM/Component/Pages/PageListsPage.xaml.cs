@@ -10,6 +10,7 @@ namespace PLM.Component.Pages
     /// </summary>
     public partial class PageListsPage : Page
     {
+
         private readonly PageListsPageViewModel viewModel;
         public PageListsPage()
         {
