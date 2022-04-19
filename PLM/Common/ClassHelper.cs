@@ -1,7 +1,9 @@
-﻿using PLM.Component.Pages;
+﻿using Microsoft.Win32;
+using PLM.Component.Pages;
 using PLM.Component.Windows;
 using PLM.Models;
 using System;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Threading;
@@ -186,6 +188,23 @@ namespace PLM.Common
                 messageBoxCloseType = messageBox.CloseType;
             });
             return messageBoxCloseType;
+        }
+
+        /// <summary>
+        /// 获取文件Content Type
+        /// </summary>
+        /// <param name="fileName">文件路径</param>
+        /// <returns></returns>
+        public static string GetMimeMapping(string fileName)
+        {
+            string mimeType = "application/octet-stream";
+            string ext = Path.GetExtension(fileName).ToLower();
+            RegistryKey regKey = Registry.ClassesRoot.OpenSubKey(ext);
+            if (regKey != null && regKey.GetValue("Content Type") != null)
+            {
+                mimeType = regKey.GetValue("Content Type").ToString();
+            }
+            return mimeType;
         }
     }
 }

@@ -55,6 +55,7 @@ namespace PLM.Component.Pages
                                                 Path = path,
                                                 FileType = fileInfo.Extension.ToLower(),
                                                 Message = viewModel.Message,
+                                                Remark = viewModel.Remark,
                                                 Size = fileInfo.Length / 1024 / 1024,
                                             };
                                             item.FileViews.Add(fileView);
@@ -74,6 +75,7 @@ namespace PLM.Component.Pages
                         Path = viewModel.FileLeft,
                         FileType = fileLeft.Extension.ToLower(),
                         Message = viewModel.Message,
+                        Remark = viewModel.Remark,
                         Size = fileLeft.Length / 1024 / 1024,
                     };
                     fileGroupView.FileViews.Add(left);
@@ -84,6 +86,7 @@ namespace PLM.Component.Pages
                         Path = viewModel.FileRight,
                         FileType = fileRight.Extension.ToLower(),
                         Message = viewModel.Message,
+                        Remark = viewModel.Remark,
                         Size = fileRight.Length / 1024 / 1024,
                     };
                     fileGroupView.FileViews.Add(right);

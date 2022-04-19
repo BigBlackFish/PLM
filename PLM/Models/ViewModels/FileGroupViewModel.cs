@@ -40,9 +40,9 @@ namespace PLM.Models.ViewModels
                     (e.NewItems[0] as FileViewModel).FileUpload();
                 }
             }
-            else
+            else if (e.Action == NotifyCollectionChangedAction.Remove)
             {
-
+                (e.OldItems[0] as FileViewModel).CancelTransmission();
             }
         }
     }

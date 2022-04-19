@@ -16,16 +16,16 @@ namespace PLM.Component.Windows
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly MainWimdowViewModel viewModel;
 
-         MainWimdowViewModel viewModel=new MainWimdowViewModel();
         public MainWindow()
         {
             InitializeComponent();
 
+            viewModel = DataContext as MainWimdowViewModel;
             ClassHelper.MainWindow = this;
             ClassHelper.MessageHint += ClassHelper_MessageHint;
             ClassHelper.RoutedChanged += ClassHelper_RoutedChanged;
-            DataContext = viewModel;    
             GetUserInfo();
         }
 

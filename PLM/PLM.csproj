@@ -97,6 +97,7 @@
       <DependentUpon>JumpPageButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Library\Converters\FileTypeImageConvert.cs" />
+    <Compile Include="Models\AddTerminalLayoutFileModel.cs" />
     <Compile Include="Models\LoginResultModel.cs" />
     <Compile Include="Models\PageListResultModel.cs" />
     <Compile Include="Models\UserInfomation.cs" />

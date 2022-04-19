@@ -1,6 +1,7 @@
 ﻿using PLM.Models;
 using PLM.Models.ViewModels;
 using PLM.Service;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace PLM.Component.Pages
@@ -17,14 +18,9 @@ namespace PLM.Component.Pages
             viewModel = DataContext as PageListsPageViewModel;
         }
 
-        private void PageListsMain_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        private void PageListsMain_Loaded(object sender, RoutedEventArgs e)
         {
             SelectInfo();
-        }
-
-        private void PageListsMain_DataContextChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
-        {
-
         }
 
         private async void SelectInfo()
@@ -55,12 +51,12 @@ namespace PLM.Component.Pages
             }
         }
 
-        private void Butselect_Click(object sender, System.Windows.RoutedEventArgs e)
+        private async void Butselect_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             SelectInfo();
         }
 
-        private void ButReset_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void ButReset_Click(object sender, RoutedEventArgs e)
         {
             viewModel.FileName = string.Empty;
             viewModel.CreateStartTime = string.Empty;
