@@ -10,16 +10,16 @@
         <Border>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{StaticResource Mutual}" Foreground="#FF80838F" VerticalAlignment="Center" FontSize="14"/>
-                <TextBlock Text="20"  Foreground="#FF80838F" VerticalAlignment="Center" FontSize="14"/>
+                <TextBlock x:Name="TotalNumberText" Text="{Binding NumberofPages}"  Foreground="#FF80838F" VerticalAlignment="Center" FontSize="14"/>
                 <TextBlock Text="{StaticResource strip}"  Foreground="#FF80838F" VerticalAlignment="Center" FontSize="14"/>
                 <Button Style="{StaticResource JumpPageBut}" Content="&lt;"/>
-                <Button Style="{StaticResource JumpPageBut}" Content="1"/>
-                <Button Style="{StaticResource JumpPageBut}" Content="2"/>
-                <Button Style="{StaticResource JumpPageBut}" Content="3"/>
-                <Button Style="{StaticResource JumpPageBut}" Content="4"/>
-                <Button Style="{StaticResource JumpPageBut}" Content="5"/>
-                <TextBlock Text="~~~" Foreground="#FF80838F" VerticalAlignment="Center" FontSize="14"/>
-                <Button Style="{StaticResource JumpPageBut}" Content="30"/>
+                <Button x:Name="ButtonOne" Style="{StaticResource JumpPageBut}" Content="1" Click="ButtonOne_Click"/>
+                <Button x:Name="ButtonTwo" Style="{StaticResource JumpPageBut}" Content="2" Click="ButtonTwo_Click"/>
+                <Button x:Name="ButtonThree" Style="{StaticResource JumpPageBut}" Content="3" Click="ButtonThree_Click"/>
+                <Button x:Name="ButtonFour" Style="{StaticResource JumpPageBut}" Content="4" Click="ButtonFour_Click"/>
+                <Button x:Name="ButtonFive" Style="{StaticResource JumpPageBut}" Content="5" Click="ButtonFive_Click"/>
+                <TextBlock Text="'''" Foreground="#FF80838F" VerticalAlignment="Center" FontSize="14"/>
+                <Button x:Name="ButtonLast" Style="{StaticResource JumpPageBut}" Content="30" Click="ButtonLast_Click"/>
                 <Button Style="{StaticResource JumpPageBut}" Content=">"/>
                 <TextBlock Text="跳至" Margin="20,0,0,0" Foreground="#FF80838F" VerticalAlignment="Center" FontSize="14" />
                 <ComboBox Style="{StaticResource JumpPageCombox}" SelectionChanged="ComboBox_SelectionChanged"/>

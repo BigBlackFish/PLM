@@ -12,6 +12,8 @@ namespace PLM.Models.ViewModels
         private string createStartTime;
         private string createEndTime;
         private string createNickName;
+        private int numberofPages;
+        private int selectPage;
         public ObservableCollection<PageFileListViewModel> Files { get; set; }
 
         /// <summary>
@@ -67,14 +69,36 @@ namespace PLM.Models.ViewModels
                 OnPropertyChanged(nameof(CreateNickName));
             }
         }
+
+        public int NumberofPages
+        {
+            get => numberofPages;
+            set
+            {
+                numberofPages = value;
+                OnPropertyChanged(nameof(NumberofPages));
+            }
+        }
+
+        public int SelectPage
+        {
+            get => selectPage;
+            set
+            {
+                selectPage = value;
+                OnPropertyChanged(nameof(selectPage));
+            }
+        }
         public override void InitializeVariable()
         {
             EmptyState = true;
             fileName = string.Empty;
-            createStartTime=string.Empty;
+            SelectPage = 1;
+            createStartTime =string.Empty;
             createEndTime=string.Empty;
             createNickName=string.Empty;
             Files = new ObservableCollection<PageFileListViewModel>();
+            numberofPages = 0;
         }
     }
 }

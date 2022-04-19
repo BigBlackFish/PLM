@@ -8,7 +8,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="548" d:DesignWidth="962"
       x:Name="PageListsMain"
-      Loaded="PageListsMain_Loaded">
+      Loaded="PageListsMain_Loaded" DataContextChanged="PageListsMain_DataContextChanged">
     <Page.Triggers>
         <EventTrigger RoutedEvent="Loaded">
             <BeginStoryboard>
@@ -77,7 +77,6 @@
                 </Grid>
             </Border>
         </DockPanel>
-        
-        
+        <controls:JumpPageButton Grid.Row="2" TotalPages="{Binding NumberofPages}" SelectPage="{Binding SelectPage,Mode=TwoWay}"  HorizontalAlignment="Right" Margin="0,0,20,0"/>
     </Grid>
 </Page>
