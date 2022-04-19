@@ -97,7 +97,6 @@ namespace PLM.Library.Controls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            TotalPages = 30;
             ButtonOne.Visibility=TotalPages>int.Parse(ButtonOne.Content.ToString()) ?Visibility.Visible : Visibility.Collapsed;
             ButtonTwo.Visibility = TotalPages > int.Parse(ButtonTwo.Content.ToString()) ? Visibility.Visible : Visibility.Collapsed;
             ButtonThree.Visibility = TotalPages > int.Parse(ButtonThree.Content.ToString()) ? Visibility.Visible : Visibility.Collapsed;

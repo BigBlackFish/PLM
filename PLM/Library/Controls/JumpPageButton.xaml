@@ -22,7 +22,7 @@
                 <Button x:Name="ButtonLast" Style="{StaticResource JumpPageBut}" Content="{Binding NumberofPages}" Click="ButtonLast_Click"/>
                 <Button x:Name="NextButton" Style="{StaticResource JumpPageBut}" Content=">" Click="NextButton_Click"/>
                 <TextBlock Text="跳至" Margin="20,0,0,0" Foreground="#FF80838F" VerticalAlignment="Center" FontSize="14" />
-                <ComboBox Style="{StaticResource JumpPageCombox}" SelectionChanged="ComboBox_SelectionChanged"/>
+                <ComboBox Style="{StaticResource JumpPageCombox}" />
                 <TextBlock Text="页" Margin="10" Foreground="#FF80838F" VerticalAlignment="Center" FontSize="14" />
             </StackPanel>
         </Border>
