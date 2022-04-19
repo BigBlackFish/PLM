@@ -40,13 +40,16 @@ namespace PLM.Component.Pages
             if ((await AdminService.GetLayoutFileList(viewModel.SelectPage, 6, viewModel.FileName, viewModel.CreateStartTime, viewModel.CreateEndTime, viewModel.CreateNickName) is APIResult<Records> LayoutFileListInfo))
             {
                 if (LayoutFileListInfo.Data == null)
+                {
                     return;
+                }
+
                 viewModel.NumberofPages = int.Parse(LayoutFileListInfo.Data.totalPage.ToString());
                 if (LayoutFileListInfo.Data.list.Count > 0)
                 {
                     viewModel.EmptyState = false;
                 }
-                foreach (var item in LayoutFileListInfo.Data.list)
+                foreach (PageListResultModel item in LayoutFileListInfo.Data.list)
                 {
                     viewModel.Files.Add(new PageFileListViewModel
                     {

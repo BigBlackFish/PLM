@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace PLM.Library.Controls
 {
@@ -39,7 +27,7 @@ namespace PLM.Library.Controls
         public JumpPageButton()
         {
             InitializeComponent();
-            
+
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -50,7 +38,7 @@ namespace PLM.Library.Controls
         private void ButtonOne_Click(object sender, RoutedEventArgs e)
         {
             SelectPage = int.Parse(ButtonOne.Content.ToString());
-            if (int.Parse(ButtonOne.Content.ToString()) >1)
+            if (int.Parse(ButtonOne.Content.ToString()) > 1)
             {
                 ButtonOne.Content = (int.Parse(ButtonOne.Content.ToString()) - 1);
                 ButtonTwo.Content = (int.Parse(ButtonTwo.Content.ToString()) - 1);
@@ -78,14 +66,14 @@ namespace PLM.Library.Controls
         private void ButtonFive_Click(object sender, RoutedEventArgs e)
         {
             SelectPage = int.Parse(ButtonFive.Content.ToString());
-            if (int.Parse(ButtonFive.Content.ToString()) < TotalPages-1)
+            if (int.Parse(ButtonFive.Content.ToString()) < TotalPages - 1)
             {
-                ButtonOne.Content = (int.Parse(ButtonOne.Content.ToString())+1);
+                ButtonOne.Content = (int.Parse(ButtonOne.Content.ToString()) + 1);
                 ButtonTwo.Content = (int.Parse(ButtonTwo.Content.ToString()) + 1);
                 ButtonThree.Content = (int.Parse(ButtonThree.Content.ToString()) + 1);
                 ButtonFour.Content = (int.Parse(ButtonFour.Content.ToString()) + 1);
                 ButtonFive.Content = (int.Parse(ButtonFive.Content.ToString()) + 1);
-                
+
             }
         }
 

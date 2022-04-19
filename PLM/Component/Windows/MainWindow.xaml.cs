@@ -32,13 +32,13 @@ namespace PLM.Component.Windows
 
         private async void GetUserInfo()
         {
-               
+
             if ((await AdminService.GetUserinfomation() is APIResult<UserInfomation> userinfo))
             {
                 viewModel.UserName = userinfo.Data.NickName;
                 viewModel.Identity = userinfo.Data.Tag;
                 viewModel.Phone = userinfo.Data.Mobile;
-                viewModel.LoginTime = DateTime.Now.ToString()+"登录";
+                viewModel.LoginTime = DateTime.Now.ToString() + "登录";
                 viewModel.ImgUrl = "/Library/Image/boy.png";
             }
         }

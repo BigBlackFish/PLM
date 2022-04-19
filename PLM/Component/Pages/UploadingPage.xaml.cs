@@ -1,8 +1,4 @@
-﻿using PLM.Common;
-using PLM.Models;
-using PLM.Models.ViewModels;
-using System.Linq;
-using System.Threading;
+﻿using PLM.Models.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
 

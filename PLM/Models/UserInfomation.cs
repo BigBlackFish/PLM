@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace PLM.Models
 {
@@ -13,7 +9,7 @@ namespace PLM.Models
         public List<string> Authorities { get; set; }
         public bool AccountNonLocked { get; set; }
         public bool AccountNonExpired { get; set; }
-        public bool Enabled  { get; set; }
+        public bool Enabled { get; set; }
         public bool CredentialsNonExpired { get; set; }
         public string ClientId { get; set; }
         public string Domain { get; set; }

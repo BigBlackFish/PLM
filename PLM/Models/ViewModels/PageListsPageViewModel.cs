@@ -94,9 +94,9 @@ namespace PLM.Models.ViewModels
             EmptyState = true;
             fileName = string.Empty;
             SelectPage = 1;
-            createStartTime =string.Empty;
-            createEndTime=string.Empty;
-            createNickName=string.Empty;
+            createStartTime = string.Empty;
+            createEndTime = string.Empty;
+            createNickName = string.Empty;
             Files = new ObservableCollection<PageFileListViewModel>();
             numberofPages = 0;
         }

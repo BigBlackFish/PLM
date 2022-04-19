@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PLM.Models.ViewModels
+﻿namespace PLM.Models.ViewModels
 {
-    public class MainWimdowViewModel:ModelBase
+    public class MainWimdowViewModel : ModelBase
     {
         private string userName;
 

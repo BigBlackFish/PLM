@@ -2,7 +2,6 @@
 using PLM.Common;
 using System;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace PLM.Models.ViewModels
 {
