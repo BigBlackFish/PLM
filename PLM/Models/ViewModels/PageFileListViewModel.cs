@@ -104,7 +104,7 @@
         public override void InitializeVariable()
         {
             Id = "0";
-            Image = string.Empty;
+            Image = "/Library/Image/jpg.png";
             ImageInfomation = string.Empty;
             AssociationId = "0";
             PageInfomation = string.Empty;

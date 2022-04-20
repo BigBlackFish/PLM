@@ -37,6 +37,7 @@
     <system:String x:Key="allcancel">全部取消</system:String>
     <system:String x:Key="alldelete">全部删除</system:String>
     <system:String x:Key="NoUpload">暂无上传任务</system:String>
+    <system:String x:Key="NoPageList">暂无版面数据</system:String>
     <system:String x:Key="NoDownload">暂无下载任务</system:String>
     <system:String x:Key="Total">总计</system:String>
     <system:String x:Key="Group">组</system:String>

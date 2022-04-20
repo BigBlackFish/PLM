@@ -86,7 +86,7 @@ namespace PLM.Models.ViewModels
             set
             {
                 selectPage = value;
-                OnPropertyChanged(nameof(selectPage));
+                OnPropertyChanged(nameof(SelectPage));
             }
         }
         public override void InitializeVariable()

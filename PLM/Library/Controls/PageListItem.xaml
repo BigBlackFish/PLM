@@ -17,21 +17,21 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="80"/>
         </Grid.ColumnDefinitions>
-        <TextBlock  Grid.Column="1" VerticalAlignment="Center" Text="{Binding Id}" FontSize="16" Foreground="#FF323233" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" HorizontalAlignment="Left"/>
+        <TextBlock  Grid.Column="1" VerticalAlignment="Center" Text="{Binding Id}" FontSize="10" Foreground="#FF323233" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" HorizontalAlignment="Left"/>
         <StackPanel Grid.Column="2" VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Left">
             <Image Width="50" Source="{Binding Image}" HorizontalAlignment="Left"/>
             <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                <TextBlock Text="{Binding ImageInfomation}" FontSize="14" Foreground="#FF323233"  HorizontalAlignment="Left" TextWrapping="Wrap" TextTrimming="CharacterEllipsis"/>
+                <TextBlock Text="{Binding ImageInfomation}" FontSize="10" Foreground="#FF323233"  HorizontalAlignment="Left" TextWrapping="Wrap" TextTrimming="CharacterEllipsis"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <TextBlock Text="关联id:" FontSize="12" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" Foreground="#FF0377CE"/>
-                    <TextBlock Text="{Binding AssociationId}" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" FontSize="12" Foreground="#FF0377CE" />
+                    <TextBlock Text="关联id:" FontSize="9" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" Foreground="#FF0377CE"/>
+                    <TextBlock Text="{Binding AssociationId}" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" FontSize="10" Foreground="#FF0377CE" />
                 </StackPanel>
             </StackPanel>
         </StackPanel>
-        <TextBlock Grid.Column="3" Text="{Binding PageInfomation}" FontSize="14" Foreground="#FF323233" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-        <TextBlock Grid.Column="4" Text="{Binding remarksinfomation}" FontSize="14" Foreground="#FF323233" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-        <TextBlock Grid.Column="5" Text="{Binding UploadDate}" FontSize="14" Foreground="#FF323233" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-        <TextBlock Grid.Column="6" Text="{Binding Uploader}" FontSize="14" Foreground="#FF323233" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+        <TextBlock Grid.Column="3" Text="{Binding PageInfomation}" FontSize="10" Foreground="#FF323233" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+        <TextBlock Grid.Column="4" Text="{Binding remarksinfomation}" FontSize="10" Foreground="#FF323233" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+        <TextBlock Grid.Column="5" Text="{Binding UploadDate}" FontSize="10" Foreground="#FF323233" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+        <TextBlock Grid.Column="6" Text="{Binding Uploader}" FontSize="10" Foreground="#FF323233" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" HorizontalAlignment="Left"/>
         <StackPanel Grid.Column="7" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
             <Image x:Name="imgDownload" Height="22" Source="/Library/Image/xiazai-2备份 2@2x.png" common:PointerEventHelper.PointerUp="ImgDownload_PointerUp" />
             <Image x:Name="ImgDelete" Height="22" Source="/Library/Image/delete@2x.png" common:PointerEventHelper.PointerDown="ImgDelete_PointerDown"/>

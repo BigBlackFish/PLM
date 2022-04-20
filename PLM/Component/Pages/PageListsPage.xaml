@@ -63,7 +63,7 @@
             </Border>
             <Border BorderBrush="#E1E1E6" BorderThickness="1" DockPanel.Dock="Top">
                 <Grid>
-                    <ItemsControl Style="{StaticResource ItemsControlScroll}" ItemsSource="{Binding Files}">
+                    <ItemsControl ScrollViewer.VerticalScrollBarVisibility="Disabled" ItemsSource="{Binding Files}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <controls:PageListItem/>
@@ -72,7 +72,7 @@
                     </ItemsControl>
                     <StackPanel Orientation="Vertical" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding EmptyState,Converter={StaticResource BoolVisibilityConvert}}">
                         <Image Source="/Library/Image/nulldata.png" />
-                        <TextBlock HorizontalAlignment="Center" Margin="0,15,0,0" FontSize="18" Foreground="#969699" Text="{DynamicResource NoUpload}"/>
+                        <TextBlock HorizontalAlignment="Center" Margin="0,15,0,0" FontSize="18" Foreground="#969699" Text="{DynamicResource NoPageList}"/>
                     </StackPanel>
                 </Grid>
             </Border>

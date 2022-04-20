@@ -97,11 +97,11 @@ namespace PLM.Library.Controls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            ButtonOne.Visibility = TotalPages > int.Parse(ButtonOne.Content.ToString()) ? Visibility.Visible : Visibility.Collapsed;
-            ButtonTwo.Visibility = TotalPages > int.Parse(ButtonTwo.Content.ToString()) ? Visibility.Visible : Visibility.Collapsed;
-            ButtonThree.Visibility = TotalPages > int.Parse(ButtonThree.Content.ToString()) ? Visibility.Visible : Visibility.Collapsed;
-            ButtonFour.Visibility = TotalPages > int.Parse(ButtonFour.Content.ToString()) ? Visibility.Visible : Visibility.Collapsed;
-            ButtonFive.Visibility = TotalPages > int.Parse(ButtonFive.Content.ToString()) ? Visibility.Visible : Visibility.Collapsed;
+            ButtonOne.Visibility = TotalPages > int.Parse(ButtonOne.Content.ToString()) ? Visibility.Collapsed : Visibility.Visible;
+            ButtonTwo.Visibility = TotalPages > int.Parse(ButtonTwo.Content.ToString()) ? Visibility.Collapsed : Visibility.Visible;
+            ButtonThree.Visibility = TotalPages > int.Parse(ButtonThree.Content.ToString()) ? Visibility.Collapsed : Visibility.Visible;
+            ButtonFour.Visibility = TotalPages > int.Parse(ButtonFour.Content.ToString()) ? Visibility.Collapsed : Visibility.Visible;
+            ButtonFive.Visibility = TotalPages > int.Parse(ButtonFive.Content.ToString()) ? Visibility.Collapsed : Visibility.Visible;
         }
 
         private void LastOneButton_Click(object sender, RoutedEventArgs e)
@@ -125,6 +125,8 @@ namespace PLM.Library.Controls
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (string.IsNullOrEmpty(JumppageTextBox.Text.Trim().ToString()))
+                return;
             if (int.Parse(JumppageTextBox.Text) <= TotalPages && int.Parse(JumppageTextBox.Text) > 0)
             {
                 SelectPage = int.Parse(JumppageTextBox.Text);
