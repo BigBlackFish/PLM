@@ -6,7 +6,7 @@ namespace PLM.Models
     {
         public string UserId { get; set; }
         public string Username { get; set; }
-        public List<string> Authorities { get; set; }
+        public   List<authoritieslist> Authorities { get; set; }
         public bool AccountNonLocked { get; set; }
         public bool AccountNonExpired { get; set; }
         public bool Enabled { get; set; }
@@ -33,5 +33,14 @@ namespace PLM.Models
         public int Status { get; set; }
         public string OrgType { get; set; }
         public bool ClientOnly { get; set; }
+    }
+
+    public class authoritieslist
+    {
+        public string authorityId { get; set; }
+        public string authority { get; set; }
+        public string expireTime { get; set; }
+        public string owner { get; set; }
+        public bool isExpired { get; set; }
     }
 }

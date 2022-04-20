@@ -20,10 +20,10 @@
     </Page.Triggers>
     <Grid>
         <StackPanel Height="50" Orientation="Horizontal" VerticalAlignment="Top" Background="#F5F5FA">
-            <Button Content="{DynamicResource allsuspend}" Style="{StaticResource butuploadingall}"/>
-            <Button Content="{DynamicResource allstart}" Style="{StaticResource butuploadingall}"/>
-            <Button Content="{DynamicResource allcancel}" Style="{StaticResource butuploadingall}"/>
-            <Button Content="{DynamicResource alldelete}" Style="{StaticResource butuploadingall}"/>
+            <Button x:Name="butAlldownloadStop" Content="{DynamicResource allsuspend}" Style="{StaticResource butuploadingall}"/>
+            <Button x:Name="butAlldownloadStart" Content="{DynamicResource allstart}" Style="{StaticResource butuploadingall}"/>
+            <Button x:Name="butAlldownloadCanel" Content="{DynamicResource allcancel}" Style="{StaticResource butuploadingall}"/>
+            <Button x:Name="butAlldownloadDelete" Content="{DynamicResource alldelete}" Style="{StaticResource butuploadingall}"/>
         </StackPanel>
         <DockPanel Margin="20,65,20,20">
             <DockPanel DockPanel.Dock="Top">
