@@ -23,7 +23,7 @@ namespace PLM.Component.Pages
 
         private void BtnUploading_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(viewModel.FileLeft) || string.IsNullOrEmpty(viewModel.FileRight) || string.IsNullOrEmpty(viewModel.Message))
+            if (string.IsNullOrEmpty(viewModel.FileLeft) && string.IsNullOrEmpty(viewModel.FileRight) || string.IsNullOrEmpty(viewModel.Message))
             {
                 ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 1, ClassHelper.FindResource<string>("LackOfNecessaryInformation"));
             }
@@ -68,28 +68,34 @@ namespace PLM.Component.Pages
                         }
                     }
                     FileGroupViewModel fileGroupView = new FileGroupViewModel();
-                    FileInfo fileLeft = new FileInfo(viewModel.FileLeft);
-                    FileViewModel left = new FileViewModel
+                    if (!string.IsNullOrEmpty(viewModel.FileLeft))
                     {
-                        Name = fileLeft.Name,
-                        Path = viewModel.FileLeft,
-                        FileType = fileLeft.Extension.ToLower(),
-                        Message = viewModel.Message,
-                        Remark = viewModel.Remark,
-                        Size = fileLeft.Length / 1024 / 1024,
-                    };
-                    fileGroupView.FileViews.Add(left);
-                    FileInfo fileRight = new FileInfo(viewModel.FileRight);
-                    FileViewModel right = new FileViewModel
+                        FileInfo fileLeft = new FileInfo(viewModel.FileLeft);
+                        FileViewModel left = new FileViewModel
+                        {
+                            Name = fileLeft.Name,
+                            Path = viewModel.FileLeft,
+                            FileType = fileLeft.Extension.ToLower(),
+                            Message = viewModel.Message,
+                            Remark = viewModel.Remark,
+                            Size = fileLeft.Length / 1024 / 1024,
+                        };
+                        fileGroupView.FileViews.Add(left);
+                    }
+                    if (!string.IsNullOrEmpty(viewModel.FileRight))
                     {
-                        Name = fileRight.Name,
-                        Path = viewModel.FileRight,
-                        FileType = fileRight.Extension.ToLower(),
-                        Message = viewModel.Message,
-                        Remark = viewModel.Remark,
-                        Size = fileRight.Length / 1024 / 1024,
-                    };
-                    fileGroupView.FileViews.Add(right);
+                        FileInfo fileRight = new FileInfo(viewModel.FileRight);
+                        FileViewModel right = new FileViewModel
+                        {
+                            Name = fileRight.Name,
+                            Path = viewModel.FileRight,
+                            FileType = fileRight.Extension.ToLower(),
+                            Message = viewModel.Message,
+                            Remark = viewModel.Remark,
+                            Size = fileRight.Length / 1024 / 1024,
+                        };
+                        fileGroupView.FileViews.Add(right);
+                    }
                     uploading.Files.Add(fileGroupView);
                 }
             }
