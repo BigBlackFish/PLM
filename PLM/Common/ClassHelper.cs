@@ -12,6 +12,7 @@ namespace PLM.Common
 {
     public delegate void MessageEvent(int messageType, string message);
     public delegate void RouteEvent(ClassHelper.PageType pageName);
+    public delegate void AccordingMaskEvent(bool show, bool loading);
 
     public static class ClassHelper
     {
@@ -82,6 +83,8 @@ namespace PLM.Common
         public static event MessageEvent MessageHint;
         // 改变路由
         public static event RouteEvent RoutedChanged;
+        // 显示蒙版
+        public static event AccordingMaskEvent AccordingMask;
         #endregion
 
         static ClassHelper()
@@ -215,6 +218,15 @@ namespace PLM.Common
                 mimeType = regKey.GetValue("Content Type").ToString();
             }
             return mimeType;
+        }
+
+        /// <summary>
+        /// 显示蒙版
+        /// </summary>
+        /// <param name="show">显示隐藏</param>
+        public static void ShowMask(bool show, bool loading = true)
+        {
+            AccordingMask?.Invoke(show, loading);
         }
     }
 }

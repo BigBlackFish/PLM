@@ -26,23 +26,8 @@ namespace PLM.Component.Windows
             ClassHelper.MainWindow = this;
             ClassHelper.MessageHint += ClassHelper_MessageHint;
             ClassHelper.RoutedChanged += ClassHelper_RoutedChanged;
-            GetUserInfo();
+            ClassHelper.AccordingMask += ClassHelper_AccordingMask;
         }
-
-
-        private async void GetUserInfo()
-        {
-
-            if ((await AdminService.GetUserinfomation() is APIResult<UserInfomation> userinfo))
-            {
-                viewModel.UserName = userinfo.Data.NickName;
-                viewModel.Identity = userinfo.Data.Tag;
-                viewModel.Phone = userinfo.Data.Mobile;
-                viewModel.LoginTime = DateTime.Now.ToString() + "登录";
-                viewModel.ImgUrl = "/Library/Image/boy.png";
-            }
-        }
-
 
         private void AppMain_Loaded(object sender, RoutedEventArgs e)
         {
@@ -138,10 +123,34 @@ namespace PLM.Component.Windows
             ClassHelper.SwitchRoute((ClassHelper.PageType)Enum.Parse(typeof(ClassHelper.PageType), data));
         }
 
+        private void ClassHelper_AccordingMask(bool show, bool loading)
+        {
+            Dispatcher.Invoke(delegate
+            {
+                brdMask.Visibility = show ? Visibility.Visible : Visibility.Collapsed;
+                conLoading.Visibility = loading ? Visibility.Visible : Visibility.Collapsed;
+            });
+        }
+
         #region 执行事件
         private void Load(object data)
         {
+            ClassHelper.ShowMask(true);
+            GetUserInfo();
             ClassHelper.SwitchRoute(ClassHelper.PageType.UploadFile);
+            ClassHelper.ShowMask(false);
+        }
+
+        private async void GetUserInfo()
+        {
+            if ((await AdminService.GetUserinfomation() is APIResult<UserInfomation> userinfo))
+            {
+                viewModel.UserName = userinfo.Data.NickName;
+                viewModel.Identity = userinfo.Data.Tag;
+                viewModel.Phone = userinfo.Data.Mobile;
+                viewModel.LoginTime = DateTime.Now.ToString() + "登录";
+                viewModel.ImgUrl = "/Library/Image/boy.png";
+            }
         }
         #endregion
 

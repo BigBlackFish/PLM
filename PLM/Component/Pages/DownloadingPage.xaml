@@ -20,10 +20,10 @@
     </Page.Triggers>
     <Grid>
         <StackPanel Height="50" Orientation="Horizontal" VerticalAlignment="Top" Background="#F5F5FA">
-            <Button x:Name="butAlldownloadStop" Content="{DynamicResource allsuspend}" Style="{StaticResource butuploadingall}"/>
-            <Button x:Name="butAlldownloadStart" Content="{DynamicResource allstart}" Style="{StaticResource butuploadingall}"/>
-            <Button x:Name="butAlldownloadCanel" Content="{DynamicResource allcancel}" Style="{StaticResource butuploadingall}"/>
-            <Button x:Name="butAlldownloadDelete" Content="{DynamicResource alldelete}" Style="{StaticResource butuploadingall}"/>
+            <Button x:Name="btnAllStop" Content="{DynamicResource allsuspend}" Style="{StaticResource butuploadingall}" Click="BtnAllStop_Click"/>
+            <Button x:Name="btnAllStart" Content="{DynamicResource allstart}" Style="{StaticResource butuploadingall}" Click="BtnAllStart_Click"/>
+            <Button x:Name="btnAllCancel" Content="{DynamicResource allcancel}" Style="{StaticResource butuploadingall}" Click="BtnAllCancel_Click"/>
+            <Button x:Name="btnAllDelete" Content="{DynamicResource alldelete}" Style="{StaticResource butuploadingall}" Click="BtnAllDelete_Click"/>
         </StackPanel>
         <DockPanel Margin="20,65,20,20">
             <DockPanel DockPanel.Dock="Top">
@@ -43,7 +43,7 @@
                             <ColumnDefinition Width="3*"/>
                             <ColumnDefinition Width="100"/>
                         </Grid.ColumnDefinitions>
-                        <CheckBox Grid.Column="0" Style="{StaticResource CheckBoxElement}"/>
+                        <CheckBox x:Name="cheAll" Grid.Column="0" Style="{StaticResource CheckBoxElement}" Checked="CheAll_Checked" Unchecked="CheAll_Unchecked"/>
                         <TextBlock Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#323233" FontSize="16" Text="{DynamicResource fileName}"/>
                         <TextBlock Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#323233" FontSize="16" Text="{DynamicResource Layoutinformation}"/>
                         <TextBlock Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#323233" FontSize="16" Text="{DynamicResource size}"/>

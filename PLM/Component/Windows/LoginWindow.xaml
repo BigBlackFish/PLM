@@ -33,9 +33,9 @@
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,153,0,0" WindowChrome.IsHitTestVisibleInChrome="True">
             <TextBox Style="{StaticResource AccountCodeTextBox}" Text="{Binding UserName}"/>
             <controls:PasswordInputBox Margin="0,24,0,0" Password="{Binding Password,Mode=TwoWay}"/>
-            <Border x:Name="brdLogin" Height="56" Background="#0D78D8" Margin="0,40,0,0" CornerRadius="28" common:PointerEventHelper.PointerUp="BrdLogin_PointerUp">
+            <Button x:Name="btnLogin" Style="{StaticResource ButtonLoginWait}" Height="56" Margin="0,40,0,0" Click="BtnLogin_Click">
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Foreground="#FFFFFF" Text="{DynamicResource Login}"/>
-            </Border>
+            </Button>
         </StackPanel>
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,32">
             <Image Height="32" Margin="0,0,0,12" Source="/Library/Image/8111649317873_.pic@2x.png" />

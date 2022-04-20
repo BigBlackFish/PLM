@@ -2,6 +2,7 @@
 using PLM.Models;
 using PLM.Models.ViewModels;
 using PLM.Service;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -41,6 +42,15 @@ namespace PLM.Library.Controls
 
         private void ImgDownload_PointerUp(object sender, System.EventArgs e)
         {
+            DownloadingPageViewModel downloading = ClassHelper.downloadingPage.DataContext as DownloadingPageViewModel;
+            foreach (FileGroupViewModel item in downloading.Files)
+            {
+                if (item.FileViews.Any(f => f.Message == viewModel.PageInfomation))
+                {
+                    ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 1, ClassHelper.FindResource<string>("TaskAlreadyExists"));
+                    return;
+                }
+            }
             FileGroupViewModel fileGroupView = new FileGroupViewModel
             {
                 IsUpload = false
@@ -65,7 +75,8 @@ namespace PLM.Library.Controls
                 Size = viewModel.SummaryFileSize / 1024
             };
             fileGroupView.FileViews.Add(fileView2);
-            (ClassHelper.downloadingPage.DataContext as DownloadingPageViewModel).Files.Add(fileGroupView);
+            downloading.Files.Add(fileGroupView);
+            ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 0, ClassHelper.FindResource<string>("SuccessfullyAdded"));
         }
     }
 }

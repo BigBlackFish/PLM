@@ -61,5 +61,8 @@
     <system:String x:Key="Mutual">共</system:String>
     <system:String x:Key="strip">条</system:String>
     <system:String x:Key="DownloadComplete">下载成功</system:String>
+    <system:String x:Key="ServerFileNotExist">服务器文件不存在。</system:String>
+    <system:String x:Key="TaskAlreadyExists">该下载任务已存在。</system:String>
+    <system:String x:Key="LocalFileNotExist">本地文件不存在。</system:String>
 </ResourceDictionary>
     

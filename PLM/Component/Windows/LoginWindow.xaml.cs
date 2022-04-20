@@ -32,8 +32,9 @@ namespace PLM.Component.Windows
 
         }
 
-        private async void BrdLogin_PointerUp(object sender, EventArgs e)
+        private async void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
+            btnLogin.IsEnabled = false;
             if ((await AdminService.Login(viewModel.UserName, viewModel.Password)) is APIResult<LoginResultModel> result)
             {
                 if (result.Code == 0)
@@ -48,6 +49,7 @@ namespace PLM.Component.Windows
                     ClassHelper.AlertMessageBox(this, ClassHelper.MessageBoxType.Inform, ClassHelper.FindResource<string>("Inform"), result.Message);
                 }
             }
+            btnLogin.IsEnabled = true;
         }
     }
 }

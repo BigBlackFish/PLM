@@ -1,6 +1,7 @@
 ﻿using FluentFTP;
 using PLM.Common;
 using System;
+using System.IO;
 using System.Threading;
 
 namespace PLM.Models.ViewModels
@@ -136,34 +137,43 @@ namespace PLM.Models.ViewModels
         /// </summary>
         public async void FileUpload()
         {
-            try
+            if (File.Exists(Path))
             {
-                update = true;
-                tokenSource = new CancellationTokenSource();
-                token = tokenSource.Token;
-                Progress<FtpProgress> progress = new Progress<FtpProgress>(p =>
+                try
                 {
-                    if (p.Progress == 100)
+                    update = true;
+                    tokenSource = new CancellationTokenSource();
+                    token = tokenSource.Token;
+                    Progress<FtpProgress> progress = new Progress<FtpProgress>(p =>
                     {
-                        Progress = 100;
-                        Speed = ClassHelper.FindResource<string>("UploadComplete");
-                        UploadCompleted = true;
-                    }
-                    else
-                    {
-                        Progress = Math.Round(p.Progress, 2);
-                        Speed = p.TransferSpeedToString();
-                    }
-                });
-                #region 基本信息
-                SavePath = $"{Message}/{Name}";
-                SaveName = Name;
-                #endregion
-                await ftpClient.UploadFileAsync(Path, SavePath, FtpRemoteExists.Overwrite, true, FtpVerify.None, progress, token);
-            }
-            catch (Exception)
-            {
+                        if (p.Progress == 100)
+                        {
+                            Progress = 100;
+                            Speed = ClassHelper.FindResource<string>("UploadComplete");
+                            UploadCompleted = true;
+                        }
+                        else
+                        {
+                            Progress = Math.Round(p.Progress, 2);
+                            Speed = p.TransferSpeedToString();
+                        }
+                    });
+                    #region 基本信息
+                    SavePath = $"{Message}/{Name}";
+                    SaveName = Name;
+                    #endregion
+                    await ftpClient.UploadFileAsync(Path, SavePath, FtpRemoteExists.Overwrite, true, FtpVerify.None, progress, token);
+                }
+                catch (Exception)
+                {
 
+                }
+            }
+            else
+            {
+                ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 3, ClassHelper.FindResource<string>("LocalFileNotExist"));
+                stop = true;
+                cancel = true;
             }
         }
 
@@ -172,34 +182,43 @@ namespace PLM.Models.ViewModels
         /// </summary>
         public async void FileDownload()
         {
-            try
+            if (await ftpClient.FileExistsAsync(Path))
             {
-                update = false;
-                tokenSource = new CancellationTokenSource();
-                token = tokenSource.Token;
-                Progress<FtpProgress> progress = new Progress<FtpProgress>(p =>
+                try
                 {
-                    if (p.Progress == 100)
+                    update = false;
+                    tokenSource = new CancellationTokenSource();
+                    token = tokenSource.Token;
+                    Progress<FtpProgress> progress = new Progress<FtpProgress>(p =>
                     {
-                        Progress = 100;
-                        Speed = ClassHelper.FindResource<string>("DownloadComplete");
-                        DownloadCompleted = true;
-                    }
-                    else
-                    {
-                        Progress = Math.Round(p.Progress, 2);
-                        Speed = p.TransferSpeedToString();
-                    }
-                });
-                #region 基本信息
-                SavePath = System.IO.Path.Combine(ClassHelper.AttachmentsPath, Name);
-                SaveName = Name;
-                #endregion
-                await ftpClient.DownloadFileAsync(SavePath, Path, FtpLocalExists.Overwrite, FtpVerify.None, progress, token);
-            }
-            catch (Exception)
-            {
+                        if (p.Progress == 100)
+                        {
+                            Progress = 100;
+                            Speed = ClassHelper.FindResource<string>("DownloadComplete");
+                            DownloadCompleted = true;
+                        }
+                        else
+                        {
+                            Progress = Math.Round(p.Progress, 2);
+                            Speed = p.TransferSpeedToString();
+                        }
+                    });
+                    #region 基本信息
+                    SavePath = System.IO.Path.Combine(ClassHelper.AttachmentsPath, Message, Name);
+                    SaveName = Name;
+                    #endregion
+                    await ftpClient.DownloadFileAsync(SavePath, Path, FtpLocalExists.Overwrite, FtpVerify.None, progress, token);
+                }
+                catch (Exception)
+                {
 
+                }
+            }
+            else
+            {
+                ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 3, ClassHelper.FindResource<string>("ServerFileNotExist"));
+                stop = true;
+                cancel = true;
             }
         }
 
@@ -315,11 +334,16 @@ namespace PLM.Models.ViewModels
             if (!cancel)
             {
                 tokenSource.Cancel();
+                await ftpClient.DisconnectAsync();
                 if (update)
                 {
                     if (await ftpClient.FileExistsAsync(SavePath))
                     {
                         await ftpClient.DeleteFileAsync(SavePath);
+                    }
+                    else if (File.Exists(SavePath))
+                    {
+                        File.Delete(SavePath);
                     }
                 }
                 Progress = 0;
