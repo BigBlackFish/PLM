@@ -1,7 +1,11 @@
-﻿using PLM.Models;
+﻿using FluentFTP;
+using PLM.Common;
+using PLM.Models;
 using PLM.Models.ViewModels;
 using PLM.Service;
 using System;
+using System.IO;
+using System.Threading;
 using System.Windows.Controls;
 
 namespace PLM.Component.Pages
@@ -11,7 +15,7 @@ namespace PLM.Component.Pages
     /// </summary>
     public partial class PageListsPage : Page
     {
-
+        private readonly FtpClient ftpClient = new FtpClient(ClassHelper.ftpPath, ClassHelper.ftpUsername, ClassHelper.ftppassword);
         private readonly PageListsPageViewModel viewModel;
         public PageListsPage()
         {
@@ -41,7 +45,6 @@ namespace PLM.Component.Pages
         private async void SelectInfo()
         {
             viewModel.Files.Clear();
-            PageListsPageViewModel a = new PageListsPageViewModel();
             if ((await AdminService.GetLayoutFileList(viewModel.SelectPage, 6, viewModel.FileName, viewModel.CreateStartTime, viewModel.CreateEndTime, viewModel.CreateNickName) is APIResult<Records> LayoutFileListInfo))
             {
                 if (LayoutFileListInfo.Data == null)
@@ -54,8 +57,15 @@ namespace PLM.Component.Pages
                 {
                     viewModel.EmptyState = false;
                 }
+
+                if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + "Pictures"))
+                {
+                    Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + "Pictures");
+                }
+                    
                 foreach (PageListResultModel item in LayoutFileListInfo.Data.list)
                 {
+                    ThreadPool.QueueUserWorkItem(s=> DownLoadPicture(item));
                     viewModel.Files.Add(new PageFileListViewModel
                     {
                         Id = item.id == null ? "" : item.id.ToString(),
@@ -93,6 +103,11 @@ namespace PLM.Component.Pages
             viewModel.CreateStartTime = string.Empty;
             viewModel.CreateEndTime = string.Empty;
             viewModel.CreateNickName = string.Empty;
+        }
+
+        private void DownLoadPicture(PageListResultModel pageListResultModel)
+        {
+            ftpClient.DownloadFileAsync(AppDomain.CurrentDomain.BaseDirectory + "Pictures", pageListResultModel.summaryFileUrl);
         }
 
     }

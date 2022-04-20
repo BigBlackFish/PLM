@@ -107,7 +107,7 @@ namespace PLM.Library.Controls
         private void LastOneButton_Click(object sender, RoutedEventArgs e)
         {
             SelectPage = SelectPage - 1;
-            if (SelectPage == int.Parse(ButtonOne.Content.ToString()) - 1 && SelectPage > 1)
+            if (SelectPage == int.Parse(ButtonOne.Content.ToString()) - 1 && SelectPage > 0)
             {
                 Buttonnumberless();
             }
