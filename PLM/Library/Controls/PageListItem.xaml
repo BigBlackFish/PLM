@@ -29,7 +29,7 @@
             </StackPanel>
         </StackPanel>
         <TextBlock Grid.Column="3" Text="{Binding PageInfomation}" FontSize="10" Foreground="#FF323233" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-        <TextBlock Grid.Column="4" Text="{Binding remarksinfomation}" FontSize="10" Foreground="#FF323233" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+        <TextBlock Grid.Column="4" Text="{Binding Remarksinfomation}" FontSize="10" Foreground="#FF323233" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" HorizontalAlignment="Left"/>
         <TextBlock Grid.Column="5" Text="{Binding UploadDate}" FontSize="10" Foreground="#FF323233" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" HorizontalAlignment="Left"/>
         <TextBlock Grid.Column="6" Text="{Binding Uploader}" FontSize="10" Foreground="#FF323233" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" HorizontalAlignment="Left"/>
         <StackPanel Grid.Column="7" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
