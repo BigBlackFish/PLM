@@ -23,6 +23,8 @@ namespace PLM.Common
         public const string ftpPath = "47.96.133.119";
         public const string ftpUsername = "ftpuser";
         public const string ftppassword = "Wangxi55";
+        // 附件路径
+        public static readonly string AttachmentsPath = Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, "Library");
         #endregion
 
         #region 变量
@@ -81,6 +83,14 @@ namespace PLM.Common
         // 改变路由
         public static event RouteEvent RoutedChanged;
         #endregion
+
+        static ClassHelper()
+        {
+            if (!Directory.Exists(AttachmentsPath))
+            {
+                Directory.CreateDirectory(AttachmentsPath);
+            }
+        }
 
         /// <summary>
         /// 记录异常信息

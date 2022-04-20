@@ -27,8 +27,8 @@
 
         public override void InitializeVariable()
         {
-            UserName = string.Empty;
-            Password = string.Empty;
+            UserName = "13138107500";
+            Password = "plm@2022";
         }
     }
 }

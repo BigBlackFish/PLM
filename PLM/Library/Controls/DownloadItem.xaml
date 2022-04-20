@@ -1,6 +1,6 @@
 ﻿<UserControl x:Class="PLM.Library.Controls.DownloadItem"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:common="clr-namespace:PLM.Common"
              x:Name="UserControlMain" BorderThickness="0,0,0,1" BorderBrush="#E1E1E6" DataContextChanged="UserControlMain_DataContextChanged">
     <Grid Margin="16,13,16,16">
         <Grid.ColumnDefinitions>
@@ -45,8 +45,19 @@
                                 </TextBlock>
                             </Grid>
                             <StackPanel Orientation="Horizontal">
-                                <Image Height="18" Source="/Library/Image/shandian@2x.png" />
-                                <TextBlock FontSize="14" Foreground="#13B79B" Text="2.12mb/s"/>
+                                <Image Height="18">
+                                    <Image.Style>
+                                        <Style TargetType="{x:Type Image}">
+                                            <Setter Property="Source" Value="/Library/Image/shandian@2x.png"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding DownloadCompleted}" Value="True">
+                                                    <Setter Property="Source" Value="/Library/Image/编组 7@2x.png"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Image.Style>
+                                </Image>
+                                <TextBlock FontSize="14" Foreground="#13B79B" Text="{Binding Speed}"/>
                             </StackPanel>
                         </StackPanel>
                     </Grid>
@@ -54,17 +65,21 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
         <StackPanel Grid.Column="2" Orientation="Vertical">
-            <StackPanel Orientation="Horizontal">
+            <StackPanel x:Name="stpSuspend" Orientation="Horizontal" Background="Transparent" common:PointerEventHelper.PointerUp="StpSuspend_PointerUp">
                 <Image Height="22" Source="/Library/Image/stop@2x.png" />
-                <TextBlock VerticalAlignment="Center" Margin="4,0,0,0" Foreground="#0D78D8" FontSize="15" Text="暂停"/>
+                <TextBlock VerticalAlignment="Center" Margin="4,0,0,0" Foreground="#0D78D8" FontSize="15" Text="{DynamicResource Pause}"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0,8,0,8">
+            <StackPanel x:Name="stpContinue" Orientation="Horizontal" Background="Transparent" common:PointerEventHelper.PointerUp="StpContinue_PointerUp" Visibility="Collapsed">
+                <Image Height="22" Source="/Library/Image/编组 18@2x.png" />
+                <TextBlock VerticalAlignment="Center" Margin="4,0,0,0" Foreground="#0D78D8" FontSize="15" Text="{DynamicResource Begin}"/>
+            </StackPanel>
+            <StackPanel x:Name="stpCancel" Orientation="Horizontal" Margin="0,8,0,8" Background="Transparent" common:PointerEventHelper.PointerUp="StpCancel_PointerUp">
                 <Image Height="22" Source="/Library/Image/cancel@2x.png" />
-                <TextBlock VerticalAlignment="Center" Margin="4,0,0,0" Foreground="#0D78D8" FontSize="15" Text="取消"/>
+                <TextBlock VerticalAlignment="Center" Margin="4,0,0,0" Foreground="#0D78D8" FontSize="15" Text="{DynamicResource Cancel}"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
+            <StackPanel x:Name="stpDelete" Orientation="Horizontal" Background="Transparent" common:PointerEventHelper.PointerUp="StpDelete_PointerUp">
                 <Image Height="22" Source="/Library/Image/delete@2x.png" />
-                <TextBlock VerticalAlignment="Center" Margin="4,0,0,0" Foreground="#0D78D8" FontSize="15" Text="删除"/>
+                <TextBlock VerticalAlignment="Center" Margin="4,0,0,0" Foreground="#0D78D8" FontSize="15" Text="{DynamicResource Delete}"/>
             </StackPanel>
         </StackPanel>
     </Grid>

@@ -1,6 +1,7 @@
 ﻿using PLM.Models;
 using PLM.Models.ViewModels;
 using PLM.Service;
+using System;
 using System.Windows.Controls;
 
 namespace PLM.Component.Pages
@@ -21,7 +22,10 @@ namespace PLM.Component.Pages
 
         private void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            SelectInfo();
+            if (e.PropertyName == nameof(viewModel.SelectPage))
+            {
+                SelectInfo();
+            }
         }
 
         private void PageListsMain_Loaded(object sender, System.Windows.RoutedEventArgs e)
@@ -58,9 +62,21 @@ namespace PLM.Component.Pages
                         ImageInfomation = item.summaryFileName,
                         AssociationId = item.terminalSummaryFileId == null ? "" : item.terminalSummaryFileId.ToString(),
                         PageInfomation = item.layoutInfo,
-                        remarksinfomation = item.remark,
+                        Remarksinfomation = item.remark,
                         UploadDate = item.updateTime,
                         Uploader = item.updateUserName,
+                        SummaryFileSize = Convert.ToInt64(item.summaryFileSize),
+                        SummaryFileMd5 = item.summaryFileMd5,
+                        SummaryFilePwd = item.summaryFilePwd,
+                        SummaryFileName = item.summaryFileName,
+                        SummaryFileType = item.summaryFileType,
+                        SummaryContentType = item.summaryContentType,
+                        SourceFileSize = Convert.ToInt64(item.sourceFileSize),
+                        SourceFileMd5 = item.sourceFileMd5,
+                        SourceFilePwd = item.sourceFilePwd,
+                        SourceFileName = item.sourceFileName,
+                        SourceFileType = item.sourceFileType,
+                        SourceContentType = item.sourceContentType
                     });
                 }
             }

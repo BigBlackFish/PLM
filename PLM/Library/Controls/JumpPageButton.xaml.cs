@@ -92,12 +92,12 @@ namespace PLM.Library.Controls
             ButtonTwo.Content = TotalPages - 4;
             ButtonThree.Content = TotalPages - 3;
             ButtonFour.Content = TotalPages - 2;
-            ButtonFive.Content = TotalPages-1;
+            ButtonFive.Content = TotalPages - 1;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            ButtonOne.Visibility=TotalPages>int.Parse(ButtonOne.Content.ToString()) ?Visibility.Visible : Visibility.Collapsed;
+            ButtonOne.Visibility = TotalPages > int.Parse(ButtonOne.Content.ToString()) ? Visibility.Visible : Visibility.Collapsed;
             ButtonTwo.Visibility = TotalPages > int.Parse(ButtonTwo.Content.ToString()) ? Visibility.Visible : Visibility.Collapsed;
             ButtonThree.Visibility = TotalPages > int.Parse(ButtonThree.Content.ToString()) ? Visibility.Visible : Visibility.Collapsed;
             ButtonFour.Visibility = TotalPages > int.Parse(ButtonFour.Content.ToString()) ? Visibility.Visible : Visibility.Collapsed;
@@ -107,7 +107,7 @@ namespace PLM.Library.Controls
         private void LastOneButton_Click(object sender, RoutedEventArgs e)
         {
             SelectPage = SelectPage - 1;
-            if (SelectPage == int.Parse(ButtonOne.Content.ToString())-1&& SelectPage>1)
+            if (SelectPage == int.Parse(ButtonOne.Content.ToString()) - 1 && SelectPage > 1)
             {
                 Buttonnumberless();
             }
@@ -117,7 +117,7 @@ namespace PLM.Library.Controls
         {
 
             SelectPage = SelectPage + 1;
-            if (SelectPage == int.Parse(ButtonFive.Content.ToString())+1&& SelectPage<TotalPages)
+            if (SelectPage == int.Parse(ButtonFive.Content.ToString()) + 1 && SelectPage < TotalPages)
             {
                 Buttonnumberadd();
             }
@@ -125,7 +125,7 @@ namespace PLM.Library.Controls
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (int.Parse(JumppageTextBox.Text) <= TotalPages&& int.Parse(JumppageTextBox.Text)>0)
+            if (int.Parse(JumppageTextBox.Text) <= TotalPages && int.Parse(JumppageTextBox.Text) > 0)
             {
                 SelectPage = int.Parse(JumppageTextBox.Text);
             }

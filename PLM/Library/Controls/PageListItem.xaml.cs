@@ -38,5 +38,34 @@ namespace PLM.Library.Controls
                 }
             }
         }
+
+        private void ImgDownload_PointerUp(object sender, System.EventArgs e)
+        {
+            FileGroupViewModel fileGroupView = new FileGroupViewModel
+            {
+                IsUpload = false
+            };
+            FileViewModel fileView1 = new FileViewModel
+            {
+                Name = viewModel.SourceFileName,
+                Path = viewModel.SourceFilePwd,
+                FileType = viewModel.SourceFileType,
+                Message = viewModel.PageInfomation,
+                Remark = viewModel.Remarksinfomation,
+                Size = viewModel.SourceFileSize / 1024
+            };
+            fileGroupView.FileViews.Add(fileView1);
+            FileViewModel fileView2 = new FileViewModel
+            {
+                Name = viewModel.SummaryFileName,
+                Path = viewModel.SummaryFilePwd,
+                FileType = viewModel.SummaryFileType,
+                Message = viewModel.PageInfomation,
+                Remark = viewModel.Remarksinfomation,
+                Size = viewModel.SummaryFileSize / 1024
+            };
+            fileGroupView.FileViews.Add(fileView2);
+            (ClassHelper.downloadingPage.DataContext as DownloadingPageViewModel).Files.Add(fileGroupView);
+        }
     }
 }

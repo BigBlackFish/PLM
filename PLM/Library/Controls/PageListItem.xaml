@@ -33,7 +33,7 @@
         <TextBlock Grid.Column="5" Text="{Binding UploadDate}" FontSize="14" Foreground="#FF323233" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" HorizontalAlignment="Left"/>
         <TextBlock Grid.Column="6" Text="{Binding Uploader}" FontSize="14" Foreground="#FF323233" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" HorizontalAlignment="Left"/>
         <StackPanel Grid.Column="7" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-            <Image Height="22" Source="/Library/Image/xiazai-2备份 2@2x.png" />
+            <Image x:Name="imgDownload" Height="22" Source="/Library/Image/xiazai-2备份 2@2x.png" common:PointerEventHelper.PointerUp="ImgDownload_PointerUp" />
             <Image x:Name="ImgDelete" Height="22" Source="/Library/Image/delete@2x.png" common:PointerEventHelper.PointerDown="ImgDelete_PointerDown"/>
         </StackPanel>
 

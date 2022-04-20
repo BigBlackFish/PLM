@@ -39,6 +39,10 @@ namespace PLM.Models.ViewModels
                 {
                     (e.NewItems[0] as FileViewModel).FileUpload();
                 }
+                else
+                {
+                    (e.NewItems[0] as FileViewModel).FileDownload();
+                }
             }
             else if (e.Action == NotifyCollectionChangedAction.Remove)
             {

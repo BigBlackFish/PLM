@@ -15,6 +15,8 @@ namespace PLM.Models.ViewModels
         private bool uploadCompleted;
         private bool stop = false;
         private bool cancel = false;
+        private bool downloadCompleted;
+        private bool update;
 
         /// <summary>
         /// 文件名
@@ -103,6 +105,22 @@ namespace PLM.Models.ViewModels
             }
         }
 
+        /// <summary>
+        /// 下载成功
+        /// </summary>
+        public bool DownloadCompleted
+        {
+            get => downloadCompleted;
+            set
+            {
+                if (downloadCompleted != value)
+                {
+                    downloadCompleted = value;
+                    OnPropertyChanged(nameof(DownloadCompleted));
+                }
+            }
+        }
+
         public override void InitializeVariable()
         {
             Name = string.Empty;
@@ -110,6 +128,7 @@ namespace PLM.Models.ViewModels
             Message = string.Empty;
             Size = 0;
             progress = 0;
+            ftpClient.Connect();
         }
 
         /// <summary>
@@ -117,30 +136,71 @@ namespace PLM.Models.ViewModels
         /// </summary>
         public async void FileUpload()
         {
-            tokenSource = new CancellationTokenSource();
-            token = tokenSource.Token;
-            Progress<FtpProgress> progress = new Progress<FtpProgress>(p =>
+            try
             {
-                if (p.Progress == 100)
+                update = true;
+                tokenSource = new CancellationTokenSource();
+                token = tokenSource.Token;
+                Progress<FtpProgress> progress = new Progress<FtpProgress>(p =>
                 {
-                    Progress = 100;
-                    Speed = ClassHelper.FindResource<string>("UploadComplete");
-                    UploadCompleted = true;
-                }
-                else
+                    if (p.Progress == 100)
+                    {
+                        Progress = 100;
+                        Speed = ClassHelper.FindResource<string>("UploadComplete");
+                        UploadCompleted = true;
+                    }
+                    else
+                    {
+                        Progress = Math.Round(p.Progress, 2);
+                        Speed = p.TransferSpeedToString();
+                    }
+                });
+                #region 基本信息
+                SavePath = $"{Message}/{Name}";
+                SaveName = Name;
+                #endregion
+                await ftpClient.UploadFileAsync(Path, SavePath, FtpRemoteExists.Overwrite, true, FtpVerify.None, progress, token);
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        /// <summary>
+        /// 下载文件
+        /// </summary>
+        public async void FileDownload()
+        {
+            try
+            {
+                update = false;
+                tokenSource = new CancellationTokenSource();
+                token = tokenSource.Token;
+                Progress<FtpProgress> progress = new Progress<FtpProgress>(p =>
                 {
-                    Progress = Math.Round(p.Progress, 2);
-                    Speed = p.TransferSpeedToString();
-                }
-            });
-            await ftpClient.ConnectAsync();
-            #region 基本信息
-            //FtpHash ftpHash = await ftpClient.GetChecksumAsync(Path, FtpHashAlgorithm.MD5);
-            //MD5 = ftpHash.Value;
-            SavePath = $"{Message}/{Name}";
-            SaveName = Name;
-            #endregion
-            await ftpClient.UploadFileAsync(Path, SavePath, FtpRemoteExists.Overwrite, true, FtpVerify.None, progress, token);
+                    if (p.Progress == 100)
+                    {
+                        Progress = 100;
+                        Speed = ClassHelper.FindResource<string>("DownloadComplete");
+                        DownloadCompleted = true;
+                    }
+                    else
+                    {
+                        Progress = Math.Round(p.Progress, 2);
+                        Speed = p.TransferSpeedToString();
+                    }
+                });
+                #region 基本信息
+                SavePath = System.IO.Path.Combine(ClassHelper.AttachmentsPath, Name);
+                SaveName = Name;
+                #endregion
+                await ftpClient.DownloadFileAsync(SavePath, Path, FtpLocalExists.Overwrite, FtpVerify.None, progress, token);
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         /// <summary>
@@ -162,32 +222,87 @@ namespace PLM.Models.ViewModels
         {
             if (stop || cancel)
             {
-                stop = false;
-                cancel = false;
                 if (stop)
                 {
-                    tokenSource = new CancellationTokenSource();
-                    token = tokenSource.Token;
-                    Progress<FtpProgress> progress = new Progress<FtpProgress>(p =>
+                    try
                     {
-                        if (p.Progress == 100)
+                        stop = false;
+                        cancel = false;
+                        update = true;
+                        tokenSource = new CancellationTokenSource();
+                        token = tokenSource.Token;
+                        Progress<FtpProgress> progress = new Progress<FtpProgress>(p =>
                         {
-                            Progress = 100;
-                            Speed = ClassHelper.FindResource<string>("UploadComplete");
-                            UploadCompleted = true;
-                        }
-                        else
-                        {
-                            Progress = Math.Round(p.Progress, 2);
-                            Speed = p.TransferSpeedToString();
-                        }
-                    });
-                    await ftpClient.ConnectAsync();
-                    await ftpClient.UploadFileAsync(Path, SavePath, FtpRemoteExists.Resume, true, FtpVerify.None, progress, token);
+                            if (p.Progress == 100)
+                            {
+                                Progress = 100;
+                                Speed = ClassHelper.FindResource<string>("UploadComplete");
+                                UploadCompleted = true;
+                            }
+                            else
+                            {
+                                Progress = Math.Round(p.Progress, 2);
+                                Speed = p.TransferSpeedToString();
+                            }
+                        });
+                        await ftpClient.UploadFileAsync(Path, SavePath, FtpRemoteExists.Resume, true, FtpVerify.None, progress, token);
+                    }
+                    catch (Exception)
+                    {
+
+                    }
                 }
                 else
                 {
+                    stop = false;
+                    cancel = false;
                     FileUpload();
+                }
+            }
+        }
+
+        /// <summary>
+        /// 继续_下载
+        /// </summary>
+        public async void Download_ContinueTransmission()
+        {
+            if (stop || cancel)
+            {
+                if (stop)
+                {
+                    try
+                    {
+                        stop = false;
+                        cancel = false;
+                        update = false;
+                        tokenSource = new CancellationTokenSource();
+                        token = tokenSource.Token;
+                        Progress<FtpProgress> progress = new Progress<FtpProgress>(p =>
+                        {
+                            if (p.Progress == 100)
+                            {
+                                Progress = 100;
+                                Speed = ClassHelper.FindResource<string>("DownloadComplete");
+                                DownloadCompleted = true;
+                            }
+                            else
+                            {
+                                Progress = Math.Round(p.Progress, 2);
+                                Speed = p.TransferSpeedToString();
+                            }
+                        });
+                        await ftpClient.DownloadFileAsync(SavePath, Path, FtpLocalExists.Resume, FtpVerify.None, progress, token);
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+                }
+                else
+                {
+                    stop = false;
+                    cancel = false;
+                    FileDownload();
                 }
             }
         }
@@ -200,10 +315,17 @@ namespace PLM.Models.ViewModels
             if (!cancel)
             {
                 tokenSource.Cancel();
-                await ftpClient.DeleteFileAsync($"{Message}/{Name}");
+                if (update)
+                {
+                    if (await ftpClient.FileExistsAsync(SavePath))
+                    {
+                        await ftpClient.DeleteFileAsync(SavePath);
+                    }
+                }
                 Progress = 0;
                 Speed = "0 MB/S";
                 UploadCompleted = false;
+                DownloadCompleted = false;
                 cancel = true;
             }
         }
