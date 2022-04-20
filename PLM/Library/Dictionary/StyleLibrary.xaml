@@ -957,4 +957,27 @@
     </Style>
 
 
+    <Style x:Key="JumpPageTextBox" TargetType="{x:Type TextBox}">
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Width" Value="60"/>
+        <Setter Property="Margin" Value="15,0,0,0"/>
+        <Setter Property="FontSize" Value="17"/>
+        <Setter Property="Foreground" Value="#606266"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border x:Name="brdTextBox" Padding="15,0,15,0" BorderBrush="#FFE1E1E6" BorderThickness="1" Background="#FFFFFF" CornerRadius="5">
+                        <Grid>
+                            <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Center" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                            <!--<StackPanel Orientation="Horizontal" IsHitTestVisible="False">
+                                <TextBlock x:Name="txbHint" VerticalAlignment="Center" Margin="8,0,0,0" Foreground="#969699" Text="{DynamicResource fileName}" Visibility="Collapsed"/>
+                            </StackPanel>-->
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
 </ResourceDictionary>

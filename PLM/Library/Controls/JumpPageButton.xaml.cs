@@ -122,5 +122,13 @@ namespace PLM.Library.Controls
                 Buttonnumberadd();
             }
         }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (int.Parse(JumppageTextBox.Text) <= TotalPages&& int.Parse(JumppageTextBox.Text)>0)
+            {
+                SelectPage = int.Parse(JumppageTextBox.Text);
+            }
+        }
     }
 }
