@@ -82,7 +82,7 @@
                                     <TextBlock HorizontalAlignment="Left" Foreground="#969699" FontSize="15" Text="{DynamicResource Contact}"/>
                                     <TextBlock HorizontalAlignment="Right" Foreground="#323233" FontSize="15" Text="{Binding Phone}"/>
                                 </Grid>
-                                <Border Height="32" VerticalAlignment="Bottom" Margin="8,0,8,10" BorderThickness="1" BorderBrush="#0D78D8" Background="Transparent" CornerRadius="4" DockPanel.Dock="Top">
+                                <Border x:Name="Exit" Height="32" VerticalAlignment="Bottom" Margin="8,0,8,10" BorderThickness="1" BorderBrush="#0D78D8" Background="Transparent" CornerRadius="4" DockPanel.Dock="Top" common:PointerEventHelper.PointerDown="Exit_PointerDown">
                                     <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Foreground="#0D78D8" Text="{DynamicResource LogOut}"/>
                                 </Border>
                             </DockPanel>

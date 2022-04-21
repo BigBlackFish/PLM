@@ -14,6 +14,7 @@ namespace PLM.Models.ViewModels
         private string createNickName;
         private int numberofPages;
         private int selectPage;
+        private string id;
         public ObservableCollection<PageFileListViewModel> Files { get; set; }
 
         /// <summary>
@@ -87,6 +88,16 @@ namespace PLM.Models.ViewModels
             {
                 selectPage = value;
                 OnPropertyChanged(nameof(SelectPage));
+            }
+        }
+
+        public string Id
+        {
+            get => id;
+            set
+            {
+                id = value;
+                OnPropertyChanged(nameof(Id));
             }
         }
         public override void InitializeVariable()

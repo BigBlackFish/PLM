@@ -8,11 +8,14 @@ using System.Windows.Controls;
 
 namespace PLM.Library.Controls
 {
+    public delegate void ReFresh();//删除数据重新查询刷新
     /// <summary>
     /// PageListItem.xaml 的交互逻辑
     /// </summary>
     public partial class PageListItem : UserControl
     {
+        public static event ReFresh _ReFresh;
+
         private PageFileListViewModel viewModel;
         public PageListItem()
         {
@@ -36,6 +39,7 @@ namespace PLM.Library.Controls
                 if (Result.Code == 0)
                 {
                     ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 0, "删除成功");
+                    _ReFresh?.Invoke();
                 }
             }
         }

@@ -26,6 +26,9 @@ namespace PLM.Common
         public const string ftppassword = "Wangxi55";
         // 附件路径
         public static readonly string AttachmentsPath = Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, "Library");
+
+        // 版面缩略图路径
+        public static readonly string PageListPicturePath = Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, "Pictures");
         #endregion
 
         #region 变量

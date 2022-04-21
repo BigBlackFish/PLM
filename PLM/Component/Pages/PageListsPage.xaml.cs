@@ -1,5 +1,6 @@
 ﻿using FluentFTP;
 using PLM.Common;
+using PLM.Library.Controls;
 using PLM.Models;
 using PLM.Models.ViewModels;
 using PLM.Service;
@@ -22,6 +23,7 @@ namespace PLM.Component.Pages
             InitializeComponent();
             viewModel = DataContext as PageListsPageViewModel;
             viewModel.PropertyChanged += ViewModel_PropertyChanged;
+            PageListItem._ReFresh+= SelectInfo;
         }
 
         private void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -57,15 +59,10 @@ namespace PLM.Component.Pages
                 {
                     viewModel.EmptyState = false;
                 }
-
-                if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + "Pictures"))
-                {
-                    Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + "Pictures");
-                }
                     
                 foreach (PageListResultModel item in LayoutFileListInfo.Data.list)
                 {
-                    ThreadPool.QueueUserWorkItem(s=> DownLoadPicture(item));
+                    //ThreadPool.QueueUserWorkItem(s => DownLoadPicture(item));
                     viewModel.Files.Add(new PageFileListViewModel
                     {
                         Id = item.id == null ? "" : item.id.ToString(),
@@ -86,7 +83,7 @@ namespace PLM.Component.Pages
                         SourceFilePwd = item.sourceFilePwd,
                         SourceFileName = item.sourceFileName,
                         SourceFileType = item.sourceFileType,
-                        SourceContentType = item.sourceContentType
+                        SourceContentType = item.sourceContentType,
                     });
                 }
             }
@@ -105,9 +102,18 @@ namespace PLM.Component.Pages
             viewModel.CreateNickName = string.Empty;
         }
 
-        private void DownLoadPicture(PageListResultModel pageListResultModel)
+        private async void DownLoadPicture(PageListResultModel pageListResultModel)
         {
-            ftpClient.DownloadFileAsync(AppDomain.CurrentDomain.BaseDirectory + "Pictures", pageListResultModel.summaryFileUrl);
+            try
+            {
+                string SavePath = System.IO.Path.Combine(ClassHelper.PageListPicturePath, pageListResultModel.id);
+                await ftpClient.DownloadFileAsync(SavePath, pageListResultModel.summaryFileUrl, FtpLocalExists.Overwrite);
+                
+            }
+            catch
+            {
+
+            }
         }
 
     }

@@ -154,5 +154,9 @@ namespace PLM.Component.Windows
         }
         #endregion
 
+        private void Exit_PointerDown(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -38,7 +38,7 @@ namespace PLM.Component.Pages
                             if (file.Message == viewModel.Message && (file.Path == viewModel.FileLeft || file.Path == viewModel.FileRight))
                             {
                                 string hint = ClassHelper.FindResource<string>("ReplaceHint");
-                                string message = $"{ClassHelper.FindResource<string>("ReplaceMessage1")}{file.Name}{ClassHelper.FindResource<string>("ReplaceMessage2")}";
+                                string message = $"{ClassHelper.FindResource<string>("ReplaceMessage1")}{'“' + file.Name+'”'}{ClassHelper.FindResource<string>("ReplaceMessage2")}";
                                 MessageBoxButtonModel messageBox = new MessageBoxButtonModel()
                                 {
                                     Hint = ClassHelper.FindResource<string>("AgreeReplace"),
@@ -97,6 +97,7 @@ namespace PLM.Component.Pages
                         fileGroupView.FileViews.Add(right);
                     }
                     uploading.Files.Add(fileGroupView);
+                    ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 0, "开始上传");
                 }
             }
         }
