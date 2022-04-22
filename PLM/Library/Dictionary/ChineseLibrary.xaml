@@ -58,9 +58,12 @@
     <system:String x:Key="Begin">开始</system:String>
     <system:String x:Key="Delete">删除</system:String>
     <system:String x:Key="SuccessfullyAdded">上传成功</system:String>
+    <system:String x:Key="UploadFail">上传失败</system:String>
+    <system:String x:Key="DownloadFail">上传失败</system:String>
     <system:String x:Key="Mutual">共</system:String>
     <system:String x:Key="strip">条</system:String>
     <system:String x:Key="DownloadComplete">下载成功</system:String>
+    <system:String x:Key="StartDownload">开始下载</system:String>
     <system:String x:Key="ServerFileNotExist">服务器文件不存在。</system:String>
     <system:String x:Key="TaskAlreadyExists">该下载任务已存在。</system:String>
     <system:String x:Key="LocalFileNotExist">本地文件不存在。</system:String>

@@ -1,6 +1,7 @@
 ﻿using PLM.Common;
 using PLM.Models;
 using PLM.Models.ViewModels;
+using System;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -38,7 +39,7 @@ namespace PLM.Component.Pages
                             if (file.Message == viewModel.Message && (file.Path == viewModel.FileLeft || file.Path == viewModel.FileRight))
                             {
                                 string hint = ClassHelper.FindResource<string>("ReplaceHint");
-                                string message = $"{ClassHelper.FindResource<string>("ReplaceMessage1")}{'“' + file.Name+'”'}{ClassHelper.FindResource<string>("ReplaceMessage2")}";
+                                string message = $"{ClassHelper.FindResource<string>("ReplaceMessage1")}{'“' + file.Name + '”'}{ClassHelper.FindResource<string>("ReplaceMessage2")}";
                                 MessageBoxButtonModel messageBox = new MessageBoxButtonModel()
                                 {
                                     Hint = ClassHelper.FindResource<string>("AgreeReplace"),
@@ -56,7 +57,7 @@ namespace PLM.Component.Pages
                                                 FileType = fileInfo.Extension.ToLower(),
                                                 Message = viewModel.Message,
                                                 Remark = viewModel.Remark,
-                                                Size = fileInfo.Length / 1024 / 1024,
+                                                Size = Math.Round((double)fileInfo.Length / 1024 / 1024, 3),
                                             };
                                             item.FileViews.Add(fileView);
                                         });
@@ -78,7 +79,7 @@ namespace PLM.Component.Pages
                             FileType = fileLeft.Extension.ToLower(),
                             Message = viewModel.Message,
                             Remark = viewModel.Remark,
-                            Size = fileLeft.Length / 1024 / 1024,
+                            Size = Math.Round((double)fileLeft.Length / 1024 / 1024, 3),
                         };
                         fileGroupView.FileViews.Add(left);
                     }
@@ -92,7 +93,7 @@ namespace PLM.Component.Pages
                             FileType = fileRight.Extension.ToLower(),
                             Message = viewModel.Message,
                             Remark = viewModel.Remark,
-                            Size = fileRight.Length / 1024 / 1024,
+                            Size = Math.Round((double)fileRight.Length / 1024 / 1024, 3),
                         };
                         fileGroupView.FileViews.Add(right);
                     }

@@ -1,4 +1,5 @@
-﻿using PLM.Models.ViewModels;
+﻿using PLM.Common;
+using PLM.Models.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -40,6 +41,11 @@ namespace PLM.Component.Pages
 
         private void BtnAllStop_Click(object sender, RoutedEventArgs e)
         {
+            if (viewModel.Files.Count == 0)
+            {
+                ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 1, "没有进行中的任务。");
+                return;
+            }
             foreach (FileGroupViewModel item in viewModel.Files)
             {
                 if (item.IsSelect)
@@ -54,6 +60,11 @@ namespace PLM.Component.Pages
 
         private void BtnAllStart_Click(object sender, RoutedEventArgs e)
         {
+            if (viewModel.Files.Count == 0)
+            {
+                ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 1, "没有进行中的任务。");
+                return;
+            }
             foreach (FileGroupViewModel item in viewModel.Files)
             {
                 if (item.IsSelect)
@@ -68,38 +79,65 @@ namespace PLM.Component.Pages
 
         private void BtnAllCancel_Click(object sender, RoutedEventArgs e)
         {
-            foreach (FileGroupViewModel item in viewModel.Files)
+            if (viewModel.Files.Count == 0)
             {
-                if (item.IsSelect)
+                ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 1, "没有进行中的任务。");
+                return;
+            }
+            ClassHelper.AlertMessageBox(ClassHelper.MainWindow, ClassHelper.MessageBoxType.Select, "提示", "是否全部取消？", rightButton: new Models.MessageBoxButtonModel
+            {
+                Hint = "确认",
+                Action = () =>
                 {
-                    foreach (FileViewModel file in item.FileViews)
+                    foreach (FileGroupViewModel item in viewModel.Files)
                     {
-                        file.CancelTransmission();
+                        if (item.IsSelect)
+                        {
+                            foreach (FileViewModel file in item.FileViews)
+                            {
+                                file.CancelTransmission();
+                            }
+                        }
                     }
                 }
-            }
+            });
         }
 
         private void BtnAllDelete_Click(object sender, RoutedEventArgs e)
         {
-            foreach (FileGroupViewModel item in viewModel.Files)
+            if (viewModel.Files.Count == 0)
             {
-                if (item.IsSelect)
+                ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 1, "没有进行中的任务。");
+                return;
+            }
+            ClassHelper.AlertMessageBox(ClassHelper.MainWindow, ClassHelper.MessageBoxType.Select, "提示", "是否全部删除？", rightButton: new Models.MessageBoxButtonModel
+            {
+                Hint = "确认",
+                Action = () =>
                 {
-                    foreach (FileViewModel file in item.FileViews)
+                    foreach (FileGroupViewModel item in viewModel.Files)
                     {
-                        file.CancelTransmission();
+                        if (item.IsSelect)
+                        {
+                            foreach (FileViewModel file in item.FileViews)
+                            {
+                                file.CancelTransmission();
+                            }
+                        }
                     }
+                    Dispatcher.Invoke(delegate
+                    {
+                        for (int i = 0; i < viewModel.Files.Count; i++)
+                        {
+                            if (viewModel.Files[i].IsSelect && !viewModel.Files[i].TransferComplete)
+                            {
+                                viewModel.Files.Remove(viewModel.Files[i]);
+                                i--;
+                            }
+                        }
+                    });
                 }
-            }
-            for (int i = 0; i < viewModel.Files.Count; i++)
-            {
-                if (viewModel.Files[i].IsSelect)
-                {
-                    viewModel.Files.Remove(viewModel.Files[i]);
-                    i--;
-                }
-            }
+            });
         }
     }
 }

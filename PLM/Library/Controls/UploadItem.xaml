@@ -45,6 +45,15 @@
                                 </TextBlock>
                             </Grid>
                             <StackPanel Orientation="Horizontal">
+                                <StackPanel.Style>
+                                    <Style TargetType="{x:Type StackPanel}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding UploadFail}" Value="True">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </StackPanel.Style>
                                 <Image Height="18">
                                     <Image.Style>
                                         <Style TargetType="{x:Type Image}">
@@ -59,12 +68,33 @@
                                 </Image>
                                 <TextBlock FontSize="14" Foreground="#13B79B" Text="{Binding Speed}"/>
                             </StackPanel>
+                            <TextBlock FontSize="14" Foreground="#DF331D" Text="{DynamicResource UploadFail}">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding UploadFail}" Value="True">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
         <StackPanel Grid.Column="2" Orientation="Vertical">
+            <StackPanel.Style>
+                <Style TargetType="{x:Type StackPanel}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding TransferComplete}" Value="True">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
             <StackPanel x:Name="stpSuspend" Orientation="Horizontal" Background="Transparent" common:PointerEventHelper.PointerUp="StpSuspend_PointerUp">
                 <Image Height="22" Source="/Library/Image/stop@2x.png" />
                 <TextBlock VerticalAlignment="Center" Margin="4,0,0,0" Foreground="#0D78D8" FontSize="15" Text="{DynamicResource Pause}"/>

@@ -80,7 +80,7 @@ namespace PLM.Library.Controls
             };
             fileGroupView.FileViews.Add(fileView2);
             downloading.Files.Add(fileGroupView);
-            ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 0, ClassHelper.FindResource<string>("SuccessfullyAdded"));
+            ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 0, $"{fileView1.Message} {ClassHelper.FindResource<string>("StartDownload")}");
         }
     }
 }

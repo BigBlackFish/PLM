@@ -94,6 +94,7 @@ namespace PLM.Library.Controls
                     return;
                 }
             }
+            viewModel.TransferComplete = true;
             FileViewModel fileView1 = viewModel.FileViews[0];
             FileViewModel fileView2 = viewModel.FileViews[1];
             AddTerminalLayoutFileModel addTerminal = new AddTerminalLayoutFileModel()

@@ -6,6 +6,7 @@ namespace PLM.Models.ViewModels
     public class FileGroupViewModel : ModelBase
     {
         private bool isSelect;
+        private bool transferComplete;
 
         /// <summary>
         /// 是否选中
@@ -21,6 +22,16 @@ namespace PLM.Models.ViewModels
         }
 
         public ObservableCollection<FileViewModel> FileViews { get; set; }
+
+        public bool TransferComplete
+        {
+            get => transferComplete;
+            set
+            {
+                transferComplete = value;
+                OnPropertyChanged(nameof(TransferComplete));
+            }
+        }
 
         public bool IsUpload { get; set; } = true;
 
