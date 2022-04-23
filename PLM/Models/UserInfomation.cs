@@ -6,7 +6,7 @@ namespace PLM.Models
     {
         public string UserId { get; set; }
         public string Username { get; set; }
-        public   List<authoritieslist> Authorities { get; set; }
+        public List<authoritieslist> Authorities { get; set; }
         public bool AccountNonLocked { get; set; }
         public bool AccountNonExpired { get; set; }
         public bool Enabled { get; set; }

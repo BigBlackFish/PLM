@@ -5,8 +5,6 @@ using PLM.Models;
 using PLM.Models.ViewModels;
 using PLM.Service;
 using System;
-using System.IO;
-using System.Threading;
 using System.Windows.Controls;
 
 namespace PLM.Component.Pages
@@ -23,7 +21,7 @@ namespace PLM.Component.Pages
             InitializeComponent();
             viewModel = DataContext as PageListsPageViewModel;
             viewModel.PropertyChanged += ViewModel_PropertyChanged;
-            PageListItem._ReFresh+= SelectInfo;
+            PageListItem._ReFresh += SelectInfo;
         }
 
         private void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -59,7 +57,7 @@ namespace PLM.Component.Pages
                 {
                     viewModel.EmptyState = false;
                 }
-                    
+
                 foreach (PageListResultModel item in LayoutFileListInfo.Data.list)
                 {
                     //ThreadPool.QueueUserWorkItem(s => DownLoadPicture(item));
@@ -108,7 +106,7 @@ namespace PLM.Component.Pages
             {
                 string SavePath = System.IO.Path.Combine(ClassHelper.PageListPicturePath, pageListResultModel.id);
                 await ftpClient.DownloadFileAsync(SavePath, pageListResultModel.summaryFileUrl, FtpLocalExists.Overwrite);
-                
+
             }
             catch
             {

@@ -126,7 +126,10 @@ namespace PLM.Library.Controls
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (string.IsNullOrEmpty(JumppageTextBox.Text.Trim().ToString()))
+            {
                 return;
+            }
+
             if (int.Parse(JumppageTextBox.Text) <= TotalPages && int.Parse(JumppageTextBox.Text) > 0)
             {
                 SelectPage = int.Parse(JumppageTextBox.Text);

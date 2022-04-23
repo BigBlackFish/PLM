@@ -2,7 +2,6 @@
 using PLM.Models;
 using PLM.Models.ViewModels;
 using PLM.Service;
-using System;
 using System.Windows;
 
 namespace PLM.Component.Windows

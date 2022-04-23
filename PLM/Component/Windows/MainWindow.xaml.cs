@@ -156,7 +156,7 @@ namespace PLM.Component.Windows
 
         private void Exit_PointerDown(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }

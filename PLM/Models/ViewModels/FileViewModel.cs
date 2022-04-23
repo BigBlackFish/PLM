@@ -3,7 +3,6 @@ using PLM.Common;
 using System;
 using System.IO;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace PLM.Models.ViewModels
 {
