@@ -1,10 +1,12 @@
-﻿using Microsoft.Win32;
+﻿using FluentFTP;
+using Microsoft.Win32;
 using PLM.Component.Pages;
 using PLM.Component.Windows;
 using PLM.Models;
 using System;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 
@@ -230,6 +232,20 @@ namespace PLM.Common
         public static void ShowMask(bool show, bool loading = true)
         {
             AccordingMask?.Invoke(show, loading);
+        }
+
+        /// <summary>
+        /// 判断服务器是否存在该文件
+        /// </summary>
+        /// <param name="path">服务器文件路径</param>
+        /// <returns></returns>
+        public static async Task<bool> ExistServiceFile(string path)
+        {
+            FtpClient ftpClient = new FtpClient(ftpPath, ftpUsername, ftppassword);
+            await ftpClient.ConnectAsync();
+            bool state = await ftpClient.FileExistsAsync(path);
+            await ftpClient.DisconnectAsync();
+            return state;
         }
     }
 }

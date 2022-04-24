@@ -7,6 +7,7 @@ namespace PLM.Models.ViewModels
     {
         private bool isSelect;
         private bool transferComplete;
+        private bool isTransfer;
 
         /// <summary>
         /// 是否选中
@@ -33,6 +34,19 @@ namespace PLM.Models.ViewModels
             }
         }
 
+        /// <summary>
+        /// 是否在传输过程中
+        /// </summary>
+        public bool IsTransfer
+        {
+            get => isTransfer;
+            set
+            {
+                isTransfer = value;
+                OnPropertyChanged(nameof(IsTransfer));
+            }
+        }
+
         public bool IsUpload { get; set; } = true;
 
         public override void InitializeVariable()
@@ -54,10 +68,12 @@ namespace PLM.Models.ViewModels
                 {
                     (e.NewItems[0] as FileViewModel).FileDownload();
                 }
+                IsTransfer = true;
             }
             else if (e.Action == NotifyCollectionChangedAction.Remove)
             {
                 (e.OldItems[0] as FileViewModel).CancelTransmission();
+                IsTransfer = false;
             }
         }
     }

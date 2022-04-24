@@ -55,6 +55,7 @@ namespace PLM.Component.Pages
                     {
                         file.SuspendTransmission();
                     }
+                    item.IsTransfer = false;
                 }
             }
         }
@@ -74,6 +75,7 @@ namespace PLM.Component.Pages
                     {
                         file.Upload_ContinueTransmission();
                     }
+                    item.IsTransfer = true;
                 }
             }
         }
@@ -98,6 +100,7 @@ namespace PLM.Component.Pages
                             {
                                 file.CancelTransmission();
                             }
+                            item.IsTransfer = false;
                         }
                     }
                 }
@@ -124,6 +127,7 @@ namespace PLM.Component.Pages
                             {
                                 file.CancelTransmission();
                             }
+                            item.IsTransfer = false;
                         }
                     }
                     Dispatcher.Invoke(delegate

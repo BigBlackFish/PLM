@@ -45,8 +45,7 @@ namespace PLM.Library.Controls
             {
                 item.SuspendTransmission();
             }
-            stpSuspend.Visibility = Visibility.Collapsed;
-            stpContinue.Visibility = Visibility.Visible;
+            viewModel.IsTransfer = false;
         }
 
         private void StpContinue_PointerUp(object sender, EventArgs e)
@@ -55,8 +54,7 @@ namespace PLM.Library.Controls
             {
                 item.Download_ContinueTransmission();
             }
-            stpContinue.Visibility = Visibility.Collapsed;
-            stpSuspend.Visibility = Visibility.Visible;
+            viewModel.IsTransfer = true;
         }
 
         private void StpCancel_PointerUp(object sender, EventArgs e)
@@ -65,8 +63,7 @@ namespace PLM.Library.Controls
             {
                 item.CancelTransmission();
             }
-            stpSuspend.Visibility = Visibility.Collapsed;
-            stpContinue.Visibility = Visibility.Visible;
+            viewModel.IsTransfer = false;
         }
 
         private void StpDelete_PointerUp(object sender, EventArgs e)

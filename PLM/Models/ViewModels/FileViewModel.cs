@@ -15,7 +15,6 @@ namespace PLM.Models.ViewModels
         private string speed;
         private bool uploadCompleted;
         private bool downloadCompleted;
-        private bool update;
         private bool uploadFail;
         private bool downloadFail;
         // 重试次数
@@ -150,7 +149,6 @@ namespace PLM.Models.ViewModels
             }
         }
 
-
         public override void InitializeVariable()
         {
             Name = string.Empty;
@@ -168,7 +166,6 @@ namespace PLM.Models.ViewModels
         {
             if (File.Exists(Path))
             {
-                update = true;
                 UploadFail = false;
                 tokenSource = new CancellationTokenSource();
                 token = tokenSource.Token;
@@ -207,7 +204,6 @@ namespace PLM.Models.ViewModels
         {
             if (await ftpClient.FileExistsAsync(Path))
             {
-                update = false;
                 tokenSource = new CancellationTokenSource();
                 token = tokenSource.Token;
                 Progress<FtpProgress> progress = new Progress<FtpProgress>(p =>

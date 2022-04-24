@@ -87,10 +87,29 @@
         </ItemsControl>
         <StackPanel Grid.Column="2" Orientation="Vertical">
             <StackPanel x:Name="stpSuspend" Orientation="Horizontal" Background="Transparent" common:PointerEventHelper.PointerUp="StpSuspend_PointerUp">
+                <StackPanel.Style>
+                    <Style TargetType="{x:Type StackPanel}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsTransfer}" Value="False">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
                 <Image Height="22" Source="/Library/Image/stop@2x.png" />
                 <TextBlock VerticalAlignment="Center" Margin="4,0,0,0" Foreground="#0D78D8" FontSize="15" Text="{DynamicResource Pause}"/>
             </StackPanel>
-            <StackPanel x:Name="stpContinue" Orientation="Horizontal" Background="Transparent" common:PointerEventHelper.PointerUp="StpContinue_PointerUp" Visibility="Collapsed">
+            <StackPanel x:Name="stpContinue" Orientation="Horizontal" Background="Transparent" common:PointerEventHelper.PointerUp="StpContinue_PointerUp">
+                <StackPanel.Style>
+                    <Style TargetType="{x:Type StackPanel}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsTransfer}" Value="False">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
                 <Image Height="22" Source="/Library/Image/编组 18@2x.png" />
                 <TextBlock VerticalAlignment="Center" Margin="4,0,0,0" Foreground="#0D78D8" FontSize="15" Text="{DynamicResource Begin}"/>
             </StackPanel>

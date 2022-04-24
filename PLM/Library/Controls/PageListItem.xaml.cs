@@ -44,7 +44,7 @@ namespace PLM.Library.Controls
             }
         }
 
-        private void ImgDownload_PointerUp(object sender, System.EventArgs e)
+        private async void ImgDownload_PointerUp(object sender, System.EventArgs e)
         {
             DownloadingPageViewModel downloading = ClassHelper.downloadingPage.DataContext as DownloadingPageViewModel;
             foreach (FileGroupViewModel item in downloading.Files)
@@ -59,28 +59,37 @@ namespace PLM.Library.Controls
             {
                 IsUpload = false
             };
-            FileViewModel fileView1 = new FileViewModel
+            if (await ClassHelper.ExistServiceFile(viewModel.SourceFilePwd))
             {
-                Name = viewModel.SourceFileName,
-                Path = viewModel.SourceFilePwd,
-                FileType = viewModel.SourceFileType,
-                Message = viewModel.PageInfomation,
-                Remark = viewModel.Remarksinfomation,
-                Size = viewModel.SourceFileSize / 1024
-            };
-            fileGroupView.FileViews.Add(fileView1);
-            FileViewModel fileView2 = new FileViewModel
+                FileViewModel fileView1 = new FileViewModel
+                {
+                    Name = viewModel.SourceFileName,
+                    Path = viewModel.SourceFilePwd,
+                    FileType = viewModel.SourceFileType,
+                    Message = viewModel.PageInfomation,
+                    Remark = viewModel.Remarksinfomation,
+                    Size = viewModel.SourceFileSize / 1024
+                };
+                fileGroupView.FileViews.Add(fileView1);
+            }
+            if (await ClassHelper.ExistServiceFile(viewModel.SummaryFilePwd))
             {
-                Name = viewModel.SummaryFileName,
-                Path = viewModel.SummaryFilePwd,
-                FileType = viewModel.SummaryFileType,
-                Message = viewModel.PageInfomation,
-                Remark = viewModel.Remarksinfomation,
-                Size = viewModel.SummaryFileSize / 1024
-            };
-            fileGroupView.FileViews.Add(fileView2);
-            downloading.Files.Add(fileGroupView);
-            ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 0, $"{fileView1.Message} {ClassHelper.FindResource<string>("StartDownload")}");
+                FileViewModel fileView2 = new FileViewModel
+                {
+                    Name = viewModel.SummaryFileName,
+                    Path = viewModel.SummaryFilePwd,
+                    FileType = viewModel.SummaryFileType,
+                    Message = viewModel.PageInfomation,
+                    Remark = viewModel.Remarksinfomation,
+                    Size = viewModel.SummaryFileSize / 1024
+                };
+                fileGroupView.FileViews.Add(fileView2);
+            }
+            if (fileGroupView.FileViews.Count > 0)
+            {
+                downloading.Files.Add(fileGroupView);
+                ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 0, $"{fileGroupView.FileViews[0].Message} {ClassHelper.FindResource<string>("StartDownload")}");
+            }
         }
     }
 }
