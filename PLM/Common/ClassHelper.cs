@@ -247,5 +247,17 @@ namespace PLM.Common
             await ftpClient.DisconnectAsync();
             return state;
         }
+
+        public static async Task<string> DownloadImage(string path, string messgae, string name)
+        {
+            string outPath = Path.Combine(Path.GetTempPath(), messgae.Trim(), name);
+            if (!File.Exists(outPath))
+            {
+                FtpClient ftpClient = new FtpClient(ftpPath, ftpUsername, ftppassword);
+                await ftpClient.ConnectAsync();
+                await ftpClient.DownloadFileAsync(outPath, path, FtpLocalExists.Overwrite);
+            }
+            return outPath;
+        }
     }
 }

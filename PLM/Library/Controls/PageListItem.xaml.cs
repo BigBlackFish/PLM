@@ -24,11 +24,15 @@ namespace PLM.Library.Controls
 
 
 
-        private void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private async void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (e.NewValue is PageFileListViewModel model)
             {
                 viewModel = model;
+                if (!string.IsNullOrEmpty(model.SummaryFilePwd) && !string.IsNullOrEmpty(model.PageInfomation) && !string.IsNullOrEmpty(model.SummaryFileName))
+                {
+                    viewModel.Image = await ClassHelper.DownloadImage(model.SummaryFilePwd, model.PageInfomation, model.SummaryFileName);
+                }
             }
         }
 
