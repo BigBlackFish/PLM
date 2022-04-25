@@ -41,14 +41,14 @@ namespace PLM.Library.Controls
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add:
-                    foreach (var item in e.NewItems)
+                    foreach (object item in e.NewItems)
                     {
                         (item as FileViewModel).PropertyChanged += Item_PropertyChanged;
                     }
                     viewModel.TransferComplete = false;
                     break;
                 case NotifyCollectionChangedAction.Remove:
-                    foreach (var item in e.OldItems)
+                    foreach (object item in e.OldItems)
                     {
                         (item as FileViewModel).PropertyChanged -= Item_PropertyChanged;
                     }

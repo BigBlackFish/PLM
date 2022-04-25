@@ -3,7 +3,6 @@ using PLM.Models;
 using PLM.Models.ViewModels;
 using System;
 using System.IO;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
