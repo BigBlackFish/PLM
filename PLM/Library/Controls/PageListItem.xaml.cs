@@ -59,7 +59,7 @@ namespace PLM.Library.Controls
             {
                 IsUpload = false
             };
-            if (await ClassHelper.ExistServiceFile(viewModel.SourceFilePwd))
+            if (!string.IsNullOrEmpty(viewModel.SourceFilePwd) && await ClassHelper.ExistServiceFile(viewModel.SourceFilePwd))
             {
                 FileViewModel fileView1 = new FileViewModel
                 {
@@ -72,7 +72,7 @@ namespace PLM.Library.Controls
                 };
                 fileGroupView.FileViews.Add(fileView1);
             }
-            if (await ClassHelper.ExistServiceFile(viewModel.SummaryFilePwd))
+            if (!string.IsNullOrEmpty(viewModel.SummaryFilePwd) && await ClassHelper.ExistServiceFile(viewModel.SummaryFilePwd))
             {
                 FileViewModel fileView2 = new FileViewModel
                 {
