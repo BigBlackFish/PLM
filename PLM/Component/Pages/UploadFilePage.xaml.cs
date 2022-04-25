@@ -22,6 +22,14 @@ namespace PLM.Component.Pages
             viewModel = DataContext as UploadFilePageViewModel;
         }
 
+        private void ClearData()
+        { 
+            viewModel.FileLeft=string.Empty;
+            viewModel.Remark=string.Empty;
+            viewModel.FileRight = string.Empty;
+            viewModel.Message=string.Empty;
+        }
+
         private void BtnUploading_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(viewModel.FileLeft) && string.IsNullOrEmpty(viewModel.FileRight) || string.IsNullOrEmpty(viewModel.Message))
@@ -240,6 +248,7 @@ namespace PLM.Component.Pages
                     }
                     uploading.Files.Add(fileGroupView);
                     ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 0, "开始上传");
+                    ClearData();
                 }
             }
         }

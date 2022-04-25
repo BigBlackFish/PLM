@@ -19,7 +19,18 @@ namespace PLM.Library.Controls
 
         // Using a DependencyProperty as the backing store for FilePath.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty FilePathProperty =
-            DependencyProperty.Register("FilePath", typeof(string), typeof(FileaddRight), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("FilePath", typeof(string), typeof(FileaddRight), new PropertyMetadata(TagChange));
+
+
+        private static void TagChange(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if ("".Equals(e.NewValue))
+            {
+                FileaddRight fileadd = d as FileaddRight;
+                if(fileadd!=null)
+                fileadd.imgAdd.Tag = "0";
+            }
+        }
 
 
         public FileaddRight()
@@ -59,14 +70,18 @@ namespace PLM.Library.Controls
         private void Suffixjudgment(string fileName)
         {
             string extension = System.IO.Path.GetExtension(fileName).ToLower();
-            if (extension != ".png" && extension != ".jpg")
+            if (extension != ".png" && extension != ".jpg"&&!string.IsNullOrEmpty(extension))
             {
-                ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 0, "不支持上传该格式文件");
+                ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 1, "不支持上传该格式文件");
                 imgAdd.Tag = "0";
                 FilePath = string.Empty;
                 FileName.Visibility = Visibility.Collapsed;
                 Tip.Visibility = Visibility.Visible;
                 return;
+            }
+            else if (string.IsNullOrEmpty(extension))
+            {
+                ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 1, "未选择文件");
             }
             FilePath = fileName;
             imgAdd.Tag = extension == ".png" ? "1" : "2";
