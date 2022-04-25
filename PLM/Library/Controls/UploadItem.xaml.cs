@@ -125,13 +125,13 @@ namespace PLM.Library.Controls
             viewModel.TransferComplete = true;
             AddTerminalLayoutFileModel addTerminal = new AddTerminalLayoutFileModel()
             {
+                LayoutInfo = viewModel.Message,
+                Remark = viewModel.Remark,
                 TerminalSourceFileId = string.Empty,
                 TerminalSummaryFileId = string.Empty
             };
             foreach (FileViewModel item in viewModel.FileViews)
             {
-                addTerminal.LayoutInfo = item.Message;
-                addTerminal.Remark = item.Remark;
                 if (item.DataType)
                 {
                     FileInfo fileInfo = new FileInfo(item.Path);

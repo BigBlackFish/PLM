@@ -52,7 +52,7 @@
             </StackPanel>
             <StackPanel Height="110" Orientation="Horizontal">
                 <TextBlock Margin="25,10,0,0" Foreground="#FF323233" VerticalAlignment="Top" Text="{DynamicResource Remarks}" FontSize="13"/>
-                <TextBox  Margin="10,0,0,0" Style="{StaticResource RemarksTextBox}" TextWrapping="Wrap"/>
+                <TextBox  Margin="10,0,0,0" Style="{StaticResource RemarksTextBox}" TextWrapping="Wrap" Text="{Binding Remark}"/>
             </StackPanel>
         </StackPanel>
         <StackPanel Grid.Row="2"  HorizontalAlignment="Right" >
