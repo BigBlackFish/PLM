@@ -24,7 +24,7 @@ namespace PLM.Component.Pages
 
         private void BtnUploading_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(viewModel.FileLeft) && string.IsNullOrEmpty(viewModel.FileRight) || string.IsNullOrEmpty(viewModel.Message))
+            if (string.IsNullOrEmpty(viewModel.FileLeft) || string.IsNullOrEmpty(viewModel.FileRight) || string.IsNullOrEmpty(viewModel.Message))
             {
                 ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 1, ClassHelper.FindResource<string>("LackOfNecessaryInformation"));
             }
