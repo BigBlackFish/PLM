@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace PLM.Library.Controls
 {
@@ -21,13 +22,26 @@ namespace PLM.Library.Controls
             set => SetValue(SelectPageProperty, value);
         }
 
-        public static readonly DependencyProperty TotalPagesProperty = DependencyProperty.Register("TotalPages", typeof(int), typeof(JumpPageButton), new PropertyMetadata(0));
+        public static readonly DependencyProperty TotalPagesProperty = DependencyProperty.Register("TotalPages", typeof(int), typeof(JumpPageButton), new PropertyMetadata(0, BttonVisity));
         public static readonly DependencyProperty SelectPageProperty = DependencyProperty.Register("SelectPage", typeof(int), typeof(JumpPageButton), new PropertyMetadata(1));
 
         public JumpPageButton()
         {
             InitializeComponent();
         }
+
+        private static void BttonVisity(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            JumpPageButton jumpPageButton=d as JumpPageButton;
+            jumpPageButton.ButtonOne.Visibility = jumpPageButton.TotalPages > int.Parse(jumpPageButton.ButtonOne.Content.ToString()) ? Visibility.Visible : Visibility.Collapsed;
+            jumpPageButton.ButtonTwo.Visibility = jumpPageButton.TotalPages > int.Parse(jumpPageButton.ButtonTwo.Content.ToString()) ? Visibility.Visible : Visibility.Collapsed;
+            jumpPageButton.ButtonThree.Visibility = jumpPageButton.TotalPages > int.Parse(jumpPageButton.ButtonThree.Content.ToString()) ? Visibility.Visible : Visibility.Collapsed;
+            jumpPageButton.ButtonFour.Visibility = jumpPageButton.TotalPages > int.Parse(jumpPageButton.ButtonFour.Content.ToString()) ? Visibility.Visible : Visibility.Collapsed;
+            jumpPageButton.ButtonFive.Visibility = jumpPageButton.TotalPages > int.Parse(jumpPageButton.ButtonFive.Content.ToString()) ? Visibility.Visible : Visibility.Collapsed;
+
+        }
+
+
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -97,11 +111,11 @@ namespace PLM.Library.Controls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            ButtonOne.Visibility = TotalPages > int.Parse(ButtonOne.Content.ToString()) ? Visibility.Collapsed : Visibility.Visible;
-            ButtonTwo.Visibility = TotalPages > int.Parse(ButtonTwo.Content.ToString()) ? Visibility.Collapsed : Visibility.Visible;
-            ButtonThree.Visibility = TotalPages > int.Parse(ButtonThree.Content.ToString()) ? Visibility.Collapsed : Visibility.Visible;
-            ButtonFour.Visibility = TotalPages > int.Parse(ButtonFour.Content.ToString()) ? Visibility.Collapsed : Visibility.Visible;
-            ButtonFive.Visibility = TotalPages > int.Parse(ButtonFive.Content.ToString()) ? Visibility.Collapsed : Visibility.Visible;
+            ButtonOne.Visibility = TotalPages > int.Parse(ButtonOne.Content.ToString()) ? Visibility.Visible : Visibility.Collapsed;
+            ButtonTwo.Visibility = TotalPages > int.Parse(ButtonTwo.Content.ToString()) ? Visibility.Visible : Visibility.Collapsed;
+            ButtonThree.Visibility = TotalPages > int.Parse(ButtonThree.Content.ToString()) ? Visibility.Visible : Visibility.Collapsed;
+            ButtonFour.Visibility = TotalPages > int.Parse(ButtonFour.Content.ToString()) ? Visibility.Visible : Visibility.Collapsed;
+            ButtonFive.Visibility = TotalPages > int.Parse(ButtonFive.Content.ToString()) ? Visibility.Visible : Visibility.Collapsed;
         }
 
         private void LastOneButton_Click(object sender, RoutedEventArgs e)
