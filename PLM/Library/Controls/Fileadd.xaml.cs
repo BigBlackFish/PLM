@@ -64,11 +64,17 @@ namespace PLM.Library.Controls
             {
                 ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 0, "不支持上传该格式文件");
                 imgAdd.Tag = "0";
+                FilePath = string.Empty;
+                FileName.Visibility = Visibility.Collapsed;
+                Tip.Visibility = Visibility.Visible;
                 return;
             }
             FilePath = fileName;
             imgAdd.Tag = extension == ".tiff" ? "1" : "2";
             btndelete.Tag = "1";
+            FileName.Text = System.IO.Path.GetFileNameWithoutExtension(FilePath);
+            FileName.Visibility = Visibility.Visible;
+            Tip.Visibility = Visibility.Collapsed;
         }
 
         private void Btndelete_PointerDown(object sender, EventArgs e)
@@ -76,6 +82,8 @@ namespace PLM.Library.Controls
             btndelete.Tag = "0";
             imgAdd.Tag = "0";
             FilePath = string.Empty;
+            FileName.Visibility = Visibility.Collapsed;
+            Tip.Visibility = Visibility.Visible;
         }
     }
 }

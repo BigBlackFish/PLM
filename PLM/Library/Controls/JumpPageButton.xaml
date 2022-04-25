@@ -7,17 +7,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="600" Loaded="UserControl_Loaded">
     <Grid>
-         <Border>
+         <Border x:Name="BorderButton">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{StaticResource Mutual}" Foreground="#FF80838F" VerticalAlignment="Center" FontSize="14"/>
                 <TextBlock x:Name="TotalNumberText" Text="{Binding NumberofPages}"  Foreground="#FF80838F" VerticalAlignment="Center" FontSize="14"/>
                 <TextBlock Text="{StaticResource strip}"  Foreground="#FF80838F" VerticalAlignment="Center" FontSize="14"/>
                 <Button x:Name="LastOneButton" Style="{StaticResource JumpPageBut}" Content="&lt;" Click="LastOneButton_Click"/>
-                <Button x:Name="ButtonOne" Style="{StaticResource JumpPageBut}" Content="1" Click="ButtonOne_Click"/>
-                <Button x:Name="ButtonTwo" Style="{StaticResource JumpPageBut}" Content="2" Click="ButtonTwo_Click"/>
-                <Button x:Name="ButtonThree" Style="{StaticResource JumpPageBut}" Content="3" Click="ButtonThree_Click"/>
-                <Button x:Name="ButtonFour" Style="{StaticResource JumpPageBut}" Content="4" Click="ButtonFour_Click"/>
-                <Button x:Name="ButtonFive" Style="{StaticResource JumpPageBut}" Content="5" Click="ButtonFive_Click"/>
+                <Button x:Name="ButtonOne" Style="{StaticResource JumpPageBut}" Tag="1"   Content="1" Click="ButtonOne_Click"/>
+                <Button x:Name="ButtonTwo" Style="{StaticResource JumpPageBut}"  Content="2" Click="ButtonTwo_Click"/>
+                <Button x:Name="ButtonThree" Style="{StaticResource JumpPageBut}"  Content="3" Click="ButtonThree_Click"/>
+                <Button x:Name="ButtonFour" Style="{StaticResource JumpPageBut}"  Content="4" Click="ButtonFour_Click"/>
+                <Button x:Name="ButtonFive" Style="{StaticResource JumpPageBut}"  Content="5" Click="ButtonFive_Click"/>
                 <TextBlock Text="···" Margin="10,0,-5,0" Foreground="#FF80838F" VerticalAlignment="Center" FontSize="14"/>
                 <Button x:Name="ButtonLast" Style="{StaticResource JumpPageBut}" Content="{Binding NumberofPages}" Click="ButtonLast_Click"/>
                 <Button x:Name="NextButton" Style="{StaticResource JumpPageBut}" Content=">" Click="NextButton_Click"/>

@@ -156,6 +156,8 @@ namespace PLM.Component.Windows
 
         private void Exit_PointerDown(object sender, EventArgs e)
         {
+            LoginWindow loginWindow = new LoginWindow();
+            loginWindow.Show();
             Close();
         }
     }

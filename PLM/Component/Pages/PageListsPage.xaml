@@ -63,7 +63,7 @@
             </Border>
             <Border BorderBrush="#E1E1E6" BorderThickness="1" DockPanel.Dock="Top">
                 <Grid>
-                    <ItemsControl ScrollViewer.VerticalScrollBarVisibility="Disabled" ItemsSource="{Binding Files}">
+                    <ItemsControl Style="{StaticResource ItemsControlScroll}" ItemsSource="{Binding Files}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <controls:PageListItem/>

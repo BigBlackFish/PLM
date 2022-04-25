@@ -953,7 +953,7 @@
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsPressed" Value="True">
+                        <Trigger Property="Tag" Value="1">
                             <Setter Property="Background" Value="#FF0D78D8"/>
                             <Setter Property="Foreground" Value="#FFFFFFFF"/>
                         </Trigger>
@@ -995,15 +995,10 @@
                     <Border x:Name="brdTextBox" Padding="15,0,15,0" BorderBrush="#FFE1E1E6" BorderThickness="1" Background="#FFFFFF" CornerRadius="5">
                         <Grid>
                             <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Center" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
-                            <!--<StackPanel Orientation="Horizontal" IsHitTestVisible="False">
-                                <TextBlock x:Name="txbHint" VerticalAlignment="Center" Margin="8,0,0,0" Foreground="#969699" Text="{DynamicResource fileName}" Visibility="Collapsed"/>
-                            </StackPanel>-->
                         </Grid>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-
-
 </ResourceDictionary>
