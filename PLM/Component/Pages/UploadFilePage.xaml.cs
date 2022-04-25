@@ -3,6 +3,7 @@ using PLM.Models;
 using PLM.Models.ViewModels;
 using System;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -24,7 +25,7 @@ namespace PLM.Component.Pages
 
         private void BtnUploading_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(viewModel.FileLeft) || string.IsNullOrEmpty(viewModel.FileRight) || string.IsNullOrEmpty(viewModel.Message))
+            if (string.IsNullOrEmpty(viewModel.FileLeft) && string.IsNullOrEmpty(viewModel.FileRight) || string.IsNullOrEmpty(viewModel.Message))
             {
                 ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 1, ClassHelper.FindResource<string>("LackOfNecessaryInformation"));
             }
@@ -34,41 +35,162 @@ namespace PLM.Component.Pages
                 {
                     foreach (FileGroupViewModel item in uploading.Files)
                     {
-                        foreach (FileViewModel file in item.FileViews)
+                        bool leftChanged = false;
+                        bool rightChanged = false;
+                        bool changed = false;
+                        if (item.Message == viewModel.Message)
                         {
-                            if (file.Message == viewModel.Message && (file.Path == viewModel.FileLeft || file.Path == viewModel.FileRight))
+                            if (!string.IsNullOrEmpty(viewModel.FileLeft))
                             {
-                                string hint = ClassHelper.FindResource<string>("ReplaceHint");
-                                string message = $"{ClassHelper.FindResource<string>("ReplaceMessage1")}{'“' + file.Name + '”'}{ClassHelper.FindResource<string>("ReplaceMessage2")}";
-                                MessageBoxButtonModel messageBox = new MessageBoxButtonModel()
+                                FileInfo fileLeft = new FileInfo(viewModel.FileLeft);
+                                if (item.SourceFile == null)
                                 {
-                                    Hint = ClassHelper.FindResource<string>("AgreeReplace"),
-                                    Action = delegate
+                                    changed = true;
+                                    FileViewModel left = new FileViewModel
                                     {
-                                        Dispatcher.Invoke(delegate
+                                        Name = fileLeft.Name,
+                                        Path = viewModel.FileLeft,
+                                        FileType = fileLeft.Extension.ToLower(),
+                                        Message = viewModel.Message,
+                                        Remark = viewModel.Remark,
+                                        Size = Math.Round((double)fileLeft.Length / 1024 / 1024, 3),
+                                        DataType = true
+                                    };
+                                    item.FileViews.Add(left);
+                                    item.SourceFile = left;
+                                }
+                                else if (item.SourceFile.Path != viewModel.FileLeft)
+                                {
+                                    double size = Math.Round((double)fileLeft.Length / 1024 / 1024, 3);
+                                    if (item.SourceFile.Size != size)
+                                    {
+                                        string hint = ClassHelper.FindResource<string>("ReplaceHint");
+                                        string message = $"{ClassHelper.FindResource<string>("ReplaceMessage1")}{'“' + item.SourceFile.Name + '”'}{ClassHelper.FindResource<string>("ReplaceMessage2")}";
+                                        MessageBoxButtonModel messageBox = new MessageBoxButtonModel()
                                         {
-                                            item.FileViews.Remove(file);
-                                            string path = file.Path == viewModel.FileLeft ? viewModel.FileLeft : viewModel.FileRight;
-                                            FileInfo fileInfo = new FileInfo(viewModel.FileLeft);
-                                            FileViewModel fileView = new FileViewModel
+                                            Hint = ClassHelper.FindResource<string>("AgreeReplace"),
+                                            Action = delegate
                                             {
-                                                Name = fileInfo.Name,
-                                                Path = path,
-                                                FileType = fileInfo.Extension.ToLower(),
-                                                Message = viewModel.Message,
-                                                Remark = viewModel.Remark,
-                                                Size = Math.Round((double)fileInfo.Length / 1024 / 1024, 3),
-                                            };
-                                            item.FileViews.Add(fileView);
-                                        });
+                                                changed = true;
+                                                Dispatcher.Invoke(delegate
+                                                {
+                                                    item.FileViews.Remove(item.SourceFile);
+                                                    FileViewModel fileView = new FileViewModel
+                                                    {
+                                                        Name = fileLeft.Name,
+                                                        Path = viewModel.FileLeft,
+                                                        FileType = fileLeft.Extension.ToLower(),
+                                                        Message = viewModel.Message,
+                                                        Remark = viewModel.Remark,
+                                                        Size = size,
+                                                    };
+                                                    item.FileViews.Add(fileView);
+                                                    item.SourceFile = fileView;
+                                                });
+                                            }
+                                        };
+                                        ClassHelper.AlertMessageBox(ClassHelper.MainWindow, ClassHelper.MessageBoxType.Select, hint, message, rightButton: messageBox);
                                     }
-                                };
-                                ClassHelper.AlertMessageBox(ClassHelper.MainWindow, ClassHelper.MessageBoxType.Select, hint, message, rightButton: messageBox);
-                                return;
+                                }
+                                else
+                                {
+                                    leftChanged = true;
+                                }
+                            }
+                            else
+                            {
+                                if (item.SourceFile != null)
+                                {
+                                    changed = true;
+                                    item.FileViews.Remove(item.SourceFile);
+                                    item.SourceFile = null;
+                                }
+                                else
+                                {
+                                    leftChanged = true;
+                                }
+                            }
+                            if (!string.IsNullOrEmpty(viewModel.FileRight))
+                            {
+                                FileInfo fileRight = new FileInfo(viewModel.FileRight);
+                                if (item.SummaryFile == null)
+                                {
+                                    changed = true;
+                                    FileViewModel right = new FileViewModel
+                                    {
+                                        Name = fileRight.Name,
+                                        Path = viewModel.FileRight,
+                                        FileType = fileRight.Extension.ToLower(),
+                                        Message = viewModel.Message,
+                                        Remark = viewModel.Remark,
+                                        Size = Math.Round((double)fileRight.Length / 1024 / 1024, 3),
+                                        DataType = false
+                                    };
+                                    item.FileViews.Add(right);
+                                    item.SummaryFile = right;
+                                }
+                                else if (item.SummaryFile.Path != viewModel.FileRight)
+                                {
+                                    double size = Math.Round((double)fileRight.Length / 1024 / 1024, 3);
+                                    if (item.SummaryFile.Size != size)
+                                    {
+                                        string hint = ClassHelper.FindResource<string>("ReplaceHint");
+                                        string message = $"{ClassHelper.FindResource<string>("ReplaceMessage1")}{'“' + item.SummaryFile.Name + '”'}{ClassHelper.FindResource<string>("ReplaceMessage2")}";
+                                        MessageBoxButtonModel messageBox = new MessageBoxButtonModel()
+                                        {
+                                            Hint = ClassHelper.FindResource<string>("AgreeReplace"),
+                                            Action = delegate
+                                            {
+                                                Dispatcher.Invoke(delegate
+                                                {
+                                                    changed = true;
+                                                    item.FileViews.Remove(item.SummaryFile);
+                                                    FileViewModel fileView = new FileViewModel
+                                                    {
+                                                        Name = fileRight.Name,
+                                                        Path = viewModel.FileRight,
+                                                        FileType = fileRight.Extension.ToLower(),
+                                                        Message = viewModel.Message,
+                                                        Remark = viewModel.Remark,
+                                                        Size = Math.Round((double)fileRight.Length / 1024 / 1024, 3),
+                                                    };
+                                                    item.FileViews.Add(fileView);
+                                                    item.SummaryFile = fileView;
+                                                });
+                                            }
+                                        };
+                                        ClassHelper.AlertMessageBox(ClassHelper.MainWindow, ClassHelper.MessageBoxType.Select, hint, message, rightButton: messageBox);
+                                    }
+                                }
+                                else
+                                {
+                                    rightChanged = true;
+                                }
+                            }
+                            else
+                            {
+                                if (item.SummaryFile != null)
+                                {
+                                    changed = true;
+                                    item.FileViews.Remove(item.SummaryFile);
+                                    item.SummaryFile = null;
+                                }
+                                else
+                                {
+                                    rightChanged = true;
+                                }
                             }
                         }
+                        if (changed || (leftChanged && rightChanged))
+                        {
+                            return;
+                        }
                     }
-                    FileGroupViewModel fileGroupView = new FileGroupViewModel();
+                    FileGroupViewModel fileGroupView = new FileGroupViewModel()
+                    {
+                        Message = viewModel.Message,
+                        Remark = viewModel.Remark,
+                    };
                     if (!string.IsNullOrEmpty(viewModel.FileLeft))
                     {
                         FileInfo fileLeft = new FileInfo(viewModel.FileLeft);
@@ -80,8 +202,10 @@ namespace PLM.Component.Pages
                             Message = viewModel.Message,
                             Remark = viewModel.Remark,
                             Size = Math.Round((double)fileLeft.Length / 1024 / 1024, 3),
+                            DataType = true
                         };
                         fileGroupView.FileViews.Add(left);
+                        fileGroupView.SourceFile = left;
                     }
                     if (!string.IsNullOrEmpty(viewModel.FileRight))
                     {
@@ -94,8 +218,10 @@ namespace PLM.Component.Pages
                             Message = viewModel.Message,
                             Remark = viewModel.Remark,
                             Size = Math.Round((double)fileRight.Length / 1024 / 1024, 3),
+                            DataType = false
                         };
                         fileGroupView.FileViews.Add(right);
+                        fileGroupView.SummaryFile = right;
                     }
                     uploading.Files.Add(fileGroupView);
                     ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 0, "开始上传");

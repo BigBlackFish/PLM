@@ -99,11 +99,8 @@ namespace PLM.Models.ViewModels
             get => uploadCompleted;
             set
             {
-                if (uploadCompleted != value)
-                {
-                    uploadCompleted = value;
-                    OnPropertyChanged(nameof(UploadCompleted));
-                }
+                uploadCompleted = value;
+                OnPropertyChanged(nameof(UploadCompleted));
             }
         }
 
@@ -115,11 +112,8 @@ namespace PLM.Models.ViewModels
             get => downloadCompleted;
             set
             {
-                if (downloadCompleted != value)
-                {
-                    downloadCompleted = value;
-                    OnPropertyChanged(nameof(DownloadCompleted));
-                }
+                downloadCompleted = value;
+                OnPropertyChanged(nameof(DownloadCompleted));
             }
         }
 
@@ -149,6 +143,11 @@ namespace PLM.Models.ViewModels
             }
         }
 
+        /// <summary>
+        /// 数据类型（true 原图 false 缩略）
+        /// </summary>
+        public bool DataType { get; set; }
+
         public override void InitializeVariable()
         {
             Name = string.Empty;
@@ -175,7 +174,7 @@ namespace PLM.Models.ViewModels
                     Speed = p.TransferSpeedToString();
                 });
                 #region 基本信息
-                SavePath = $"{Message}{(retry == 0 ? string.Empty : retry.ToString())}/{Name}";
+                SavePath = $"{Message.Trim()}{(retry == 0 ? string.Empty : retry.ToString())}/{Name}";
                 SaveName = Name;
                 #endregion
                 FtpStatus ftpStatus = await ftpClient.UploadFileAsync(Path, SavePath, await ftpClient.FileExistsAsync(SavePath) ? FtpRemoteExists.Resume : FtpRemoteExists.Overwrite, true, FtpVerify.None, progress, token);
@@ -212,7 +211,7 @@ namespace PLM.Models.ViewModels
                     Speed = p.TransferSpeedToString();
                 });
                 #region 基本信息
-                SavePath = System.IO.Path.Combine(ClassHelper.AttachmentsPath, $"{Message}{(retry == 0 ? string.Empty : retry.ToString())}", Name);
+                SavePath = System.IO.Path.Combine(ClassHelper.AttachmentsPath, $"{Message.Trim()}{(retry == 0 ? string.Empty : retry.ToString())}", Name);
                 SaveName = Name;
                 #endregion
                 FtpStatus ftpStatus = await ftpClient.DownloadFileAsync(SavePath, Path, File.Exists(SavePath) ? FtpLocalExists.Resume : FtpLocalExists.Overwrite, FtpVerify.None, progress, token);

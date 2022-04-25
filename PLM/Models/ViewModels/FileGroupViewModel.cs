@@ -24,6 +24,14 @@ namespace PLM.Models.ViewModels
 
         public ObservableCollection<FileViewModel> FileViews { get; set; }
 
+        public string Message { get; set; }
+
+        public string Remark { get; set; }
+
+        public FileViewModel SourceFile { get; set; }
+
+        public FileViewModel SummaryFile { get; set; }
+
         public bool TransferComplete
         {
             get => transferComplete;

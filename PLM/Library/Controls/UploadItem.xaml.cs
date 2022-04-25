@@ -3,6 +3,7 @@ using PLM.Models;
 using PLM.Models.ViewModels;
 using PLM.Service;
 using System;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.IO;
 using System.Windows;
@@ -27,10 +28,39 @@ namespace PLM.Library.Controls
             if (e.NewValue is FileGroupViewModel model)
             {
                 viewModel = model;
+                viewModel.FileViews.CollectionChanged += FileViews_CollectionChanged;
                 foreach (FileViewModel item in viewModel.FileViews)
                 {
                     item.PropertyChanged += Item_PropertyChanged;
                 }
+            }
+        }
+
+        private void FileViews_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    foreach (var item in e.NewItems)
+                    {
+                        (item as FileViewModel).PropertyChanged += Item_PropertyChanged;
+                    }
+                    viewModel.TransferComplete = false;
+                    break;
+                case NotifyCollectionChangedAction.Remove:
+                    foreach (var item in e.OldItems)
+                    {
+                        (item as FileViewModel).PropertyChanged -= Item_PropertyChanged;
+                    }
+                    break;
+                case NotifyCollectionChangedAction.Replace:
+                    break;
+                case NotifyCollectionChangedAction.Move:
+                    break;
+                case NotifyCollectionChangedAction.Reset:
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -92,35 +122,38 @@ namespace PLM.Library.Controls
                 }
             }
             viewModel.TransferComplete = true;
-            FileViewModel fileView1 = viewModel.FileViews[0];
-            FileViewModel fileView2 = viewModel.FileViews[1];
             AddTerminalLayoutFileModel addTerminal = new AddTerminalLayoutFileModel()
             {
-                LayoutInfo = fileView1.Message,
-                Remark = fileView1.Remark,
                 TerminalSourceFileId = string.Empty,
                 TerminalSummaryFileId = string.Empty
             };
-            #region 源文件
-            FileInfo fileInfo1 = new FileInfo(fileView1.Path);
-            addTerminal.SourceFileSize = fileInfo1.Length / 1024;
-            addTerminal.SourceFileMd5 = fileView1.MD5;
-            addTerminal.SourceFilePwd = fileView1.SavePath;
-            addTerminal.SourceFileName = fileView1.SaveName;
-            addTerminal.SourceFileType = fileView1.FileType;
-            addTerminal.SourceContentType = ClassHelper.GetMimeMapping(fileInfo1.FullName);
-            addTerminal.SourceFileUrl = string.Empty;
-            #endregion
-            #region 缩略图
-            FileInfo fileInfo2 = new FileInfo(fileView2.Path);
-            addTerminal.SummaryFileSize = fileInfo2.Length / 1024;
-            addTerminal.SummaryFileMd5 = fileView2.MD5;
-            addTerminal.SummaryFilePwd = fileView2.SavePath;
-            addTerminal.SummaryFileName = fileView2.SaveName;
-            addTerminal.SummaryFileType = fileView2.FileType;
-            addTerminal.SummaryContentType = ClassHelper.GetMimeMapping(fileInfo2.FullName);
-            addTerminal.SummaryFileUrl = string.Empty;
-            #endregion
+            foreach (FileViewModel item in viewModel.FileViews)
+            {
+                addTerminal.LayoutInfo = item.Message;
+                addTerminal.Remark = item.Remark;
+                if (item.DataType)
+                {
+                    FileInfo fileInfo = new FileInfo(item.Path);
+                    addTerminal.SourceFileSize = fileInfo.Length / 1024;
+                    addTerminal.SourceFileMd5 = item.MD5;
+                    addTerminal.SourceFilePwd = item.SavePath;
+                    addTerminal.SourceFileName = item.SaveName;
+                    addTerminal.SourceFileType = item.FileType;
+                    addTerminal.SourceContentType = ClassHelper.GetMimeMapping(fileInfo.FullName);
+                    addTerminal.SourceFileUrl = string.Empty;
+                }
+                else
+                {
+                    FileInfo fileInfo = new FileInfo(item.Path);
+                    addTerminal.SummaryFileSize = fileInfo.Length / 1024;
+                    addTerminal.SummaryFileMd5 = item.MD5;
+                    addTerminal.SummaryFilePwd = item.SavePath;
+                    addTerminal.SummaryFileName = item.SaveName;
+                    addTerminal.SummaryFileType = item.FileType;
+                    addTerminal.SummaryContentType = ClassHelper.GetMimeMapping(fileInfo.FullName);
+                    addTerminal.SummaryFileUrl = string.Empty;
+                }
+            }
             if ((await AdminService.TerminalLayoutFileAdd(addTerminal)) is APIResult result)
             {
                 if (result.Code == 0)
