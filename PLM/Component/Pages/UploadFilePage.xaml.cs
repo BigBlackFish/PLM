@@ -37,6 +37,18 @@ namespace PLM.Component.Pages
                         bool leftChanged = false;
                         bool rightChanged = false;
                         bool changed = false;
+                        bool cancel = false;
+                        MessageBoxButtonModel leftButton = new MessageBoxButtonModel
+                        {
+                            Hint = ClassHelper.FindResource<string>("Cancel"),
+                            Action = delegate
+                            {
+                                Dispatcher.Invoke(delegate
+                                {
+                                    cancel = true;
+                                });
+                            }
+                        };
                         if (item.Message == viewModel.Message)
                         {
                             if (!string.IsNullOrEmpty(viewModel.FileLeft))
@@ -88,7 +100,7 @@ namespace PLM.Component.Pages
                                                 });
                                             }
                                         };
-                                        ClassHelper.AlertMessageBox(ClassHelper.MainWindow, ClassHelper.MessageBoxType.Select, hint, message, rightButton: messageBox);
+                                        ClassHelper.AlertMessageBox(ClassHelper.MainWindow, ClassHelper.MessageBoxType.Select, hint, message, leftButton: leftButton, rightButton: messageBox);
                                     }
                                 }
                                 else
@@ -158,7 +170,7 @@ namespace PLM.Component.Pages
                                                 });
                                             }
                                         };
-                                        ClassHelper.AlertMessageBox(ClassHelper.MainWindow, ClassHelper.MessageBoxType.Select, hint, message, rightButton: messageBox);
+                                        ClassHelper.AlertMessageBox(ClassHelper.MainWindow, ClassHelper.MessageBoxType.Select, hint, message, leftButton: leftButton, rightButton: messageBox);
                                     }
                                 }
                                 else
@@ -179,6 +191,10 @@ namespace PLM.Component.Pages
                                     rightChanged = true;
                                 }
                             }
+                        }
+                        if (cancel)
+                        {
+                            return;
                         }
                         if (changed || (leftChanged && rightChanged))
                         {

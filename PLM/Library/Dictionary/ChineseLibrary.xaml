@@ -51,7 +51,7 @@
     <system:String x:Key="LackOfNecessaryInformation">缺少必要信息</system:String>
     <system:String x:Key="ReplaceHint">替换提示</system:String>
     <system:String x:Key="ReplaceMessage1">上传列表中已存在版面的源文件</system:String>
-    <system:String x:Key="ReplaceMessage2">文件名称，确认是否需要替换之前的文件？</system:String>
+    <system:String x:Key="ReplaceMessage2">，确认是否需要替换之前的文件？</system:String>
     <system:String x:Key="AgreeReplace">确认替换</system:String>
     <system:String x:Key="UploadComplete">上传完成</system:String>
     <system:String x:Key="Pause">暂停</system:String>
