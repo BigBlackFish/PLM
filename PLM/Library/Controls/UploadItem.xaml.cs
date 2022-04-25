@@ -33,6 +33,7 @@ namespace PLM.Library.Controls
                 {
                     item.PropertyChanged += Item_PropertyChanged;
                 }
+                AddLayoutMessage();
             }
         }
 
