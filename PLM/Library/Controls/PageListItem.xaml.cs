@@ -57,6 +57,8 @@ namespace PLM.Library.Controls
             }
             FileGroupViewModel fileGroupView = new FileGroupViewModel
             {
+                Message = viewModel.PageInfomation,
+                Remark = viewModel.Remarksinfomation,
                 IsUpload = false
             };
             if (!string.IsNullOrEmpty(viewModel.SourceFilePwd) && await ClassHelper.ExistServiceFile(viewModel.SourceFilePwd))
@@ -71,6 +73,7 @@ namespace PLM.Library.Controls
                     Size = viewModel.SourceFileSize / 1024
                 };
                 fileGroupView.FileViews.Add(fileView1);
+                fileGroupView.SourceFile = fileView1;
             }
             if (!string.IsNullOrEmpty(viewModel.SummaryFilePwd) && await ClassHelper.ExistServiceFile(viewModel.SummaryFilePwd))
             {
@@ -84,6 +87,7 @@ namespace PLM.Library.Controls
                     Size = viewModel.SummaryFileSize / 1024
                 };
                 fileGroupView.FileViews.Add(fileView2);
+                fileGroupView.SummaryFile = fileView2;
             }
             if (fileGroupView.FileViews.Count > 0)
             {
