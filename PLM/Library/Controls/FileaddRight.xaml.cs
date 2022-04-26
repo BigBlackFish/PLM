@@ -27,8 +27,10 @@ namespace PLM.Library.Controls
             if ("".Equals(e.NewValue))
             {
                 FileaddRight fileadd = d as FileaddRight;
-                if(fileadd!=null)
-                fileadd.imgAdd.Tag = "0";
+                if (fileadd != null)
+                {
+                    fileadd.imgAdd.Tag = "0";
+                }
             }
         }
 
@@ -70,7 +72,7 @@ namespace PLM.Library.Controls
         private void Suffixjudgment(string fileName)
         {
             string extension = System.IO.Path.GetExtension(fileName).ToLower();
-            if (extension != ".png" && extension != ".jpg"&&!string.IsNullOrEmpty(extension))
+            if (extension != ".png" && extension != ".jpg" && !string.IsNullOrEmpty(extension))
             {
                 ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 1, "不支持上传该格式文件");
                 imgAdd.Tag = "0";

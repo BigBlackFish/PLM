@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace PLM.Library.Controls
 {
@@ -32,7 +31,7 @@ namespace PLM.Library.Controls
 
         private static void BttonVisity(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            JumpPageButton jumpPageButton=d as JumpPageButton;
+            JumpPageButton jumpPageButton = d as JumpPageButton;
             jumpPageButton.ButtonOne.Visibility = jumpPageButton.TotalPages > int.Parse(jumpPageButton.ButtonOne.Content.ToString()) ? Visibility.Visible : Visibility.Collapsed;
             jumpPageButton.ButtonTwo.Visibility = jumpPageButton.TotalPages > int.Parse(jumpPageButton.ButtonTwo.Content.ToString()) ? Visibility.Visible : Visibility.Collapsed;
             jumpPageButton.ButtonThree.Visibility = jumpPageButton.TotalPages > int.Parse(jumpPageButton.ButtonThree.Content.ToString()) ? Visibility.Visible : Visibility.Collapsed;
@@ -70,9 +69,9 @@ namespace PLM.Library.Controls
         {
             ButtonOne.Tag = "1";
             ButtonTwo.Tag = "0";
-            ButtonThree.Tag= "0";
+            ButtonThree.Tag = "0";
             ButtonFour.Tag = "0";
-            ButtonFive.Tag= "0";
+            ButtonFive.Tag = "0";
             ButtonLast.Tag = "0";
             SelectPage = int.Parse(ButtonOne.Content.ToString());
             if (int.Parse(ButtonOne.Content.ToString()) > 1)
@@ -156,8 +155,11 @@ namespace PLM.Library.Controls
 
         private void LastOneButton_Click(object sender, RoutedEventArgs e)
         {
-            if (SelectPage - 1 >0)
+            if (SelectPage - 1 > 0)
+            {
                 SelectPage = SelectPage - 1;
+            }
+
             if (SelectPage == int.Parse(ButtonOne.Content.ToString()) - 1 && SelectPage > 0)
             {
                 Buttonnumberless();
@@ -167,8 +169,11 @@ namespace PLM.Library.Controls
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
-            if(SelectPage+1<=TotalPages)
-            SelectPage = SelectPage + 1;
+            if (SelectPage + 1 <= TotalPages)
+            {
+                SelectPage = SelectPage + 1;
+            }
+
             if (SelectPage == int.Parse(ButtonFive.Content.ToString()) + 1 && SelectPage < TotalPages)
             {
                 Buttonnumberadd();
@@ -245,13 +250,13 @@ namespace PLM.Library.Controls
             if (int.Parse(JumppageTextBox.Text) <= TotalPages && int.Parse(JumppageTextBox.Text) > 0)
             {
                 SelectPage = int.Parse(JumppageTextBox.Text);
-                if (SelectPage > 5&& SelectPage < TotalPages&& TotalPages>6)
+                if (SelectPage > 5 && SelectPage < TotalPages && TotalPages > 6)
                 {
                     ButtonFive.Content = SelectPage;
-                    ButtonFour.Content = SelectPage-1;
+                    ButtonFour.Content = SelectPage - 1;
                     ButtonThree.Content = SelectPage - 2;
-                    ButtonTwo.Content= SelectPage - 3;
-                    ButtonOne.Content= SelectPage - 4;
+                    ButtonTwo.Content = SelectPage - 3;
+                    ButtonOne.Content = SelectPage - 4;
                 }
 
                 if (SelectPage > 5 && SelectPage == TotalPages && TotalPages > 6)

@@ -27,10 +27,12 @@ namespace PLM.Library.Controls
         private static void TagChange(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if ("".Equals(e.NewValue))
-            { 
-            Fileadd fileadd=d as Fileadd;
-                if (fileadd!= null)
+            {
+                Fileadd fileadd = d as Fileadd;
+                if (fileadd != null)
+                {
                     fileadd.imgAdd.Tag = "0";
+                }
             }
         }
 
@@ -73,7 +75,7 @@ namespace PLM.Library.Controls
         private void Suffixjudgment(string fileName)
         {
             string extension = System.IO.Path.GetExtension(fileName).ToLower();
-            if (extension != ".tiff" && extension != ".psd"&&!string.IsNullOrEmpty(extension))
+            if (extension != ".tiff" && extension != ".psd" && !string.IsNullOrEmpty(extension))
             {
                 ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 1, "不支持上传该格式文件");
                 imgAdd.Tag = "0";

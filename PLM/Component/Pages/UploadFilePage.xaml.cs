@@ -23,11 +23,11 @@ namespace PLM.Component.Pages
         }
 
         private void ClearData()
-        { 
-            viewModel.FileLeft=string.Empty;
-            viewModel.Remark=string.Empty;
+        {
+            viewModel.FileLeft = string.Empty;
+            viewModel.Remark = string.Empty;
             viewModel.FileRight = string.Empty;
-            viewModel.Message=string.Empty;
+            viewModel.Message = string.Empty;
         }
 
         private void BtnUploading_Click(object sender, RoutedEventArgs e)
