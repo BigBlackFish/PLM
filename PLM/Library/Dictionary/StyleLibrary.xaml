@@ -522,6 +522,86 @@
         </Setter>
     </Style>
 
+
+    <Style x:Key="CheckBoxElement2" TargetType="{x:Type CheckBox}">
+        <Setter Property="TextBlock.FontSize" Value="14"/>
+        <Setter Property="TextBlock.Foreground" Value="#606266"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <StackPanel Orientation="Horizontal">
+                        <Grid Height="16" Width="16" VerticalAlignment="Center">
+                            <Path x:Name="pthCheckBox" Fill="#FFFFFF" Stroke="#DCDFE6" StrokeThickness="1" Data="M 1.5,0.5 L 14.5,0.5 A 1,1 0 0 1 15.5,1.5 L 15.5 14.5 A 1,1 0 0 1 14.5,15.5 L 1.5,15.5 A 1,1 0 0 1 0.5,14.5 L 0.5,1.5 A 1,1 0 0 1 1.5,0.5 Z"/>
+                            <Path Fill="#FF6D00" Data="M 1.5,0 L 14.5,0 A 1.5,1.5 0 0 1 16,1.5 L 16,14.5 A 1.5,1.5 0 0 1 14.5 16 L 1.5,16 A 1.5 1.5 0 0 1 0,14.5 L 0,1.5 A 1.5 1.5 0 0 1 1.5,0 Z">
+                                <Path.RenderTransform>
+                                    <ScaleTransform x:Name="stfIsChecked" ScaleX="0" ScaleY="0"/>
+                                </Path.RenderTransform>
+                                <Path.RenderTransformOrigin>
+                                    <Point X="0.5" Y="0.5"/>
+                                </Path.RenderTransformOrigin>
+                            </Path>
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="{StaticResource ElementIcon}" FontSize="12.5" Foreground="#FFFFFF" Text="&#xe6da;"/>
+                        </Grid>
+                        <ContentPresenter VerticalAlignment="Center" Margin="7,0,0,0"/>
+                    </StackPanel>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="pthCheckBox" Storyboard.TargetProperty="Stroke.(SolidColorBrush.Color)" To="#FF6D00" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="pthCheckBox" Storyboard.TargetProperty="Stroke.(SolidColorBrush.Color)" To="#DCDFE6" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="TextBlock.Foreground" Value="#FF6D00"/>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="stfIsChecked" Storyboard.TargetProperty="ScaleX" To="1" Duration="0:0:0.2">
+                                            <DoubleAnimation.EasingFunction>
+                                                <BackEase EasingMode="EaseInOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                        <DoubleAnimation Storyboard.TargetName="stfIsChecked" Storyboard.TargetProperty="ScaleY" To="1" Duration="0:0:0.2">
+                                            <DoubleAnimation.EasingFunction>
+                                                <BackEase EasingMode="EaseInOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="stfIsChecked" Storyboard.TargetProperty="ScaleX" To="0" Duration="0:0:0.2">
+                                            <DoubleAnimation.EasingFunction>
+                                                <BackEase EasingMode="EaseInOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                        <DoubleAnimation Storyboard.TargetName="stfIsChecked" Storyboard.TargetProperty="ScaleY" To="0" Duration="0:0:0.2">
+                                            <DoubleAnimation.EasingFunction>
+                                                <BackEase EasingMode="EaseInOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!-- ScrollViewer 滚动条 -->
     <Style x:Key="ScrollBarThumb" TargetType="{x:Type Thumb}">
         <Setter Property="OverridesDefaultStyle" Value="true" />
