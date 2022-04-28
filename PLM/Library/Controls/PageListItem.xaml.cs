@@ -1,7 +1,9 @@
-﻿using PLM.Common;
+﻿using Microsoft.Win32;
+using PLM.Common;
 using PLM.Models;
 using PLM.Models.ViewModels;
 using PLM.Service;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -59,44 +61,52 @@ namespace PLM.Library.Controls
                     return;
                 }
             }
-            FileGroupViewModel fileGroupView = new FileGroupViewModel
+            System.Windows.Forms.FolderBrowserDialog folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            if (folderBrowserDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                Message = viewModel.PageInfomation,
-                Remark = viewModel.Remarksinfomation,
-                IsUpload = false
-            };
-            if (!string.IsNullOrEmpty(viewModel.SourceFilePwd) && await ClassHelper.ExistServiceFile(viewModel.SourceFilePwd))
-            {
-                FileViewModel fileView1 = new FileViewModel
+                string outDir = folderBrowserDialog.SelectedPath;
+
+                FileGroupViewModel fileGroupView = new FileGroupViewModel
                 {
-                    Name = viewModel.SourceFileName,
-                    Path = viewModel.SourceFilePwd,
-                    FileType = viewModel.SourceFileType,
                     Message = viewModel.PageInfomation,
                     Remark = viewModel.Remarksinfomation,
-                    Size = viewModel.SourceFileSize / 1024
+                    IsUpload = false
                 };
-                fileGroupView.FileViews.Add(fileView1);
-                fileGroupView.SourceFile = fileView1;
-            }
-            if (!string.IsNullOrEmpty(viewModel.SummaryFilePwd) && await ClassHelper.ExistServiceFile(viewModel.SummaryFilePwd))
-            {
-                FileViewModel fileView2 = new FileViewModel
+                if (!string.IsNullOrEmpty(viewModel.SourceFilePwd) && await ClassHelper.ExistServiceFile(viewModel.SourceFilePwd))
                 {
-                    Name = viewModel.SummaryFileName,
-                    Path = viewModel.SummaryFilePwd,
-                    FileType = viewModel.SummaryFileType,
-                    Message = viewModel.PageInfomation,
-                    Remark = viewModel.Remarksinfomation,
-                    Size = viewModel.SummaryFileSize / 1024
-                };
-                fileGroupView.FileViews.Add(fileView2);
-                fileGroupView.SummaryFile = fileView2;
-            }
-            if (fileGroupView.FileViews.Count > 0)
-            {
-                downloading.Files.Add(fileGroupView);
-                ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 0, $"{fileGroupView.FileViews[0].Message} {ClassHelper.FindResource<string>("StartDownload")}");
+                    FileViewModel fileView1 = new FileViewModel
+                    {
+                        Name = viewModel.SourceFileName,
+                        Path = viewModel.SourceFilePwd,
+                        FileType = viewModel.SourceFileType,
+                        Message = viewModel.PageInfomation,
+                        Remark = viewModel.Remarksinfomation,
+                        Size = viewModel.SourceFileSize / 1024,
+                        OutPath = outDir
+                    };
+                    fileGroupView.FileViews.Add(fileView1);
+                    fileGroupView.SourceFile = fileView1;
+                }
+                if (!string.IsNullOrEmpty(viewModel.SummaryFilePwd) && await ClassHelper.ExistServiceFile(viewModel.SummaryFilePwd))
+                {
+                    FileViewModel fileView2 = new FileViewModel
+                    {
+                        Name = viewModel.SummaryFileName,
+                        Path = viewModel.SummaryFilePwd,
+                        FileType = viewModel.SummaryFileType,
+                        Message = viewModel.PageInfomation,
+                        Remark = viewModel.Remarksinfomation,
+                        Size = viewModel.SummaryFileSize / 1024,
+                        OutPath = outDir
+                    };
+                    fileGroupView.FileViews.Add(fileView2);
+                    fileGroupView.SummaryFile = fileView2;
+                }
+                if (fileGroupView.FileViews.Count > 0)
+                {
+                    downloading.Files.Add(fileGroupView);
+                    ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 0, $"{fileGroupView.FileViews[0].Message} {ClassHelper.FindResource<string>("StartDownload")}");
+                }
             }
         }
     }

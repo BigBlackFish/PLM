@@ -1,5 +1,6 @@
 ﻿using PLM.Common;
 using PLM.Models.ViewModels;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -41,6 +42,11 @@ namespace PLM.Component.Pages
 
         private void BtnAllStop_Click(object sender, RoutedEventArgs e)
         {
+            if (!viewModel.Files.Any(item => item.IsSelect))
+            {
+                ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 1, "请先选择记录。");
+                return;
+            }
             if (viewModel.Files.Count == 0)
             {
                 ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 1, "没有进行中的任务。");
@@ -61,6 +67,11 @@ namespace PLM.Component.Pages
 
         private void BtnAllStart_Click(object sender, RoutedEventArgs e)
         {
+            if (!viewModel.Files.Any(item => item.IsSelect))
+            {
+                ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 1, "请先选择记录。");
+                return;
+            }
             if (viewModel.Files.Count == 0)
             {
                 ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 1, "没有进行中的任务。");
@@ -81,6 +92,11 @@ namespace PLM.Component.Pages
 
         private void BtnAllCancel_Click(object sender, RoutedEventArgs e)
         {
+            if (!viewModel.Files.Any(item => item.IsSelect))
+            {
+                ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 1, "请先选择记录。");
+                return;
+            }
             if (viewModel.Files.Count == 0)
             {
                 ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 1, "没有进行中的任务。");
@@ -108,6 +124,11 @@ namespace PLM.Component.Pages
 
         private void BtnAllDelete_Click(object sender, RoutedEventArgs e)
         {
+            if (!viewModel.Files.Any(item => item.IsSelect))
+            {
+                ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 1, "请先选择记录。");
+                return;
+            }
             if (viewModel.Files.Count == 0)
             {
                 ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 1, "没有进行中的任务。");

@@ -127,8 +127,8 @@ namespace PLM.Library.Controls
             {
                 LayoutInfo = viewModel.Message,
                 Remark = viewModel.Remark,
-                TerminalSourceFileId = string.Empty,
-                TerminalSummaryFileId = string.Empty
+                TerminalSourceFileId = Guid.NewGuid().ToString("D"),
+                TerminalSummaryFileId = Guid.NewGuid().ToString("D")
             };
             foreach (FileViewModel item in viewModel.FileViews)
             {
@@ -159,6 +159,11 @@ namespace PLM.Library.Controls
             {
                 if (result.Code == 0)
                 {
+                    Dispatcher.Invoke(delegate
+                    {
+                        UploadingPageViewModel uploading = ClassHelper.uploadingPage.DataContext as UploadingPageViewModel;
+                        uploading.Files.Remove(viewModel);
+                    });
                     ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 0, ClassHelper.FindResource<string>("SuccessfullyAdded"));
                 }
             }

@@ -148,6 +148,8 @@ namespace PLM.Models.ViewModels
         /// </summary>
         public bool DataType { get; set; }
 
+        public string OutPath { get; set; }
+
         public override void InitializeVariable()
         {
             Name = string.Empty;
@@ -211,7 +213,7 @@ namespace PLM.Models.ViewModels
                     Speed = p.TransferSpeedToString();
                 });
                 #region 基本信息
-                SavePath = System.IO.Path.Combine(ClassHelper.AttachmentsPath, $"{Message.Trim()}{(retry == 0 ? string.Empty : retry.ToString())}", Name);
+                SavePath = System.IO.Path.Combine(OutPath, $"{Message.Trim()}{(retry == 0 ? string.Empty : retry.ToString())}", Name);
                 SaveName = Name;
                 #endregion
                 FtpStatus ftpStatus = await ftpClient.DownloadFileAsync(SavePath, Path, File.Exists(SavePath) ? FtpLocalExists.Resume : FtpLocalExists.Overwrite, FtpVerify.None, progress, token);
