@@ -4,6 +4,7 @@
     {
         private string userName;
         private string password;
+        private bool isSelect;
 
         public string UserName
         {
@@ -25,10 +26,21 @@
             }
         }
 
+        public bool Isselect
+        {
+            get => isSelect;
+            set
+            {
+                isSelect = value;
+                OnPropertyChanged(nameof(Isselect));
+            }
+        }
+
         public override void InitializeVariable()
         {
             UserName = "13138107500";
             Password = "plm@2022";
+            Isselect = false;
         }
     }
 }

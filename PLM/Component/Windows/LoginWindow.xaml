@@ -38,7 +38,7 @@
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,153,0,0" WindowChrome.IsHitTestVisibleInChrome="True">
             <TextBox Style="{StaticResource AccountCodeTextBox}" Text="{Binding UserName}"/>
             <controls:PasswordInputBox Margin="0,24,0,0" Password="{Binding Password,Mode=TwoWay}"/>
-            <CheckBox x:Name="RemberPassword" Style="{StaticResource CheckBoxElement2}" Content="记住密码"  Margin="25,10,0,0"/>
+            <CheckBox x:Name="RemberPassword" IsChecked="{Binding Isselect,Mode=TwoWay}" Style="{StaticResource CheckBoxElement2}" Content="记住密码"  Margin="25,10,0,0"/>
             <Button x:Name="btnLogin" Style="{StaticResource ButtonLoginWait}" Height="56" Margin="0,20,0,0" Click="BtnLogin_Click">
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Foreground="#FFFFFF" Text="{DynamicResource Login}"/>
             </Button>

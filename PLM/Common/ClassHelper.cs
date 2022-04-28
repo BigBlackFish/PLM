@@ -4,6 +4,7 @@ using PLM.Component.Pages;
 using PLM.Component.Windows;
 using PLM.Models;
 using System;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -105,6 +106,18 @@ namespace PLM.Common
             {
                 Directory.CreateDirectory(AttachmentsPath);
             }
+        }
+
+        /// <summary>
+        /// 保存密码
+        /// </summary>
+        /// <param name="password"></param>
+        public static void SaveSettings(string password)
+        {
+            var Config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            Config.AppSettings.Settings["PassWord"].Value = password.Trim();
+            Config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("appSettings");
         }
 
         /// <summary>

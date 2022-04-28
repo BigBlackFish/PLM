@@ -2,6 +2,7 @@
 using PLM.Models;
 using PLM.Models.ViewModels;
 using PLM.Service;
+using System.Configuration;
 using System.Windows;
 
 namespace PLM.Component.Windows
@@ -11,14 +12,19 @@ namespace PLM.Component.Windows
     /// </summary>
     public partial class LoginWindow : Window
     {
+
         private readonly LoginWindowViewModel viewModel;
 
         public LoginWindow()
         {
             InitializeComponent();
-
             ClassHelper.LoginWindow = this;
             viewModel = DataContext as LoginWindowViewModel;
+            string Password = ConfigurationManager.AppSettings["PassWord"];
+            if (!string.IsNullOrEmpty(Password))
+            {
+                viewModel.Password = Password;
+            }
         }
 
         private void LoginMain_Loaded(object sender, RoutedEventArgs e)
@@ -40,6 +46,10 @@ namespace PLM.Component.Windows
                 {
                     ClassHelper.Token = result.Data.Access_token;
                     MainWindow mainWindow = new MainWindow();
+                    if (viewModel.Isselect)
+                    {
+                        ClassHelper.SaveSettings(viewModel.Password);
+                    }
                     mainWindow.Show();
                     Close();
                 }
