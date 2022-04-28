@@ -44,46 +44,54 @@ namespace PLM.Component.Pages
 
         private async void SelectInfo()
         {
-            viewModel.Files.Clear();
-            if ((await AdminService.GetLayoutFileList(viewModel.SelectPage, 6, viewModel.FileName, viewModel.CreateStartTime, viewModel.CreateEndTime, viewModel.CreateNickName) is APIResult<Records> LayoutFileListInfo))
+            DateTime dateTime = DateTime.MinValue;
+            if (string.IsNullOrEmpty(viewModel.CreateStartTime) || DateTime.TryParse(viewModel.CreateStartTime, out dateTime))
             {
-                if (LayoutFileListInfo.Data == null)
+                viewModel.Files.Clear();
+                if ((await AdminService.GetLayoutFileList(viewModel.SelectPage, 6, viewModel.FileName, dateTime.ToString("yyyy-MM-dd HH:mm"), string.Empty, viewModel.CreateNickName) is APIResult<Records> LayoutFileListInfo))
                 {
-                    return;
-                }
-                viewModel.Totalcounts = LayoutFileListInfo.Data.total.ToString();
-                viewModel.NumberofPages = int.Parse(LayoutFileListInfo.Data.totalPage.ToString());
-                if (LayoutFileListInfo.Data.list.Count > 0)
-                {
-                    viewModel.EmptyState = false;
-                }
-
-                foreach (PageListResultModel item in LayoutFileListInfo.Data.list)
-                {
-                    //ThreadPool.QueueUserWorkItem(s => DownLoadPicture(item));
-                    viewModel.Files.Add(new PageFileListViewModel
+                    if (LayoutFileListInfo.Data == null)
                     {
-                        Id = item.id == null ? "" : item.id.ToString(),
-                        ImageInfomation = item.summaryFileName,
-                        AssociationId = item.terminalSummaryFileId == null ? "" : item.terminalSummaryFileId.ToString(),
-                        PageInfomation = item.layoutInfo,
-                        Remarksinfomation = item.remark,
-                        UploadDate = item.updateTime,
-                        Uploader = item.updateUserName,
-                        SummaryFileSize = Convert.ToInt64(item.summaryFileSize),
-                        SummaryFileMd5 = item.summaryFileMd5,
-                        SummaryFilePwd = item.summaryFilePwd,
-                        SummaryFileName = item.summaryFileName,
-                        SummaryFileType = item.summaryFileType,
-                        SummaryContentType = item.summaryContentType,
-                        SourceFileSize = Convert.ToInt64(item.sourceFileSize),
-                        SourceFileMd5 = item.sourceFileMd5,
-                        SourceFilePwd = item.sourceFilePwd,
-                        SourceFileName = item.sourceFileName,
-                        SourceFileType = item.sourceFileType,
-                        SourceContentType = item.sourceContentType,
-                    });
+                        return;
+                    }
+                    viewModel.Totalcounts = LayoutFileListInfo.Data.total.ToString();
+                    viewModel.NumberofPages = int.Parse(LayoutFileListInfo.Data.totalPage.ToString());
+                    if (LayoutFileListInfo.Data.list.Count > 0)
+                    {
+                        viewModel.EmptyState = false;
+                    }
+
+                    foreach (PageListResultModel item in LayoutFileListInfo.Data.list)
+                    {
+                        //ThreadPool.QueueUserWorkItem(s => DownLoadPicture(item));
+                        viewModel.Files.Add(new PageFileListViewModel
+                        {
+                            Id = item.id == null ? "" : item.id.ToString(),
+                            ImageInfomation = item.summaryFileName,
+                            AssociationId = item.terminalSummaryFileId == null ? "" : item.terminalSummaryFileId.ToString(),
+                            PageInfomation = item.layoutInfo,
+                            Remarksinfomation = item.remark,
+                            UploadDate = item.updateTime,
+                            Uploader = item.updateUserName,
+                            SummaryFileSize = Convert.ToInt64(item.summaryFileSize),
+                            SummaryFileMd5 = item.summaryFileMd5,
+                            SummaryFilePwd = item.summaryFilePwd,
+                            SummaryFileName = item.summaryFileName,
+                            SummaryFileType = item.summaryFileType,
+                            SummaryContentType = item.summaryContentType,
+                            SourceFileSize = Convert.ToInt64(item.sourceFileSize),
+                            SourceFileMd5 = item.sourceFileMd5,
+                            SourceFilePwd = item.sourceFilePwd,
+                            SourceFileName = item.sourceFileName,
+                            SourceFileType = item.sourceFileType,
+                            SourceContentType = item.sourceContentType,
+                        });
+                    }
                 }
+            }
+            else
+            {
+                ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 3, "时间格式不正确。");
             }
         }
 
@@ -95,8 +103,6 @@ namespace PLM.Component.Pages
         private void ButReset_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             viewModel.FileName = string.Empty;
-            viewModel.CreateStartTime = string.Empty;
-            viewModel.CreateEndTime = string.Empty;
             viewModel.CreateNickName = string.Empty;
         }
 
@@ -114,5 +120,9 @@ namespace PLM.Component.Pages
             }
         }
 
+        private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            viewModel.CreateStartTime = (sender as DatePicker).SelectedDate?.ToString("yyyy-MM-dd HH:mm");
+        }
     }
 }

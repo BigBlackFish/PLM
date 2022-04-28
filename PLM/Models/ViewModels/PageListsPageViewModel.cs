@@ -1,5 +1,6 @@
 ﻿
 
+using System;
 using System.Collections.ObjectModel;
 
 namespace PLM.Models.ViewModels
@@ -10,7 +11,7 @@ namespace PLM.Models.ViewModels
         private bool emptyState;
         private string fileName;
         private string createStartTime;
-        private string createEndTime;
+        private DateTime createEndTime;
         private string createNickName;
         private int numberofPages;
         private int selectPage;
@@ -51,7 +52,7 @@ namespace PLM.Models.ViewModels
             }
         }
 
-        public string CreateEndTime
+        public DateTime CreateEndTime
         {
             get => createEndTime;
             set
@@ -117,7 +118,7 @@ namespace PLM.Models.ViewModels
             fileName = string.Empty;
             SelectPage = 1;
             createStartTime = string.Empty;
-            createEndTime = string.Empty;
+            createEndTime = DateTime.MaxValue;
             createNickName = string.Empty;
             Files = new ObservableCollection<PageFileListViewModel>();
             numberofPages = 0;

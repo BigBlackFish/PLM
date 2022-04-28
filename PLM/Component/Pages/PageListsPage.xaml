@@ -31,7 +31,10 @@
 
         <Border Grid.Row="0" Background="#FFF5F5FA">
             <StackPanel Orientation="Horizontal">
-                <TextBox x:Name="tebstarttoendtime" Style="{StaticResource starttoendtimeTextBox}" Text="{Binding CreateStartTime}"/>
+                <Grid VerticalAlignment="Center">
+                    <TextBox x:Name="tebstarttoendtime" Style="{StaticResource starttoendtimeTextBox}" Text="{Binding CreateStartTime}" />
+                    <DatePicker HorizontalAlignment="Right" VerticalAlignment="Center" Style="{DynamicResource DatePickerStyle1}" SelectedDateChanged="DatePicker_SelectedDateChanged"/>
+                </Grid>
                 <TextBox x:Name="tebuploader" Style="{StaticResource uploaderTextBox}" Text="{Binding CreateNickName}"/>
                 <TextBox x:Name="tebfileName" Style="{StaticResource fileNameTextBox}" Text="{Binding FileName}"/>
                 <Button x:Name="butselect" Style="{StaticResource butselect}" Content="{StaticResource select}" Click="Butselect_Click"/>
