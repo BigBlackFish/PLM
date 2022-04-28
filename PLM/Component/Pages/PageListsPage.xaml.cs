@@ -51,7 +51,7 @@ namespace PLM.Component.Pages
                 {
                     return;
                 }
-
+                viewModel.Totalcounts = LayoutFileListInfo.Data.total.ToString();
                 viewModel.NumberofPages = int.Parse(LayoutFileListInfo.Data.totalPage.ToString());
                 if (LayoutFileListInfo.Data.list.Count > 0)
                 {

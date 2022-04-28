@@ -15,6 +15,7 @@ namespace PLM.Models.ViewModels
         private int numberofPages;
         private int selectPage;
         private string id;
+        private string totalcounts;
         public ObservableCollection<PageFileListViewModel> Files { get; set; }
 
         /// <summary>
@@ -100,6 +101,16 @@ namespace PLM.Models.ViewModels
                 OnPropertyChanged(nameof(Id));
             }
         }
+
+        public string Totalcounts
+        {
+            get => totalcounts;
+            set
+            {
+                totalcounts = value;
+                OnPropertyChanged(nameof(Totalcounts));
+            }
+        }
         public override void InitializeVariable()
         {
             EmptyState = true;
@@ -110,6 +121,7 @@ namespace PLM.Models.ViewModels
             createNickName = string.Empty;
             Files = new ObservableCollection<PageFileListViewModel>();
             numberofPages = 0;
+            totalcounts = "0";
         }
     }
 }

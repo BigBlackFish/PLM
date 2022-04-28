@@ -10,7 +10,7 @@
          <Border x:Name="BorderButton">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{StaticResource Mutual}" Foreground="#FF80838F" VerticalAlignment="Center" FontSize="14"/>
-                <TextBlock x:Name="TotalNumberText" Text="{Binding NumberofPages}"  Foreground="#FF80838F" VerticalAlignment="Center" FontSize="14"/>
+                <TextBlock x:Name="TotalNumberText" Text="{Binding Totalcounts}"  Foreground="#FF80838F" VerticalAlignment="Center" FontSize="14"/>
                 <TextBlock Text="{StaticResource strip}"  Foreground="#FF80838F" VerticalAlignment="Center" FontSize="14"/>
                 <Button x:Name="LastOneButton" Style="{StaticResource JumpPageBut}" Content="&lt;" Click="LastOneButton_Click"/>
                 <Button x:Name="ButtonOne" Style="{StaticResource JumpPageBut}" Tag="1"   Content="1" Click="ButtonOne_Click"/>
