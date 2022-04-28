@@ -1,5 +1,6 @@
 ﻿using PLM.Common;
 using System;
+using System.Diagnostics;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
@@ -19,6 +20,16 @@ namespace PLM
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            Process[] processes = Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName);
+            if (processes.Length > 1)
+            {
+                foreach (var item in processes)
+                {
+                    ClassHelper.ShowWindow(item.MainWindowHandle, 9);
+                }
+                Process.GetCurrentProcess().Kill();
+            }
+
             if (ThreadPool.SetMaxThreads(25, 25))
             {
                 DispatcherUnhandledException += App_DispatcherUnhandledException; ;

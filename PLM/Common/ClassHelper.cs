@@ -6,6 +6,7 @@ using PLM.Models;
 using System;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
@@ -90,6 +91,12 @@ namespace PLM.Common
         public static event RouteEvent RoutedChanged;
         // 显示蒙版
         public static event AccordingMaskEvent AccordingMask;
+        #endregion
+
+        #region 动态库
+        // 设置指定窗口的显示状态
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        public static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
         #endregion
 
         static ClassHelper()
