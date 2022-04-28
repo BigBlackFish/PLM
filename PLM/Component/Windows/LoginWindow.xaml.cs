@@ -55,5 +55,6 @@ namespace PLM.Component.Windows
         {
             this.Close();
         }
+
     }
 }

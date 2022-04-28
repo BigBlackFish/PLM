@@ -30,6 +30,8 @@ namespace PLM.Library.Controls
                 if (fileadd != null)
                 {
                     fileadd.imgAdd.Tag = "0";
+                    fileadd.Tip.Visibility = Visibility.Visible;
+                    fileadd.FileName.Visibility = Visibility.Collapsed;
                 }
             }
         }
