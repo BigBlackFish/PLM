@@ -11,12 +11,13 @@ namespace PLM.Models.ViewModels
         private bool emptyState;
         private string fileName;
         private string createStartTime;
-        private DateTime createEndTime;
+        private string createEndTime;
         private string createNickName;
         private int numberofPages;
         private int selectPage;
         private string id;
         private string totalcounts;
+        private string timequantum;
         public ObservableCollection<PageFileListViewModel> Files { get; set; }
 
         /// <summary>
@@ -52,7 +53,7 @@ namespace PLM.Models.ViewModels
             }
         }
 
-        public DateTime CreateEndTime
+        public string CreateEndTime
         {
             get => createEndTime;
             set
@@ -62,6 +63,16 @@ namespace PLM.Models.ViewModels
             }
         }
 
+
+        public string TimeQuantum
+        {
+            get => timequantum;
+            set
+            {
+                timequantum = value;
+                OnPropertyChanged(nameof(TimeQuantum));
+            }
+        }
 
         public string CreateNickName
         {
@@ -118,8 +129,9 @@ namespace PLM.Models.ViewModels
             fileName = string.Empty;
             SelectPage = 1;
             createStartTime = string.Empty;
-            createEndTime = DateTime.MaxValue;
+            createEndTime = string.Empty;
             createNickName = string.Empty;
+            timequantum = string.Empty;
             Files = new ObservableCollection<PageFileListViewModel>();
             numberofPages = 0;
             totalcounts = "0";

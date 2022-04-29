@@ -305,9 +305,9 @@
 
     <Style x:Key="starttoendtimeTextBox" TargetType="{x:Type TextBox}">
         <Setter Property="Height" Value="40"/>
-        <Setter Property="Width" Value="230"/>
+        <Setter Property="Width" Value="280"/>
         <Setter Property="Margin" Value="20,0,0,0"/>
-        <Setter Property="FontSize" Value="17"/>
+        <Setter Property="FontSize" Value="11.5"/>
         <Setter Property="Foreground" Value="#606266"/>
         <Setter Property="Template">
             <Setter.Value>

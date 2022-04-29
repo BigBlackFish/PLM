@@ -45,10 +45,11 @@ namespace PLM.Component.Pages
         private async void SelectInfo()
         {
             DateTime dateTime = DateTime.MinValue;
-            if (string.IsNullOrEmpty(viewModel.CreateStartTime) || DateTime.TryParse(viewModel.CreateStartTime, out dateTime))
+            DateTime dateTimee = DateTime.MinValue;
+            if (DateTime.TryParse(viewModel.CreateEndTime, out dateTimee) || DateTime.TryParse(viewModel.CreateStartTime, out dateTime)||string.IsNullOrEmpty(viewModel.CreateStartTime))
             {
                 viewModel.Files.Clear();
-                if ((await AdminService.GetLayoutFileList(viewModel.SelectPage, 6, viewModel.FileName, dateTime.ToString("yyyy-MM-dd HH:mm"), string.Empty, viewModel.CreateNickName) is APIResult<Records> LayoutFileListInfo))
+                if ((await AdminService.GetLayoutFileList(viewModel.SelectPage, 6, viewModel.FileName, string.IsNullOrEmpty(viewModel.CreateStartTime)?string.Empty:dateTime.ToString("yyyy-MM-dd HH:mm"), string.IsNullOrEmpty(viewModel.CreateEndTime)?string.Empty:dateTimee.ToString("yyyy-MM-dd HH:mm"), viewModel.CreateNickName) is APIResult<Records> LayoutFileListInfo))
                 {
                     if (LayoutFileListInfo.Data == null)
                     {
@@ -123,6 +124,13 @@ namespace PLM.Component.Pages
         private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             viewModel.CreateStartTime = (sender as DatePicker).SelectedDate?.ToString("yyyy-MM-dd HH:mm");
+            viewModel.TimeQuantum = viewModel.CreateStartTime + "~";
+        }
+
+        private void DatePicker_SelectedDateChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            viewModel.CreateEndTime = (sender as DatePicker).SelectedDate?.ToString("yyyy-MM-dd HH:mm");
+            viewModel.TimeQuantum = viewModel.CreateStartTime +"~"+ viewModel.CreateEndTime;
         }
     }
 }
