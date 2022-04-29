@@ -105,6 +105,7 @@ namespace PLM.Component.Pages
         {
             viewModel.FileName = string.Empty;
             viewModel.CreateNickName = string.Empty;
+            viewModel.TimeQuantum = string.Empty;
         }
 
         private async void DownLoadPicture(PageListResultModel pageListResultModel)

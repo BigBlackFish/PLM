@@ -6,7 +6,7 @@
     <system:String x:Key="Login">登录</system:String>
     <system:String x:Key="DataSupport">由航天云网数据研究院（广东）有限公司提供数据支持</system:String>
     <system:String x:Key="UploadFile">上传文件</system:String>
-    <system:String x:Key="Uploading">正在上传</system:String>
+    <system:String x:Key="Uploading">上传列表</system:String>
     <system:String x:Key="Downloading">下载列表</system:String>
     <system:String x:Key="PageLists">版面样式</system:String>
     <system:String x:Key="PageDoesNotExist">页面不存在。</system:String>
