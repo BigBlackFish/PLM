@@ -176,7 +176,7 @@ namespace PLM.Models.ViewModels
                     Speed = p.TransferSpeedToString();
                 });
                 #region 基本信息
-                SavePath = $"{Message.Trim()}{(retry == 0 ? string.Empty : retry.ToString())}/{Name}";
+                SavePath = $"{ClassHelper.defaultPath}/{Message.Trim()}{(retry == 0 ? string.Empty : retry.ToString())}/{Name}";
                 SaveName = Name;
                 #endregion
                 FtpStatus ftpStatus = await ftpClient.UploadFileAsync(Path, SavePath, await ftpClient.FileExistsAsync(SavePath) ? FtpRemoteExists.Resume : FtpRemoteExists.Overwrite, true, FtpVerify.None, progress, token);

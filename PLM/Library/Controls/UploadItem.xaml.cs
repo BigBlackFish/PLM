@@ -123,12 +123,13 @@ namespace PLM.Library.Controls
                 }
             }
             viewModel.TransferComplete = true;
+            Random random = new Random();
             AddTerminalLayoutFileModel addTerminal = new AddTerminalLayoutFileModel()
             {
                 LayoutInfo = viewModel.Message,
                 Remark = viewModel.Remark,
-                TerminalSourceFileId = Guid.NewGuid().ToString("D"),
-                TerminalSummaryFileId = Guid.NewGuid().ToString("D")
+                TerminalSourceFileId = random.Next(0, int.MaxValue).ToString(),
+                TerminalSummaryFileId = random.Next(0, int.MaxValue).ToString()
             };
             foreach (FileViewModel item in viewModel.FileViews)
             {
