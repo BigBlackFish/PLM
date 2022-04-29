@@ -17,7 +17,17 @@ namespace PLM.Library.Controls
 
         // Using a DependencyProperty as the backing store for Password.  This enables animation, styling, binding, etc...
         public static DependencyProperty PasswordProperty =
-            DependencyProperty.Register("Password", typeof(string), typeof(PasswordInputBox), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("Password", typeof(string), typeof(PasswordInputBox), new PropertyMetadata(SetPassword));
+
+
+        private static void SetPassword(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            PasswordInputBox passwordBox = d as PasswordInputBox;
+            if (!string.IsNullOrEmpty(e.NewValue.ToString()))
+            {
+                passwordBox.pstPassword.Password = e.NewValue.ToString();
+            }
+        }
 
         private bool _isPasswordShow = false;
 
