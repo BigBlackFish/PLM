@@ -3,6 +3,7 @@ using PLM.Common;
 using PLM.Models;
 using PLM.Models.ViewModels;
 using PLM.Service;
+using System;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -81,7 +82,7 @@ namespace PLM.Library.Controls
                         FileType = viewModel.SourceFileType,
                         Message = viewModel.PageInfomation,
                         Remark = viewModel.Remarksinfomation,
-                        Size = viewModel.SourceFileSize / 1024,
+                        Size = Math.Round((double)viewModel.SourceFileSize / 1024 / 1024, 4),
                         OutPath = outDir
                     };
                     fileGroupView.FileViews.Add(fileView1);
@@ -96,7 +97,7 @@ namespace PLM.Library.Controls
                         FileType = viewModel.SummaryFileType,
                         Message = viewModel.PageInfomation,
                         Remark = viewModel.Remarksinfomation,
-                        Size = viewModel.SummaryFileSize / 1024,
+                        Size = Math.Round((double)viewModel.SummaryFileSize / 1024 / 1024, 4),
                         OutPath = outDir
                     };
                     fileGroupView.FileViews.Add(fileView2);

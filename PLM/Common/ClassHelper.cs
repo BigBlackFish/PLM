@@ -262,21 +262,37 @@ namespace PLM.Common
         /// <returns></returns>
         public static async Task<bool> ExistServiceFile(string path)
         {
-            FtpClient ftpClient = new FtpClient(ftpPath, ftpUsername, ftppassword);
-            await ftpClient.ConnectAsync();
-            bool state = await ftpClient.FileExistsAsync(path);
-            await ftpClient.DisconnectAsync();
+            bool state = false;
+            try
+            {
+                FtpClient ftpClient = new FtpClient(ftpPath, ftpUsername, ftppassword);
+                await ftpClient.ConnectAsync();
+                state = await ftpClient.FileExistsAsync(path);
+                await ftpClient.DisconnectAsync();
+            }
+            catch (Exception)
+            {
+
+            }
             return state;
         }
 
         public static async Task<string> DownloadImage(string path, string messgae, string name)
         {
-            string outPath = Path.Combine(Path.GetTempPath(), messgae.Trim(), name);
-            if (!File.Exists(outPath))
+            string outPath = string.Empty;
+            try
             {
-                FtpClient ftpClient = new FtpClient(ftpPath, ftpUsername, ftppassword);
-                await ftpClient.ConnectAsync();
-                await ftpClient.DownloadFileAsync(outPath, path, FtpLocalExists.Overwrite);
+                if (!File.Exists(outPath))
+                {
+                    FtpClient ftpClient = new FtpClient(ftpPath, ftpUsername, ftppassword);
+                    await ftpClient.ConnectAsync();
+                    await ftpClient.DownloadFileAsync(outPath, path, FtpLocalExists.Overwrite);
+                    outPath = Path.Combine(Path.GetTempPath(), messgae.Trim(), name);
+                }
+            }
+            catch (Exception)
+            {
+
             }
             return outPath;
         }

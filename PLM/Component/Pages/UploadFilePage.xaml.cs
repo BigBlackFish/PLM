@@ -72,7 +72,7 @@ namespace PLM.Component.Pages
                                         FileType = fileLeft.Extension.ToLower(),
                                         Message = viewModel.Message,
                                         Remark = viewModel.Remark,
-                                        Size = Math.Round((double)fileLeft.Length / 1024 / 1024, 3),
+                                        Size = Math.Round((double)fileLeft.Length / 1024 / 1024, 4),
                                         DataType = true
                                     };
                                     item.FileViews.Add(left);
@@ -80,7 +80,7 @@ namespace PLM.Component.Pages
                                 }
                                 else if (item.SourceFile.Path != viewModel.FileLeft)
                                 {
-                                    double size = Math.Round((double)fileLeft.Length / 1024 / 1024, 3);
+                                    double size = Math.Round((double)fileLeft.Length / 1024 / 1024, 4);
                                     if (item.SourceFile.Size != size)
                                     {
                                         string hint = ClassHelper.FindResource<string>("ReplaceHint");
@@ -142,7 +142,7 @@ namespace PLM.Component.Pages
                                         FileType = fileRight.Extension.ToLower(),
                                         Message = viewModel.Message,
                                         Remark = viewModel.Remark,
-                                        Size = Math.Round((double)fileRight.Length / 1024 / 1024, 3),
+                                        Size = Math.Round((double)fileRight.Length / 1024 / 1024, 4),
                                         DataType = false
                                     };
                                     item.FileViews.Add(right);
@@ -150,7 +150,7 @@ namespace PLM.Component.Pages
                                 }
                                 else if (item.SummaryFile.Path != viewModel.FileRight)
                                 {
-                                    double size = Math.Round((double)fileRight.Length / 1024 / 1024, 3);
+                                    double size = Math.Round((double)fileRight.Length / 1024 / 1024, 4);
                                     if (item.SummaryFile.Size != size)
                                     {
                                         string hint = ClassHelper.FindResource<string>("ReplaceHint");
@@ -171,7 +171,7 @@ namespace PLM.Component.Pages
                                                         FileType = fileRight.Extension.ToLower(),
                                                         Message = viewModel.Message,
                                                         Remark = viewModel.Remark,
-                                                        Size = Math.Round((double)fileRight.Length / 1024 / 1024, 3),
+                                                        Size = Math.Round((double)fileRight.Length / 1024 / 1024, 4),
                                                     };
                                                     item.FileViews.Add(fileView);
                                                     item.SummaryFile = fileView;
@@ -224,7 +224,7 @@ namespace PLM.Component.Pages
                             FileType = fileLeft.Extension.ToLower(),
                             Message = viewModel.Message,
                             Remark = viewModel.Remark,
-                            Size = Math.Round((double)fileLeft.Length / 1024 / 1024, 3),
+                            Size = Math.Round((double)fileLeft.Length / 1024 / 1024, 4),
                             DataType = true
                         };
                         fileGroupView.FileViews.Add(left);
@@ -240,7 +240,7 @@ namespace PLM.Component.Pages
                             FileType = fileRight.Extension.ToLower(),
                             Message = viewModel.Message,
                             Remark = viewModel.Remark,
-                            Size = Math.Round((double)fileRight.Length / 1024 / 1024, 3),
+                            Size = Math.Round((double)fileRight.Length / 1024 / 1024, 4),
                             DataType = false
                         };
                         fileGroupView.FileViews.Add(right);

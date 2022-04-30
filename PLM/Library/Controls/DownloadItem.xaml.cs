@@ -88,8 +88,6 @@ namespace PLM.Library.Controls
                     return;
                 }
             }
-            //DownloadingPageViewModel downloading = ClassHelper.downloadingPage.DataContext as DownloadingPageViewModel;
-            //downloading.Files.Remove(viewModel);
             ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 0, $"{viewModel.FileViews[0].Message} {ClassHelper.FindResource<string>("DownloadComplete")}");
         }
         #endregion

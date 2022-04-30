@@ -136,7 +136,7 @@ namespace PLM.Library.Controls
                 if (item.DataType)
                 {
                     FileInfo fileInfo = new FileInfo(item.Path);
-                    addTerminal.SourceFileSize = fileInfo.Length / 1024;
+                    addTerminal.SourceFileSize = fileInfo.Length;
                     addTerminal.SourceFileMd5 = item.MD5;
                     addTerminal.SourceFilePwd = item.SavePath;
                     addTerminal.SourceFileName = item.SaveName;
@@ -147,7 +147,7 @@ namespace PLM.Library.Controls
                 else
                 {
                     FileInfo fileInfo = new FileInfo(item.Path);
-                    addTerminal.SummaryFileSize = fileInfo.Length / 1024;
+                    addTerminal.SummaryFileSize = fileInfo.Length;
                     addTerminal.SummaryFileMd5 = item.MD5;
                     addTerminal.SummaryFilePwd = item.SavePath;
                     addTerminal.SummaryFileName = item.SaveName;
@@ -160,11 +160,6 @@ namespace PLM.Library.Controls
             {
                 if (result.Code == 0)
                 {
-                    Dispatcher.Invoke(delegate
-                    {
-                        UploadingPageViewModel uploading = ClassHelper.uploadingPage.DataContext as UploadingPageViewModel;
-                        uploading.Files.Remove(viewModel);
-                    });
                     ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 0, ClassHelper.FindResource<string>("SuccessfullyAdded"));
                 }
             }

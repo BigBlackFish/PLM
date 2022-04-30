@@ -59,7 +59,7 @@
     <system:String x:Key="Delete">删除</system:String>
     <system:String x:Key="SuccessfullyAdded">上传成功</system:String>
     <system:String x:Key="UploadFail">上传失败</system:String>
-    <system:String x:Key="DownloadFail">上传失败</system:String>
+    <system:String x:Key="DownloadFail">下载失败</system:String>
     <system:String x:Key="Mutual">共</system:String>
     <system:String x:Key="strip">条</system:String>
     <system:String x:Key="DownloadComplete">下载成功</system:String>
