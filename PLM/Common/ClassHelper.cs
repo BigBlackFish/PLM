@@ -113,10 +113,11 @@ namespace PLM.Common
         /// 保存密码
         /// </summary>
         /// <param name="password"></param>
-        public static void SaveSettings(string password)
+        public static void SaveSettings(string password,string username)
         {
             var Config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             Config.AppSettings.Settings["PassWord"].Value = password.Trim();
+            Config.AppSettings.Settings["UserName"].Value = username.Trim();
             Config.Save(ConfigurationSaveMode.Modified);
             ConfigurationManager.RefreshSection("appSettings");
         }

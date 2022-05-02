@@ -15,7 +15,7 @@
     <system:String x:Key="Layoutinformationinput">请输入</system:String>
     <system:String x:Key="ConfirmUpload">确认上传</system:String>
     <system:String x:Key="Clickordragtoaddsourcefile">点击或拖拽添加源文件</system:String>
-    <system:String x:Key="Thesupportedformatsare.tiff、.psd">支持格式为.tiff、.psd</system:String>
+    <system:String x:Key="Thesupportedformatsare.tiff、.psd">支持格式为.tiff、.psb</system:String>
     <system:String x:Key="Thesupportedformatsare.jpg、.png">支持格式为.jpg、.png</system:String>
     <system:String x:Key="delete">删除</system:String>
     <system:String x:Key="id">id</system:String>

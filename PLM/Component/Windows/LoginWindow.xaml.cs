@@ -22,9 +22,14 @@ namespace PLM.Component.Windows
             ClassHelper.LoginWindow = this;
             viewModel = DataContext as LoginWindowViewModel;
             string Password = ConfigurationManager.AppSettings["PassWord"];
+            string UserName= ConfigurationManager.AppSettings["UserName"];
             if (!string.IsNullOrEmpty(Password))
             {
                 viewModel.Password = Password;
+            }
+            if (!string.IsNullOrEmpty(UserName))
+            {
+                viewModel.Password = UserName;
             }
         }
 
@@ -49,7 +54,7 @@ namespace PLM.Component.Windows
                     MainWindow mainWindow = new MainWindow();
                     if (viewModel.Isselect)
                     {
-                        ClassHelper.SaveSettings(viewModel.Password);
+                        ClassHelper.SaveSettings(viewModel.Password,viewModel.UserName);
                     }
                     mainWindow.Show();
                     Close();
