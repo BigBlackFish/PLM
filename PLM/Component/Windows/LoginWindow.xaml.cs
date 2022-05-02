@@ -29,7 +29,7 @@ namespace PLM.Component.Windows
             }
             if (!string.IsNullOrEmpty(UserName))
             {
-                viewModel.Password = UserName;
+                viewModel.UserName = UserName;
             }
         }
 
