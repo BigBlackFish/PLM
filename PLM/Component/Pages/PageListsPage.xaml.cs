@@ -89,6 +89,8 @@ namespace PLM.Component.Pages
                         });
                     }
                 }
+                viewModel.CreateEndTime = String.Empty;
+                viewModel.CreateStartTime = String.Empty;
             }
             else
             {
