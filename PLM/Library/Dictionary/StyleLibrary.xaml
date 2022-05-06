@@ -250,6 +250,9 @@
             <Trigger Property="Tag" Value="2">
                 <Setter Property="Source" Value="/Library/Image/psd.png"/>
             </Trigger>
+            <Trigger Property="Tag" Value="3">
+                <Setter Property="Source" Value="/Library/Image/psd.png"/>
+            </Trigger>
         </Style.Triggers>
     </Style>
 

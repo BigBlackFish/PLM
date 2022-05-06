@@ -77,7 +77,7 @@ namespace PLM.Library.Controls
         private void Suffixjudgment(string fileName)
         {
             string extension = System.IO.Path.GetExtension(fileName).ToLower();
-            if (extension != ".tiff" && extension != ".psd" && !string.IsNullOrEmpty(extension))
+            if (extension != ".tiff" && extension != ".psd" && extension != ".psb"&&!string.IsNullOrEmpty(extension))
             {
                 ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 1, "不支持上传该格式文件");
                 imgAdd.Tag = "0";
@@ -91,7 +91,19 @@ namespace PLM.Library.Controls
                 ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 1, "未选择文件");
             }
             FilePath = fileName;
-            imgAdd.Tag = extension == ".tiff" ? "1" : "2";
+            //imgAdd.Tag = extension == ".tiff" ? "1" : "2";
+            if (extension == ".tiff")
+            {
+                imgAdd.Tag = "1";
+            }
+            else if (extension == ".psd")
+            {
+                imgAdd.Tag = "2";
+            }
+            else if (extension == ".psb")
+            {
+                imgAdd.Tag = "3";
+            }
             base.Tag = "1";
             btndelete.Tag = "1";
             FileName.Text = System.IO.Path.GetFileNameWithoutExtension(FilePath);

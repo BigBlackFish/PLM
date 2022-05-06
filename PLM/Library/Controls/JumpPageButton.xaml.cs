@@ -137,10 +137,15 @@ namespace PLM.Library.Controls
             ButtonFive.Tag = "0";
             ButtonLast.Tag = "1";
             SelectPage = TotalPages;
+            if(TotalPages>5)
             ButtonOne.Content = TotalPages - 5;
+            if(TotalPages>4)
             ButtonTwo.Content = TotalPages - 4;
+            if(TotalPages>3)
             ButtonThree.Content = TotalPages - 3;
+            if(TotalPages>2)
             ButtonFour.Content = TotalPages - 2;
+            if(TotalPages>1)
             ButtonFive.Content = TotalPages - 1;
         }
 
