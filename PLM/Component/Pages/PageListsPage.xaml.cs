@@ -91,6 +91,7 @@ namespace PLM.Component.Pages
                 }
                 viewModel.CreateEndTime = String.Empty;
                 viewModel.CreateStartTime = String.Empty;
+                viewModel.TimeQuantum = string.Empty;
             }
             else
             {
