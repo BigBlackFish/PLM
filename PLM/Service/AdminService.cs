@@ -68,5 +68,20 @@ namespace PLM.Service
             }
             return result;
         }
+
+        public static async Task<string>  UpLoadimage(string url)
+        {
+            string result = null;
+            List<KeyValuePair<string, string>> data = new List<KeyValuePair<string, string>>()
+            {
+                new KeyValuePair<string, string>("file",url),
+            };
+            if ((await HttpHelper.SendFormPost($"{ClassHelper.servicePath}/filecenter/file/upload", data, true)) is string str)
+            {
+                //result = JsonConvert.DeserializeObject<APIResult>(str);
+                result = str;
+            }
+            return result;
+        }
     }
 }

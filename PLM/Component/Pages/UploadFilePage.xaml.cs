@@ -32,6 +32,10 @@ namespace PLM.Component.Pages
 
         private void BtnUploading_Click(object sender, RoutedEventArgs e)
         {
+            if ((Service.AdminService.UpLoadimage(viewModel.FileRight) is System.Threading.Tasks.Task<string> LayoutFileListInfo))
+            {
+                var a = LayoutFileListInfo;
+            }
             if (string.IsNullOrEmpty(viewModel.FileLeft) && string.IsNullOrEmpty(viewModel.FileRight) || string.IsNullOrEmpty(viewModel.Message))
             {
                 ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 1, ClassHelper.FindResource<string>("LackOfNecessaryInformation"));
