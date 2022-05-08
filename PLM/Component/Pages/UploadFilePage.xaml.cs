@@ -32,9 +32,9 @@ namespace PLM.Component.Pages
 
         private async void BtnUploading_Click(object sender, RoutedEventArgs e)
         {
-            if ((await Service.AdminService.UpLoadimage(viewModel.FileRight) is APIResult<ImageFileModel> LayoutFileListInfo))
+            if ((await Service.AdminService.UpLoadimage(viewModel.FileRight) is APIResult<ImageFileModel> Httpfileinfo))
             {
-                var a = LayoutFileListInfo;
+                
             }
             if (string.IsNullOrEmpty(viewModel.FileLeft) && string.IsNullOrEmpty(viewModel.FileRight) || string.IsNullOrEmpty(viewModel.Message))
             {
