@@ -30,9 +30,9 @@ namespace PLM.Component.Pages
             viewModel.Message = string.Empty;
         }
 
-        private void BtnUploading_Click(object sender, RoutedEventArgs e)
+        private async void BtnUploading_Click(object sender, RoutedEventArgs e)
         {
-            if ((Service.AdminService.UpLoadimage(viewModel.FileRight) is System.Threading.Tasks.Task<string> LayoutFileListInfo))
+            if ((await Service.AdminService.UpLoadimage(viewModel.FileRight) is APIResult<ImageFileModel> LayoutFileListInfo))
             {
                 var a = LayoutFileListInfo;
             }
