@@ -32,11 +32,11 @@ namespace PLM.Component.Pages
 
         private async void BtnUploading_Click(object sender, RoutedEventArgs e)
         {
-            if ((await Service.AdminService.UpLoadimage(viewModel.FileRight) is APIResult<ImageFileModel> Httpfileinfo))
-            {
+            //if ((await Service.AdminService.UpLoadimage(viewModel.FileRight) is APIResult<ImageFileModel> Httpfileinfo))
+            //{
                 
-            }
-            if (string.IsNullOrEmpty(viewModel.FileLeft) && string.IsNullOrEmpty(viewModel.FileRight) || string.IsNullOrEmpty(viewModel.Message))
+            //}
+            if ( string.IsNullOrEmpty(viewModel.FileRight) || string.IsNullOrEmpty(viewModel.Message))
             {
                 ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 1, ClassHelper.FindResource<string>("LackOfNecessaryInformation"));
             }
