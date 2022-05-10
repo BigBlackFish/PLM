@@ -33,8 +33,8 @@
             <StackPanel Orientation="Horizontal">
                 <Grid VerticalAlignment="Center">
                     <TextBox x:Name="tebstarttoendtime" Style="{StaticResource starttoendtimeTextBox}" Text="{Binding TimeQuantum}" />
-                    <DatePicker HorizontalAlignment="Right" Margin="0,0,25,0" VerticalAlignment="Center" Style="{DynamicResource DatePickerStyle1}" SelectedDateChanged="DatePicker_SelectedDateChanged"/>
-                    <DatePicker HorizontalAlignment="Right" VerticalAlignment="Center" Style="{DynamicResource DatePickerStyle1}" SelectedDateChanged="DatePicker_SelectedDateChanged_1"/>
+                    <DatePicker x:Name="DateOne" HorizontalAlignment="Right" Margin="0,0,25,0" VerticalAlignment="Center" Style="{DynamicResource DatePickerStyle1}" SelectedDateChanged="DatePicker_SelectedDateChanged"/>
+                    <DatePicker x:Name="DateTwo" HorizontalAlignment="Right" VerticalAlignment="Center" Style="{DynamicResource DatePickerStyle1}" SelectedDateChanged="DatePicker_SelectedDateChanged_1"/>
                 </Grid>
                 <TextBox x:Name="tebuploader" Style="{StaticResource uploaderTextBox}" Text="{Binding CreateNickName}"/>
                 <TextBox x:Name="tebfileName" Style="{StaticResource fileNameTextBox}" Text="{Binding FileName}"/>

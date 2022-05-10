@@ -102,6 +102,8 @@ namespace PLM.Component.Pages
         private void Butselect_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             SelectInfo();
+            DateOne.SelectedDate = null;
+            DateTwo.SelectedDate = null;
         }
 
         private void ButReset_Click(object sender, System.Windows.RoutedEventArgs e)

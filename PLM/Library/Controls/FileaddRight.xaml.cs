@@ -86,6 +86,7 @@ namespace PLM.Library.Controls
             else if (string.IsNullOrEmpty(extension))
             {
                 ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 1, "未选择文件");
+                return;
             }
             FilePath = fileName;
             imgAdd.Tag = extension == ".png" ? "1" : "2";

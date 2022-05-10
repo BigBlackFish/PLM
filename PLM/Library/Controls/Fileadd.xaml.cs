@@ -48,7 +48,7 @@ namespace PLM.Library.Controls
             OpenFileDialog dialog = new OpenFileDialog
             {
                 Multiselect = false,
-                Filter = "tiff,psd(*.tiff,*.psd)|*.tiff;*.psd"
+                Filter = "tiff,psd(*.tiff,*.psd*.psb)|*.tiff;*.psd*.psb"
             };
             dialog.ShowDialog();
             Suffixjudgment(dialog.FileName);
@@ -89,6 +89,7 @@ namespace PLM.Library.Controls
             else if (string.IsNullOrEmpty(extension))
             {
                 ClassHelper.MessageAlert(ClassHelper.MainWindow.GetType(), 1, "未选择文件");
+                return;
             }
             FilePath = fileName;
             //imgAdd.Tag = extension == ".tiff" ? "1" : "2";
