@@ -48,7 +48,7 @@ namespace PLM.Library.Controls
             OpenFileDialog dialog = new OpenFileDialog
             {
                 Multiselect = false,
-                Filter = "tiff,psd,psb(*.tiff,*.psd,*.psb)|*.tiff;*.psd,*.psb"
+                Filter = "tiff,psd(*.tiff,*.psd,*.psb)|*.tiff;*.psd;*.psb"
             };
             dialog.ShowDialog();
             Suffixjudgment(dialog.FileName);
