@@ -46,7 +46,7 @@ namespace PLM.Component.Pages
         {
             DateTime dateTime = DateTime.MinValue;
             DateTime dateTimee = DateTime.MinValue;
-            if (DateTime.TryParse(viewModel.CreateEndTime, out dateTimee) || DateTime.TryParse(viewModel.CreateStartTime, out dateTime)||string.IsNullOrEmpty(viewModel.CreateStartTime))
+            if (DateTime.TryParse(viewModel.CreateEndTime, out dateTimee) && DateTime.TryParse(viewModel.CreateStartTime, out dateTime)||string.IsNullOrEmpty(viewModel.CreateStartTime))
             {
                 viewModel.Files.Clear();
                 if ((await AdminService.GetLayoutFileList(viewModel.SelectPage, 6, viewModel.FileName, string.IsNullOrEmpty(viewModel.CreateStartTime)?string.Empty:dateTime.ToString("yyyy-MM-dd HH:mm"), string.IsNullOrEmpty(viewModel.CreateEndTime)?string.Empty:dateTimee.ToString("yyyy-MM-dd HH:mm"), viewModel.CreateNickName) is APIResult<Records> LayoutFileListInfo))
