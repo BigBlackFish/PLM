@@ -22,7 +22,7 @@ namespace PLM.Common
     {
         #region 常量
         // 服务器地址
-        public const string servicePath = "https://gd-casicloud.com/apiv2";
+        public const string servicePath = "https://plm-sit.newpearl.com/api";
         public const uint wpSystemMenu = 0x02;
         public const uint wmSystemMenu = 0xa4;
         public const string ftpPath = "192.170.30.53";
@@ -280,7 +280,7 @@ namespace PLM.Common
 
         public static async Task<string> DownloadImage(string path, string messgae, string name)
         {
-            string outPath = string.Empty;
+            string outPath = PageListPicturePath + path;
             try
             {
                 if (!File.Exists(outPath))

@@ -30,7 +30,7 @@ namespace PLM.Component.Pages
             viewModel.Message = string.Empty;
         }
 
-        private async void BtnUploading_Click(object sender, RoutedEventArgs e)
+        private  void BtnUploading_Click(object sender, RoutedEventArgs e)
         {
             //if ((await Service.AdminService.UpLoadimage(viewModel.FileRight) is APIResult<ImageFileModel> Httpfileinfo))
             //{
