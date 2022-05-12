@@ -76,7 +76,7 @@ namespace PLM.Service
             {
                 new KeyValuePair<string, string>("file",url),
             };
-            if ((await HttpHelper.SendFormPost($"{ClassHelper.servicePath}/filecenter/file/upload", data, true)) is string str)
+            if ((await HttpHelper.UploadFormPost($"{ClassHelper.servicePath}/filecenter/file/upload", data, true)) is string str)
             {
                 result = JsonConvert.DeserializeObject<APIResult<ImageFileModel>>(str);
             }

@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -51,6 +52,28 @@ namespace PLM.Common
             }
         }
 
+        // POST请求单独一个文件上传(Form)
+        public static async Task<string> UploadFormPost(string url, List<KeyValuePair<string, string>> data, bool authentication = false)
+        {
+            try
+            {
+                HttpClient request = new HttpClient();
+                if (authentication)
+                {
+                    request.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ClassHelper.Token);
+                }
+                var fileStream = new FileStream(data[0].Value, FileMode.Open);
+                var fileName = Path.GetFileName(data[0].Value);
+                MultipartFormDataContent multipartFormDataContent = new MultipartFormDataContent();
+                multipartFormDataContent.Add(new StreamContent(fileStream), data[0].Key, fileName);
+                return await (await request.PostAsync(url, multipartFormDataContent)).Content.ReadAsStringAsync();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         // GET请求
         public static async Task<string> SendGet(string url, bool authentication = false)
         {
@@ -68,5 +91,6 @@ namespace PLM.Common
                 throw;
             }
         }
+
     }
 }
