@@ -62,11 +62,12 @@ namespace PLM.Common
                 {
                     request.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ClassHelper.Token);
                 }
-                var fileStream = new FileStream(data[0].Value, FileMode.Open);
                 var fileName = Path.GetFileName(data[0].Value);
-                MultipartFormDataContent multipartFormDataContent = new MultipartFormDataContent();
-                multipartFormDataContent.Add(new StreamContent(fileStream), data[0].Key, fileName);
-                return await (await request.PostAsync(url, multipartFormDataContent)).Content.ReadAsStringAsync();
+                MultipartFormDataContent multipartFormDataContent = new MultipartFormDataContent() {
+                    {new ByteArrayContent(File.ReadAllBytes(data[0].Value)), data[0].Key, fileName }
+                }; 
+                string b=await (await request.PostAsync(url, multipartFormDataContent)).Content.ReadAsStringAsync();
+                return b;
             }
             catch (Exception)
             {
