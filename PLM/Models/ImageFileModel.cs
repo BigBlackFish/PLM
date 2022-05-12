@@ -14,6 +14,7 @@ namespace PLM.Models
         public string fileSize { get; set; }
         public string fileNewName { get; set; }
         public string fileDesc { get; set; }
+        public string fileHash { get; set; }
         public List<string> tags { get; set; }
     }
 }

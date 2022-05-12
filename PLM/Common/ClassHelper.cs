@@ -34,6 +34,10 @@ namespace PLM.Common
 
         // 版面缩略图路径
         public static readonly string PageListPicturePath = Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, "Pictures");
+
+        //网页缩略图地址
+        public static string ImagePath = string.Empty;
+
         #endregion
 
         #region 变量

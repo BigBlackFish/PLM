@@ -143,6 +143,7 @@ namespace PLM.Library.Controls
                     addTerminal.SourceFileType = item.FileType;
                     addTerminal.SourceContentType = ClassHelper.GetMimeMapping(fileInfo.FullName);
                     addTerminal.SourceFileUrl = string.Empty;
+                    addTerminal.SourceFileUrl = ClassHelper.ImagePath;
                 }
                 else
                 {
@@ -154,6 +155,7 @@ namespace PLM.Library.Controls
                     addTerminal.SummaryFileType = item.FileType;
                     addTerminal.SummaryContentType = ClassHelper.GetMimeMapping(fileInfo.FullName);
                     addTerminal.SummaryFileUrl = string.Empty;
+                    addTerminal.SourceFileUrl = ClassHelper.ImagePath;
                 }
             }
             if ((await AdminService.TerminalLayoutFileAdd(addTerminal)) is APIResult result)

@@ -35,7 +35,10 @@ namespace PLM.Component.Pages
            
             if ((await Service.AdminService.UpLoadimage(viewModel.FileRight) is APIResult<ImageFileModel> Httpfileinfo))
             {
-
+                if (Httpfileinfo.Code == 0)
+                { 
+                ClassHelper.ImagePath=Httpfileinfo.Data.fileUrl;
+                }
             }
             if ( string.IsNullOrEmpty(viewModel.FileRight) || string.IsNullOrEmpty(viewModel.Message))
             {
