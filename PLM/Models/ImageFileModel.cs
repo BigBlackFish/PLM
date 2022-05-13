@@ -8,7 +8,7 @@ namespace PLM.Models
 {
     public class ImageFileModel
     {
-        public int id { get; set; }
+        public string id { get; set; }
         public string fileUrl { get; set; }
         public string fileName { get; set; }
         public string fileSize { get; set; }
