@@ -63,9 +63,12 @@ namespace PLM.Common
                     request.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ClassHelper.Token);
                 }
                 var fileName = Path.GetFileName(data[0].Value);
+                string type=Path.GetExtension(data[0].Value);
                 MultipartFormDataContent multipartFormDataContent = new MultipartFormDataContent() {
-                    {new ByteArrayContent(File.ReadAllBytes(data[0].Value)), data[0].Key, fileName }
+                    //{new ByteArrayContent(File.ReadAllBytes(data[0].Value)), data[0].Key, fileName },
+                    {new StreamContent(File.OpenRead(data[0].Value),(int)File.OpenRead(data[0].Value).Length),data[0].Key,fileName }
                 };
+                multipartFormDataContent.Add(new StringContent(type==".jpg"? "image/jpg": "image/png"), "contentType");
                 return await (await request.PostAsync(url, multipartFormDataContent)).Content.ReadAsStringAsync();
             }
             catch (Exception)
